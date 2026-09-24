@@ -196,49 +196,16 @@ button:disabled:hover > .link-arrow {
   }
 }
 
-/* Ambient hero instrumentation motion — slow and subtle by design ("precision
-   and control", not a gimmick): gauge needles drift a few degrees, one radar
-   sweep and the propeller turn continuously and very slowly, status lights
-   pulse gently. transform-origin is set inline per-element (in SVG user
-   units) so each rotates around its own gauge/hub center, not the shape's
-   own bounding-box midpoint. */
-@keyframes needle-drift {
-  0%,
-  100% {
-    transform: rotate(-5deg);
-  }
-  50% {
-    transform: rotate(5deg);
-  }
-}
-.hero-needle {
-  animation: needle-drift 6s ease-in-out infinite;
-  transform-origin: 0px 0px;
-}
+/* Hero backdrop: the propeller is the one deliberately animated element —
+   everything else in InstrumentPanel is static. */
 @keyframes slow-spin {
   to {
     transform: rotate(360deg);
   }
 }
-.hero-radar {
-  animation: slow-spin 9s linear infinite;
-  transform-origin: 0px 0px;
-}
 .hero-propeller {
-  animation: slow-spin 34s linear infinite;
+  animation: slow-spin 46s linear infinite;
   transform-origin: 0px 0px;
-}
-@keyframes status-pulse {
-  0%,
-  100% {
-    opacity: 0.2;
-  }
-  50% {
-    opacity: 0.85;
-  }
-}
-.hero-status-light {
-  animation: status-pulse 3.2s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -250,12 +217,6 @@ button:disabled:hover > .link-arrow {
     transition: none !important;
     opacity: 1 !important;
     transform: none !important;
-  }
-  .hero-needle,
-  .hero-radar,
-  .hero-propeller,
-  .hero-status-light {
-    animation: none !important;
   }
   * {
     transition-duration: 0.01ms !important;
