@@ -6,7 +6,7 @@ export function Hero() {
   const { hero } = content;
 
   return (
-    <section id="top" className="relative flex min-h-[680px] items-end overflow-hidden bg-navy-deep">
+    <section id="top" className="relative flex min-h-[580px] items-end overflow-hidden bg-navy-deep">
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-navy-deep via-navy to-navy" />
         <div className="absolute inset-0 text-white/[0.32] [clip-path:polygon(0%_0%,100%_0%,100%_100%,74%_100%,74%_24%,0%_24%)] lg:[clip-path:none]">

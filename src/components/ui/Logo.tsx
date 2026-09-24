@@ -18,7 +18,7 @@ export function Logo({ className, light }: { className?: string; light?: boolean
       </span>
       <span
         className={cn(
-          "mt-1 font-body text-[10px] font-semibold uppercase tracking-[0.18em]",
+          "-mt-0.5 font-body text-[10px] font-semibold uppercase tracking-[0.18em]",
           light ? "text-mist" : "text-ink"
         )}
       >
