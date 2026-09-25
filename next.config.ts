@@ -11,6 +11,9 @@ const nextConfig: NextConfig = {
   output: "export",
   basePath: repoBasePath,
   assetPrefix: repoBasePath,
+  // Lets a second local dev server run from this folder (Next.js locks the
+  // dist dir, so two `next dev` processes can't share `.next`).
+  distDir: process.env.NEXT_DIST_DIR || ".next",
   turbopack: {
     root: path.join(__dirname),
   },
