@@ -21,7 +21,15 @@ const requestFormLabels = (fileHint: string) => ({
   successDetail: "Thank you for reaching out. You will hear back personally.",
   error: "Something went wrong. Please try again.",
   optional: "optional",
+  uploading: "Uploading files…",
+  fileTooMany: "Please attach at most 5 files.",
+  fileTooLarge: "Each file can be at most 10 MB.",
+  fileType: "Only images, PDF, Word and Excel files can be attached.",
+  fileUploadError: "Your files could not be uploaded. Please try again, or send the request without attachments.",
+  fileUnavailable: "File upload is temporarily unavailable. Send your request and reply to our email with the files.",
 });
+
+const FILE_TYPES = "Images, PDF, Word or Excel — max. 5 files, 10 MB each.";
 
 export const en: SiteContent = {
   meta: {
@@ -188,10 +196,27 @@ export const en: SiteContent = {
     intro:
       "Describe the situation or system briefly. A personal response follows, usually within a few working days.",
     specsNote:
-      "Please include where possible: vessel or system, make & model, serial number, and photos of the issue. This speeds up diagnosis and response time.",
-    form: requestFormLabels("Photos or documents of the system or issue (images, PDF)."),
+      "Please include where possible: make & model, serial number, and photos of the issue. This speeds up diagnosis and response time.",
+    specsLabel: "Specs",
+    extraFields: [
+      { name: "Vessel name", label: "Vessel name", type: "text", required: true },
+      { name: "IMO number", label: "IMO number", type: "text", inputMode: "numeric" },
+      { name: "Port / location", label: "Port / location", type: "text" },
+      { name: "ETA", label: "ETA (arrival date)", type: "date" },
+      { name: "System / engine type", label: "System / engine type (e.g. Alpha Lubricator, engine make & model)", type: "text", wide: true },
+      {
+        name: "Urgency",
+        label: "Urgency",
+        type: "select",
+        options: ["Normal", "Urgent", "Emergency — vessel out of service"],
+        required: true,
+        wide: true,
+      },
+    ],
+    form: requestFormLabels(`Photos or documents of the system or issue. ${FILE_TYPES}`),
     directLabel: "Direct contact",
     location: "Netherlands",
+    scopeLabel: "Availability",
     scope: "Worldwide service and shipping",
   },
   partsRequest: {
@@ -201,9 +226,16 @@ export const en: SiteContent = {
       "Describe which part(s) you need. A personal response follows, usually within a few working days.",
     specsNote:
       "Please include where possible: make & model, part/serial number, and photos of the part or nameplate. This speeds up sourcing and quoting.",
-    form: requestFormLabels("Photos of the part, nameplate or drawing (images, PDF)."),
+    specsLabel: "Specs",
+    extraFields: [
+      { name: "System make / type", label: "System make / type", type: "text", required: true, wide: true },
+      { name: "Delivery address / port", label: "Delivery address / port", type: "text" },
+      { name: "Requested delivery date", label: "Requested delivery date", type: "date" },
+    ],
+    form: requestFormLabels(`Photos of the part, nameplate or drawing. ${FILE_TYPES}`),
     directLabel: "Direct contact",
     location: "Netherlands",
+    scopeLabel: "Availability",
     scope: "Worldwide service and shipping",
   },
   contactGeneral: {
@@ -211,9 +243,11 @@ export const en: SiteContent = {
     title: "Start the conversation.",
     intro:
       "Not a service or parts request? Describe the situation briefly. A personal response follows, usually within a few working days.",
-    form: requestFormLabels("Attach any relevant files (images, PDF)."),
+    specsLabel: "Specs",
+    form: requestFormLabels(`Attach any relevant files. ${FILE_TYPES}`),
     directLabel: "Direct contact",
     location: "Netherlands",
+    scopeLabel: "Availability",
     scope: "Worldwide service and shipping",
   },
   footer: {

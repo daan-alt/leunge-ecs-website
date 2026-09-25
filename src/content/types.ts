@@ -32,6 +32,25 @@ export interface ContactFormLabels {
   successDetail: string;
   error: string;
   optional: string;
+  uploading: string;
+  fileTooMany: string;
+  fileTooLarge: string;
+  fileType: string;
+  fileUploadError: string;
+  fileUnavailable: string;
+}
+
+/** Request-specific field rendered above the subject/message fields. */
+export interface ExtraField {
+  /** Also the key shown in the notification email, so keep it human-readable. */
+  name: string;
+  label: string;
+  type: "text" | "date" | "select";
+  options?: string[];
+  required?: boolean;
+  /** Span both grid columns. */
+  wide?: boolean;
+  inputMode?: "numeric" | "text";
 }
 
 export interface RequestFormContent {
@@ -39,9 +58,12 @@ export interface RequestFormContent {
   title: string;
   intro: string;
   specsNote?: string;
+  specsLabel: string;
+  extraFields?: ExtraField[];
   form: ContactFormLabels;
   directLabel: string;
   location: string;
+  scopeLabel: string;
   scope: string;
 }
 
