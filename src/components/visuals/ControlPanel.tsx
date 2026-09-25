@@ -1,3 +1,8 @@
+"use client";
+
+// Client component on purpose: the SVG is generated from a few formulas, so
+// shipping this code is far smaller than serializing ~50 KB of markup into the
+// RSC payload. Output is deterministic, so SSR and hydration match.
 import type { CSSProperties } from "react";
 import { cn } from "@/lib/utils";
 
@@ -77,7 +82,7 @@ const CYCLE = 3.6; // seconds per full lubrication cycle (matches .cp-inject / .
 // Pressure/temperature traces, periodic over `period`. Deterministic, so SSR markup is stable.
 function trendPath(period: number, w: number, f: (t: number) => number) {
   const pts: string[] = [];
-  for (let x = 0; x <= w * 2; x += 6) {
+  for (let x = 0; x <= w * 2; x += 9) {
     const t = (x / period) * Math.PI * 2;
     pts.push(`${x === 0 ? "M" : "L"}${x},${f(t).toFixed(1)}`);
   }
@@ -86,6 +91,11 @@ function trendPath(period: number, w: number, f: (t: number) => number) {
 const pressure = (t: number) => 70 + 28 * Math.sin(t) + 10 * Math.sin(3 * t) + 5 * Math.sin(5 * t + 1);
 const temperature = (t: number) => 95 + 14 * Math.sin(2 * t + 0.6) + 6 * Math.sin(4 * t);
 
+// Trig results can differ in the last digit between the server's and a browser's
+// JS engine; rounding keeps SSR and hydration markup identical.
+const cos = (a: number) => Math.round(Math.cos(a) * 1e4) / 1e4;
+const sin = (a: number) => Math.round(Math.sin(a) * 1e4) / 1e4;
+
 function Gauge({ cx, cy, r, sway, d }: GaugeSpec) {
   // 270° dial opening at the bottom.
   const start = (135 * Math.PI) / 180;
@@ -93,17 +103,17 @@ function Gauge({ cx, cy, r, sway, d }: GaugeSpec) {
   return (
     <g transform={`translate(${cx} ${cy})`}>
       <path
-        d={`M${Math.cos(start) * r},${Math.sin(start) * r} A${r},${r} 0 1 1 ${Math.cos(start + 1.5 * Math.PI) * r},${Math.sin(start + 1.5 * Math.PI) * r}`}
+        d={`M${cos(start) * r},${sin(start) * r} A${r},${r} 0 1 1 ${cos(start + 1.5 * Math.PI) * r},${sin(start + 1.5 * Math.PI) * r}`}
         stroke="currentColor"
         strokeOpacity={STRUCTURE}
       />
       {ticks.map((a, i) => (
         <line
           key={i}
-          x1={Math.cos(a) * (r - (i % 3 === 0 ? 12 : 6))}
-          y1={Math.sin(a) * (r - (i % 3 === 0 ? 12 : 6))}
-          x2={Math.cos(a) * r}
-          y2={Math.sin(a) * r}
+          x1={cos(a) * (r - (i % 3 === 0 ? 12 : 6))}
+          y1={sin(a) * (r - (i % 3 === 0 ? 12 : 6))}
+          x2={cos(a) * r}
+          y2={sin(a) * r}
           stroke="currentColor"
           strokeOpacity={i % 3 === 0 ? STRUCTURE : DETAIL}
         />
@@ -111,7 +121,7 @@ function Gauge({ cx, cy, r, sway, d }: GaugeSpec) {
       {/* Red-line zone in the accent color. */}
       <path
         className="text-accent-bright"
-        d={`M${Math.cos(start + 1.25 * Math.PI) * (r - 3)},${Math.sin(start + 1.25 * Math.PI) * (r - 3)} A${r - 3},${r - 3} 0 0 1 ${Math.cos(start + 1.5 * Math.PI) * (r - 3)},${Math.sin(start + 1.5 * Math.PI) * (r - 3)}`}
+        d={`M${cos(start + 1.25 * Math.PI) * (r - 3)},${sin(start + 1.25 * Math.PI) * (r - 3)} A${r - 3},${r - 3} 0 0 1 ${cos(start + 1.5 * Math.PI) * (r - 3)},${sin(start + 1.5 * Math.PI) * (r - 3)}`}
         stroke="currentColor"
         strokeOpacity={0.55}
         strokeWidth="3"

@@ -82,8 +82,8 @@ export function Navigation() {
 
       <div
         className={cn(
-          "absolute inset-x-0 top-full overflow-hidden bg-white shadow-lg transition-[max-height] duration-300 ease-in-out lg:hidden",
-          open ? "max-h-[32rem]" : "max-h-0"
+          "absolute inset-x-0 top-full overflow-hidden bg-white transition-[max-height] duration-300 ease-in-out lg:hidden",
+          open ? "max-h-[32rem] shadow-lg" : "max-h-0"
         )}
       >
         <div className="overflow-hidden border-t border-line px-6 py-6">
