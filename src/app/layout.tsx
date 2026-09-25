@@ -5,7 +5,6 @@ import { content } from "@/content";
 import { SITE_URL } from "@/lib/utils";
 import { Navigation } from "@/components/layout/Navigation";
 import { Footer } from "@/components/layout/Footer";
-import { RevealObserver } from "@/components/ui/RevealObserver";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -68,7 +67,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Navigation />
         <main className="flex-1">{children}</main>
         <Footer />
-        <RevealObserver />
       </body>
     </html>
   );

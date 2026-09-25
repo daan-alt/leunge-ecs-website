@@ -30,8 +30,9 @@ another `next dev` in this folder (Next locks its dist dir).
 - **Tailwind v4, CSS-first**: tokens in the `@theme` block of `src/app/globals.css` (`navy`, `accent`,
   `accent-bright`, `mist`, `ink`, `line`, …). Custom classes there: `.btn-premium(-dark)`, `.field-underline`,
   `.card-lift`, `.reveal`/`.reveal-line`, and the hero `.cp-*` animations.
-- **Reveal**: `Reveal` is a plain wrapper; one shared `RevealObserver` (in `layout.tsx`) handles all
-  `.reveal` elements. Don't add per-element observers.
+- **Reveal**: `Reveal` adds `.reveal`/`.reveal-line`; the fade-in is a pure-CSS scroll-driven animation
+  (`animation-timeline: view()`) in `globals.css`. Content is visible by default — don't reintroduce a JS
+  observer that hides content until it runs (it broke pages opened via client-side navigation).
 - **Visuals** (`src/components/visuals/`) are hand-authored SVGs using `currentColor` + Tailwind text
   classes. Hero backdrop = `ControlPanel.tsx` (client component, layouts `wide` mobile / `right` desktop;
   CSS-animated, frozen under `prefers-reduced-motion`). Round trig output there to avoid hydration mismatches.

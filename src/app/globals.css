@@ -56,26 +56,38 @@ body {
   text-wrap: balance;
 }
 
-/* Reveal-on-scroll: hidden until the .is-visible class is added by the observer.
-   Uses transitions (not animation: forwards) so the resting painted state always
-   matches the computed style — some renderers fail to repaint elements left in
-   an animation's fill-forwards state. */
-.reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+/* Reveal-on-scroll, pure CSS (scroll-driven animations — no JS observer).
+   Content is visible by default; only browsers that support view timelines
+   fade it in as it enters the viewport. Elements already in view on load are
+   past their entry range, so they render fully visible immediately — content
+   can never get stuck invisible (which the old JS observer could, e.g. after
+   client-side navigation). */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
 }
-.reveal.is-visible {
-  opacity: 1;
-  transform: translateY(0);
+@keyframes reveal-line {
+  from {
+    transform: scaleX(0);
+  }
 }
 .reveal-line {
-  transform: scaleX(0);
   transform-origin: left;
-  transition: transform 1s cubic-bezier(0.65, 0, 0.35, 1);
 }
-.reveal-line.is-visible {
-  transform: scaleX(1);
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: reveal-up linear both;
+    animation-timeline: view();
+    /* Fixed distance, so tall blocks (e.g. the forms) are fully opaque once 140px is in view. */
+    animation-range: entry 0% entry 140px;
+  }
+  .reveal-line {
+    animation: reveal-line linear both;
+    animation-timeline: view();
+    animation-range: entry 10% cover 30%;
+  }
 }
 
 /* Premium interaction system — restrained, physical feedback rather than
@@ -301,9 +313,7 @@ button:disabled:hover > .link-arrow {
   }
   .reveal,
   .reveal-line {
-    transition: none !important;
-    opacity: 1 !important;
-    transform: none !important;
+    animation: none !important;
   }
   * {
     transition-duration: 0.01ms !important;
