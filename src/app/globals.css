@@ -199,16 +199,100 @@ button:disabled:hover > .link-arrow {
   }
 }
 
-/* Hero backdrop: the propeller is the one deliberately animated element —
-   everything else in InstrumentPanel is static. */
+/* Hero backdrop (ControlPanel): a dimmed engine-room HMI. Only transform,
+   opacity and stroke-dashoffset animate. Elements rotated/moved around their own
+   local origin use transform-origin 0 0 (they sit inside a translated <g>). */
 @keyframes slow-spin {
   to {
     transform: rotate(360deg);
   }
 }
-.hero-propeller {
-  animation: slow-spin 46s linear infinite;
+.cp-spin {
+  animation: slow-spin 5s linear infinite;
   transform-origin: 0px 0px;
+}
+
+/* Oil pulses travelling along the pipework. */
+@keyframes cp-flow {
+  from { stroke-dashoffset: 80; }
+  to { stroke-dashoffset: 0; }
+}
+@keyframes cp-flow-short {
+  from { stroke-dashoffset: 50; }
+  to { stroke-dashoffset: 0; }
+}
+.cp-flow {
+  stroke-dasharray: 16 64;
+  animation: cp-flow 2.4s linear infinite;
+}
+.cp-flow-short {
+  stroke-dasharray: 10 40;
+  animation-name: cp-flow-short;
+  animation-duration: 1.2s;
+}
+
+/* Timed injection at each cylinder: a flash plus an expanding ring. The 3.6s
+   cycle matches CYCLE in ControlPanel.tsx. */
+@keyframes cp-inject {
+  0% { opacity: 1; }
+  14%, 100% { opacity: 0.2; }
+}
+@keyframes cp-inject-ring {
+  0% { opacity: 0.9; transform: scale(0.4); }
+  22%, 100% { opacity: 0; transform: scale(1.7); }
+}
+.cp-inject {
+  animation: cp-inject 3.6s ease-out infinite;
+}
+.cp-inject-ring {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: cp-inject-ring 3.6s ease-out infinite;
+}
+
+/* Piston stroke: half a cycle down, half up. */
+@keyframes cp-piston {
+  to { transform: translateY(66px); }
+}
+.cp-piston {
+  animation: cp-piston 1.8s ease-in-out infinite alternate;
+}
+
+/* Gauge needles drifting around their set point. */
+@keyframes cp-needle {
+  from { transform: rotate(-14deg); }
+  to { transform: rotate(16deg); }
+}
+.cp-needle {
+  transform-origin: 0px 0px;
+  animation: cp-needle 8s ease-in-out infinite alternate;
+}
+
+/* Scrolling trend traces — shifted by a whole number of periods so it loops seamlessly. */
+@keyframes cp-trend {
+  to { transform: translateX(var(--cp-trend-shift)); }
+}
+.cp-trend {
+  animation: cp-trend 26s linear infinite;
+}
+
+@keyframes cp-bar {
+  from { transform: scaleY(0.82); }
+  to { transform: scaleY(1.06); }
+}
+.cp-bar {
+  transform-box: fill-box;
+  transform-origin: bottom;
+  animation: cp-bar 5s ease-in-out infinite alternate;
+}
+
+@keyframes cp-led {
+  0%, 45% { opacity: 1; }
+  50%, 100% { opacity: 0.2; }
+}
+.cp-led {
+  animation: cp-led 3s steps(1, end) infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -224,6 +308,11 @@ button:disabled:hover > .link-arrow {
   * {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
+  }
+  /* The rule above would make infinite loops flicker at full speed — freeze the
+     hero control panel on its first frame instead. */
+  .control-panel * {
+    animation: none !important;
   }
 }
 

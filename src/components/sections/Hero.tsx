@@ -1,6 +1,6 @@
 import { content } from "@/content";
 import { Reveal } from "@/components/ui/Reveal";
-import { InstrumentPanel } from "@/components/visuals/InstrumentPanel";
+import { ControlPanel } from "@/components/visuals/ControlPanel";
 
 export function Hero() {
   const { hero } = content;
@@ -9,8 +9,8 @@ export function Hero() {
     <section id="top" className="relative flex min-h-[calc(100dvh-5rem)] items-end overflow-hidden bg-navy-deep">
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-navy-deep via-navy to-navy" />
-        <div className="absolute inset-0 text-white/[0.4]">
-          <InstrumentPanel className="h-full w-full" />
+        <div className="absolute inset-0 text-white">
+          <ControlPanel />
         </div>
         <div className="absolute inset-0 bg-gradient-to-r from-navy-deep via-navy-deep/70 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-navy-deep via-navy-deep/30 to-transparent" />
