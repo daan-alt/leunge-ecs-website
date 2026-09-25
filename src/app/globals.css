@@ -1,6 +1,9 @@
 @import "tailwindcss";
 
-/* Palette matches tschudishipmanagement.com exactly, per client request. */
+/* Navy + neutrals still trace back to tschudishipmanagement.com (client's
+   original reference). Accent/accent-bright were switched from blue/teal to
+   the orange from the official LEUNGE-ECS logo (gear + oil-drop mark) on
+   2026-09-25 — see docs/original-color-palette-backup.md to revert. */
 @theme {
   --color-navy: #13294b;
   --color-navy-deep: #0f1d33;
@@ -9,8 +12,8 @@
   --color-mist-2: #e5f8ff;
   --color-ink: #545659;
   --color-ink-dark: #222222;
-  --color-accent: #007aa6;
-  --color-accent-bright: #009fda;
+  --color-accent: #c4750f;
+  --color-accent-bright: #f5921e;
   --color-line: #d7e4ec;
   --color-cream: #f9f3ef;
   --color-white: #ffffff;
@@ -108,11 +111,11 @@ body {
 }
 .btn-premium-dark:hover {
   transform: translateY(-2px);
-  box-shadow: 0 14px 28px -14px rgba(0, 159, 218, 0.5);
+  box-shadow: 0 14px 28px -14px rgba(245, 146, 30, 0.5);
 }
 .btn-premium-dark:active {
   transform: translateY(0);
-  box-shadow: 0 6px 14px -10px rgba(0, 159, 218, 0.4);
+  box-shadow: 0 6px 14px -10px rgba(245, 146, 30, 0.4);
   transition-duration: 0.1s;
 }
 

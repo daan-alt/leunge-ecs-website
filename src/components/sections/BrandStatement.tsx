@@ -21,7 +21,7 @@ export function BrandStatement() {
 
         <Reveal delay={200} className="mt-10 grid gap-6 border-t border-line pt-8 lg:grid-cols-[1fr_2fr]">
           <span className="font-body text-xs font-bold uppercase tracking-[0.2em] text-accent">
-            Toelichting
+            In practice
           </span>
           <p className="text-balance max-w-2xl font-body text-lg leading-relaxed text-ink">
             {brandStatement.body}
