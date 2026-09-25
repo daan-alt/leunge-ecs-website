@@ -12,11 +12,22 @@ const LABEL = 0.32;
 // Delay helper — every moving part gets its own offset so nothing pulses in unison.
 const delay = (s: number): CSSProperties => ({ animationDelay: `${s}s` });
 
+// The composition spans the full 1920-wide viewBox (the hero text sits on top of
+// the left half; Hero.tsx's overlays keep it readable). Four panels:
+// trend (top, full width), lubrication loop (middle, full width), gauges and
+// liner temperatures (bottom row).
+const PANELS = {
+  trend: { x: 60, y: 60, w: 1800, h: 220 },
+  lube: { x: 60, y: 310, w: 1800, h: 400 },
+  gauges: { x: 60, y: 740, w: 840, h: 210 },
+  temps: { x: 930, y: 740, w: 930, h: 210 },
+};
+
 // ---------------------------------------------------------------- trend chart
 // Pressure/temperature traces, periodic over TREND_PERIOD so the scrolling
-// path (see .cp-trend) loops seamlessly. Deterministic, so SSR markup is stable.
-const TREND_PERIOD = 370;
-const TREND = { x: 1110, y: 140, w: 740, h: 150 };
+// path (see .cp-trend) loops seamlessly — TREND.w is a whole number of periods.
+const TREND_PERIOD = 444;
+const TREND = { x: 90, y: 110, w: TREND_PERIOD * 4, h: 150 };
 function trendPath(f: (t: number) => number) {
   const pts: string[] = [];
   for (let x = 0; x <= TREND.w * 2; x += 6) {
@@ -29,23 +40,26 @@ const pressureTrace = trendPath((t) => 70 + 28 * Math.sin(t) + 10 * Math.sin(3 *
 const tempTrace = trendPath((t) => 95 + 14 * Math.sin(2 * t + 0.6) + 6 * Math.sin(4 * t));
 
 // ------------------------------------------------------- lubrication schematic
-const MANIFOLD_Y = 470;
-const CYL_TOP = 560;
-const cylinders = Array.from({ length: 6 }, (_, i) => 1400 + i * 84);
-// Two-stroke firing order for six cylinders — drives the injection/piston offsets.
-const firingOrder = [0, 4, 2, 5, 1, 3];
+const MANIFOLD_Y = 450;
+const CYL_TOP = 540;
+const cylinders = Array.from({ length: 8 }, (_, i) => 560 + i * 180);
+// Firing order 1-8-2-6-4-5-3-7 → each cylinder's slot in the cycle.
+const firingOrder = [0, 2, 6, 4, 5, 3, 7, 1];
 const CYCLE = 3.6; // seconds per full lubrication cycle (matches .cp-inject / .cp-piston)
-const pump = { cx: 1260, cy: MANIFOLD_Y, r: 34 };
-const tank = { x: 1110, y: 560, w: 90, h: 120 };
+const pump = { cx: 330, cy: MANIFOLD_Y, r: 38 };
+const tank = { x: 110, y: 540, w: 110, h: 130 };
 const supplyLine = `M${tank.x + tank.w / 2},${tank.y} V${MANIFOLD_Y} H${pump.cx - pump.r}`;
-const manifoldLine = `M${pump.cx + pump.r},${MANIFOLD_Y} H${cylinders[5] + 20}`;
+const manifoldLine = `M${pump.cx + pump.r},${MANIFOLD_Y} H${cylinders[cylinders.length - 1] + 20}`;
 
 // ------------------------------------------------------------- gauges & bars
 const gauges = [
-  { cx: 1190, cy: 870, r: 58, sway: 7.5, d: 0 },
-  { cx: 1360, cy: 870, r: 58, sway: 9.5, d: -3 },
+  { cx: 190, cy: 865, r: 58, sway: 7.5, d: 0 },
+  { cx: 390, cy: 865, r: 58, sway: 9.5, d: -3 },
+  { cx: 590, cy: 865, r: 58, sway: 6.5, d: -1.5 },
+  { cx: 790, cy: 865, r: 58, sway: 11, d: -5 },
 ];
-const bars = [96, 74, 108, 88, 70, 100];
+const bars = [96, 74, 108, 88, 70, 100, 84, 92];
+const BAR_BASE = 925;
 
 function Gauge({ cx, cy, r, sway, d }: (typeof gauges)[number]) {
   // 270° dial opening at the bottom.
@@ -86,18 +100,19 @@ function Gauge({ cx, cy, r, sway, d }: (typeof gauges)[number]) {
 }
 
 /**
- * Hero backdrop: a dimmed engine-room HMI. A scrolling pressure trend, the
- * cylinder lubrication loop (oil pulses travel tank → pump → manifold → six
- * injection points, timed to a firing order), swaying gauges, cylinder-temp bars
- * and status LEDs. All motion is CSS (`.cp-*` in globals.css) on transform,
- * opacity or stroke-dashoffset; `prefers-reduced-motion` freezes it entirely.
+ * Hero backdrop: a dimmed engine-room HMI across the full hero width. A
+ * scrolling pressure trend, the cylinder lubrication loop (oil pulses travel
+ * tank → pump → manifold → eight injection points, timed to a firing order),
+ * swaying gauges, liner-temp bars and status LEDs. All motion is CSS (`.cp-*`
+ * in globals.css) on transform, opacity or stroke-dashoffset;
+ * `prefers-reduced-motion` freezes it entirely.
  */
 export function ControlPanel({ className }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 1920 1000"
       fill="none"
-      preserveAspectRatio="xMaxYMid slice"
+      preserveAspectRatio="xMidYMid slice"
       className={cn("control-panel h-full w-full", className)}
       aria-hidden="true"
     >
@@ -108,10 +123,10 @@ export function ControlPanel({ className }: { className?: string }) {
       </defs>
 
       <g fontFamily="ui-monospace, SFMono-Regular, Menlo, monospace" fontSize="13" letterSpacing="2" fill="currentColor" fillOpacity={LABEL}>
-        <text x="1096" y="118">LUBE OIL PRESSURE · BAR</text>
-        <text x="1096" y="368">CYLINDER LUBRICATION · CYL 1–6</text>
-        <text x="1096" y="778">SYSTEM</text>
-        <text x="1506" y="778">LINER TEMP · °C</text>
+        <text x={PANELS.trend.x + 16} y={PANELS.trend.y + 28}>LUBE OIL PRESSURE · BAR</text>
+        <text x={PANELS.lube.x + 16} y={PANELS.lube.y + 28}>CYLINDER LUBRICATION · CYL 1–8</text>
+        <text x={PANELS.gauges.x + 16} y={PANELS.gauges.y + 28}>SYSTEM</text>
+        <text x={PANELS.temps.x + 16} y={PANELS.temps.y + 28}>LINER TEMP · °C</text>
         {cylinders.map((x, i) => (
           <text key={x} x={x} y={CYL_TOP + 158} textAnchor="middle" letterSpacing="1">
             {i + 1}
@@ -121,10 +136,9 @@ export function ControlPanel({ className }: { className?: string }) {
 
       {/* Panel frames. */}
       <g stroke="currentColor" strokeOpacity={FRAME}>
-        <rect x="1080" y="90" width="800" height="220" rx="4" />
-        <rect x="1080" y="340" width="800" height="400" rx="4" />
-        <rect x="1080" y="750" width="390" height="200" rx="4" />
-        <rect x="1490" y="750" width="390" height="200" rx="4" />
+        {Object.values(PANELS).map((p) => (
+          <rect key={`${p.x}-${p.y}`} x={p.x} y={p.y} width={p.w} height={p.h} rx="4" />
+        ))}
       </g>
 
       {/* ---- Trend chart ---- */}
@@ -132,8 +146,8 @@ export function ControlPanel({ className }: { className?: string }) {
         {[0.25, 0.5, 0.75].map((f) => (
           <line key={f} x1={TREND.x} x2={TREND.x + TREND.w} y1={TREND.y + TREND.h * f} y2={TREND.y + TREND.h * f} />
         ))}
-        {Array.from({ length: 9 }, (_, i) => (
-          <line key={i} y1={TREND.y} y2={TREND.y + TREND.h} x1={TREND.x + (TREND.w / 8) * i} x2={TREND.x + (TREND.w / 8) * i} strokeDasharray="2 6" />
+        {Array.from({ length: 17 }, (_, i) => (
+          <line key={i} y1={TREND.y} y2={TREND.y + TREND.h} x1={TREND.x + (TREND.w / 16) * i} x2={TREND.x + (TREND.w / 16) * i} strokeDasharray="2 6" />
         ))}
       </g>
       <g clipPath="url(#cp-trend-clip)">
@@ -174,7 +188,7 @@ export function ControlPanel({ className }: { className?: string }) {
       {cylinders.map((x, i) => (
         <g key={x} transform={`translate(${x} ${CYL_TOP})`}>
           <rect x="-28" y="0" width="56" height="130" rx="3" stroke="currentColor" strokeOpacity={STRUCTURE} />
-          <g className="cp-piston" style={delay(-(firingOrder[i] / 6) * CYCLE)}>
+          <g className="cp-piston" style={delay(-(firingOrder[i] / cylinders.length) * CYCLE)}>
             <rect x="-22" y="14" width="44" height="20" rx="2" stroke="currentColor" strokeOpacity={0.4} />
             <line x1="0" x2="0" y1="34" y2="118" stroke="currentColor" strokeOpacity={DETAIL * 2} />
           </g>
@@ -189,8 +203,8 @@ export function ControlPanel({ className }: { className?: string }) {
         ))}
         {cylinders.map((x, i) => (
           <g key={`inj-${x}`} transform={`translate(${x} ${CYL_TOP})`}>
-            <circle r="5" fill="currentColor" stroke="none" className="cp-inject" style={delay((firingOrder[i] / 6) * CYCLE)} />
-            <circle r="12" strokeWidth="1" className="cp-inject-ring" style={delay((firingOrder[i] / 6) * CYCLE)} />
+            <circle r="5" fill="currentColor" stroke="none" className="cp-inject" style={delay((firingOrder[i] / cylinders.length) * CYCLE)} />
+            <circle r="12" strokeWidth="1" className="cp-inject-ring" style={delay((firingOrder[i] / cylinders.length) * CYCLE)} />
           </g>
         ))}
       </g>
@@ -202,15 +216,15 @@ export function ControlPanel({ className }: { className?: string }) {
 
       {/* ---- Liner temperature bars + status LEDs ---- */}
       <g stroke="currentColor" strokeOpacity={DETAIL}>
-        <line x1="1520" x2="1850" y1="920" y2="920" strokeOpacity={STRUCTURE} />
-        <line x1="1520" x2="1850" y1="830" y2="830" strokeDasharray="4 6" />
+        <line x1={PANELS.temps.x + 30} x2={PANELS.temps.x + PANELS.temps.w - 30} y1={BAR_BASE} y2={BAR_BASE} strokeOpacity={STRUCTURE} />
+        <line x1={PANELS.temps.x + 30} x2={PANELS.temps.x + PANELS.temps.w - 30} y1={BAR_BASE - 90} y2={BAR_BASE - 90} strokeDasharray="4 6" />
       </g>
       {bars.map((h, i) => (
         <rect
           key={i}
-          x={1536 + i * 52}
-          y={920 - h}
-          width="26"
+          x={PANELS.temps.x + 60 + i * 105}
+          y={BAR_BASE - h}
+          width="34"
           height={h}
           fill="currentColor"
           fillOpacity={0.16}
@@ -220,11 +234,11 @@ export function ControlPanel({ className }: { className?: string }) {
           style={{ animationDuration: `${4 + (i % 3) * 1.3}s`, ...delay(-i * 0.9) }}
         />
       ))}
-      {[0, 1, 2, 3].map((i) => (
+      {[0, 1, 2, 3, 4].map((i) => (
         <circle
           key={i}
-          cx={1745 + i * 30}
-          cy="774"
+          cx={PANELS.temps.x + PANELS.temps.w - 150 + i * 28}
+          cy={PANELS.temps.y + 24}
           r="4.5"
           fill="currentColor"
           fillOpacity={0.5}
@@ -232,7 +246,7 @@ export function ControlPanel({ className }: { className?: string }) {
           style={{ animationDuration: `${2.2 + i * 0.9}s`, ...delay(-i * 0.7) }}
         />
       ))}
-      <circle cx="1715" cy="774" r="4.5" className="cp-led text-accent-bright" fill="currentColor" style={{ animationDuration: "1.4s" }} />
+      <circle cx={PANELS.temps.x + PANELS.temps.w - 180} cy={PANELS.temps.y + 24} r="4.5" className="cp-led text-accent-bright" fill="currentColor" style={{ animationDuration: "1.4s" }} />
     </svg>
   );
 }
