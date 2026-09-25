@@ -33,9 +33,11 @@ another `next dev` in this folder (Next locks its dist dir).
 - **Reveal**: `Reveal` is a plain wrapper; one shared `RevealObserver` (in `layout.tsx`) handles all
   `.reveal` elements. Don't add per-element observers.
 - **Visuals** (`src/components/visuals/`) are hand-authored SVGs using `currentColor` + Tailwind text
-  classes. Hero backdrop = `ControlPanel.tsx` (CSS-animated, frozen under `prefers-reduced-motion`).
-- **Logo**: `src/components/ui/Logo.tsx` renders inline SVG paths from `logoPaths.ts` (generated; text is
-  outlined). `public/logo.svg`/`logo.png` are the standalone files.
+  classes. Hero backdrop = `ControlPanel.tsx` (client component, layouts `wide` mobile / `right` desktop;
+  CSS-animated, frozen under `prefers-reduced-motion`). Round trig output there to avoid hydration mismatches.
+- **Logo**: `Logo.tsx` loads `public/logo.svg` / `logo-light.svg` (footer) as `<img>` — prefix asset URLs
+  with `BASE_PATH` from `@/lib/utils` (Link can't do it for `<img src>`). Keep heavy static SVG out of
+  server components: their markup is duplicated in the RSC payload.
 - Path alias `@/*` → `src/*`.
 
 ## Forms
