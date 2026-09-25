@@ -10,10 +10,11 @@ export function Hero() {
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-navy-deep via-navy to-navy" />
         <div className="absolute inset-0 text-white">
-          <ControlPanel />
+          <ControlPanel layout="wide" className="lg:hidden" />
+          <ControlPanel layout="right" className="hidden lg:block" />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-navy-deep/75 via-navy-deep/45 to-navy-deep/10" />
-        <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/80 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-navy-deep/75 via-navy-deep/45 to-navy-deep/10 lg:from-navy-deep lg:via-navy-deep/70 lg:to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/80 via-transparent to-transparent lg:from-navy-deep lg:via-navy-deep/30" />
       </div>
 
       <div className="relative mx-auto w-full max-w-[1300px] px-6 pb-16 pt-40 lg:px-10">
