@@ -1,13 +1,19 @@
+import type { Metadata } from "next";
 import { content } from "@/content";
 import { Reveal } from "@/components/ui/Reveal";
 import { TechnicalFrame } from "@/components/ui/TechnicalFrame";
 import { InstrumentCluster } from "@/components/visuals/InstrumentCluster";
 
-export function About() {
+export const metadata: Metadata = {
+  title: content.about.title,
+  description: content.about.paragraphs[0],
+};
+
+export default function AboutPage() {
   const { about } = content;
 
   return (
-    <section id="over" className="bg-mist py-20 lg:py-28">
+    <section className="bg-mist py-20 lg:py-28">
       <div className="mx-auto max-w-[1300px] px-6 lg:px-10">
         <Reveal>
           <span className="font-body text-xs font-bold uppercase tracking-[0.2em] text-accent">
@@ -30,9 +36,9 @@ export function About() {
           </Reveal>
 
           <Reveal delay={200}>
-            <h2 className="text-balance font-display text-3xl font-bold leading-tight text-navy sm:text-4xl">
+            <h1 className="text-balance font-display text-3xl font-bold leading-tight text-navy sm:text-4xl">
               {about.title}
-            </h2>
+            </h1>
 
             <div className="mt-8 space-y-5">
               {about.paragraphs.map((p, i) => (

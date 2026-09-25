@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { content } from "@/content";
 import { Logo } from "@/components/ui/Logo";
 import { cn } from "@/lib/utils";
@@ -26,32 +27,40 @@ export function Navigation() {
       <nav className="mx-auto flex h-20 max-w-[1300px] items-center justify-between px-6 lg:px-10">
         <Logo />
 
-        <ul className="hidden items-center gap-8 md:flex">
+        <ul className="hidden items-center gap-8 lg:flex">
           {content.nav.links.map((link) => (
             <li key={link.href}>
-              <a
+              <Link
                 href={link.href}
                 className="nav-link font-body text-sm font-semibold uppercase tracking-wide text-ink transition-colors hover:text-accent"
               >
                 {link.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
 
-        <a
-          href="#contact"
-          className="btn-premium group hidden items-center gap-2 bg-navy px-6 py-3 font-body text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-accent md:inline-flex"
-        >
-          {content.nav.cta}
-          <span aria-hidden className="link-arrow">→</span>
-        </a>
+        <div className="hidden items-center gap-3 lg:flex">
+          <Link
+            href="/service-request"
+            className="btn-premium group inline-flex items-center gap-2 border border-navy px-5 py-3 font-body text-sm font-bold uppercase tracking-wide text-navy transition-colors hover:border-accent hover:text-accent"
+          >
+            {content.nav.ctaService}
+          </Link>
+          <Link
+            href="/parts-request"
+            className="btn-premium group inline-flex items-center gap-2 bg-navy px-5 py-3 font-body text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-accent"
+          >
+            {content.nav.ctaParts}
+            <span aria-hidden className="link-arrow">→</span>
+          </Link>
+        </div>
 
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          className="flex h-10 w-10 items-center justify-center border border-line transition-colors hover:border-accent md:hidden"
-          aria-label={open ? "Sluit menu" : "Open menu"}
+          className="flex h-10 w-10 items-center justify-center border border-line transition-colors hover:border-accent lg:hidden"
+          aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
         >
           <span className="relative block h-3 w-4">
@@ -73,31 +82,40 @@ export function Navigation() {
 
       <div
         className={cn(
-          "absolute inset-x-0 top-full overflow-hidden bg-white shadow-lg transition-[max-height] duration-300 ease-in-out md:hidden",
-          open ? "max-h-96" : "max-h-0"
+          "absolute inset-x-0 top-full overflow-hidden bg-white shadow-lg transition-[max-height] duration-300 ease-in-out lg:hidden",
+          open ? "max-h-[32rem]" : "max-h-0"
         )}
       >
         <div className="overflow-hidden border-t border-line px-6 py-6">
           <ul className="flex flex-col gap-5">
             {content.nav.links.map((link) => (
               <li key={link.href}>
-                <a
+                <Link
                   href={link.href}
                   onClick={() => setOpen(false)}
                   className="font-display text-xl font-bold text-navy transition-colors hover:text-accent"
                 >
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
-          <a
-            href="#contact"
-            onClick={() => setOpen(false)}
-            className="btn-premium mt-8 inline-flex w-full items-center justify-center gap-2 bg-navy px-5 py-3.5 font-body text-sm font-bold uppercase tracking-wide text-white"
-          >
-            {content.nav.cta}
-          </a>
+          <div className="mt-8 flex flex-col gap-3">
+            <Link
+              href="/service-request"
+              onClick={() => setOpen(false)}
+              className="btn-premium inline-flex w-full items-center justify-center gap-2 border border-navy px-5 py-3.5 font-body text-sm font-bold uppercase tracking-wide text-navy"
+            >
+              {content.nav.ctaService}
+            </Link>
+            <Link
+              href="/parts-request"
+              onClick={() => setOpen(false)}
+              className="btn-premium inline-flex w-full items-center justify-center gap-2 bg-navy px-5 py-3.5 font-body text-sm font-bold uppercase tracking-wide text-white"
+            >
+              {content.nav.ctaParts}
+            </Link>
+          </div>
         </div>
       </div>
     </header>

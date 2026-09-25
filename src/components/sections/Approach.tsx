@@ -25,13 +25,6 @@ export function Approach() {
             {approach.title}
           </h2>
           <p className="mt-5 max-w-lg font-body leading-relaxed text-ink">{approach.body}</p>
-          <a
-            href="#waarom"
-            className="btn-premium mt-7 inline-flex items-center gap-2 bg-navy px-7 py-3.5 font-body text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-accent"
-          >
-            {approach.cta}
-            <span aria-hidden className="link-arrow">→</span>
-          </a>
         </Reveal>
       </div>
     </section>

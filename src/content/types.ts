@@ -15,11 +15,6 @@ export interface TechSpecGroup {
   items: string[];
 }
 
-export interface WhyPrinciple {
-  title: string;
-  description: string;
-}
-
 export interface ContactFormLabels {
   name: string;
   company: string;
@@ -29,12 +24,25 @@ export interface ContactFormLabels {
   subjectPlaceholder: string;
   message: string;
   messagePlaceholder: string;
+  file: string;
+  fileHint: string;
   submit: string;
   submitting: string;
   success: string;
   successDetail: string;
   error: string;
   optional: string;
+}
+
+export interface RequestFormContent {
+  label: string;
+  title: string;
+  intro: string;
+  specsNote?: string;
+  form: ContactFormLabels;
+  directLabel: string;
+  location: string;
+  scope: string;
 }
 
 export interface SiteContent {
@@ -46,10 +54,11 @@ export interface SiteContent {
   };
   nav: {
     links: NavLink[];
-    cta: string;
+    ctaService: string;
+    ctaParts: string;
   };
   hero: {
-    eyebrow: string;
+    badge: string;
     titleLine1: string;
     titleLine2: string;
     subtitle: string;
@@ -77,7 +86,6 @@ export interface SiteContent {
     label: string;
     title: string;
     body: string;
-    cta: string;
   };
   credibility: {
     label: string;
@@ -107,26 +115,17 @@ export interface SiteContent {
     role: string;
     imageCaption: string;
   };
-  why: {
-    label: string;
-    title: string;
-    principles: WhyPrinciple[];
-  };
   finalCta: {
     titleLine1: string;
     titleLine2: string;
     body: string;
-    cta: string;
+    ctaService: string;
+    ctaParts: string;
+    ctaGeneral: string;
   };
-  contact: {
-    label: string;
-    title: string;
-    intro: string;
-    form: ContactFormLabels;
-    directLabel: string;
-    location: string;
-    scope: string;
-  };
+  serviceRequest: RequestFormContent;
+  partsRequest: RequestFormContent;
+  contactGeneral: RequestFormContent;
   footer: {
     tagline: string;
     rightsLine: (year: number) => string;

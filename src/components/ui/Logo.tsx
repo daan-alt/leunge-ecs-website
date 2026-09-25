@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 export function Logo({ className, light }: { className?: string; light?: boolean }) {
   return (
     <Link
-      href="#top"
+      href="/#top"
       className={cn("font-display inline-flex flex-col leading-none", className)}
       aria-label="LEUNGE-ECS B.V., home"
     >
@@ -22,7 +22,7 @@ export function Logo({ className, light }: { className?: string; light?: boolean
           light ? "text-mist" : "text-ink"
         )}
       >
-        Technisch Superintendent
+        Technical Superintendent
       </span>
     </Link>
   );

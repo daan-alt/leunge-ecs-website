@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { content } from "@/content";
 import { Logo } from "@/components/ui/Logo";
 
@@ -15,19 +16,19 @@ export function Footer() {
             </p>
           </div>
 
-          <nav aria-label="Footer navigatie">
+          <nav aria-label="Footer navigation">
             <h3 className="font-body text-xs font-bold uppercase tracking-[0.15em] text-accent-bright">
-              Navigatie
+              Navigation
             </h3>
             <ul className="mt-4 space-y-3">
               {content.nav.links.map((link) => (
                 <li key={link.href}>
-                  <a
+                  <Link
                     href={link.href}
                     className="nav-link font-body text-sm text-mist/80 transition-colors hover:text-white"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -40,12 +41,12 @@ export function Footer() {
             <ul className="mt-4 space-y-3">
               {content.expertise.areas.slice(0, 5).map((area) => (
                 <li key={area.index}>
-                  <a
-                    href="#expertise"
+                  <Link
+                    href="/#expertise"
                     className="nav-link font-body text-sm text-mist/80 transition-colors hover:text-white"
                   >
                     {area.title}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -57,13 +58,26 @@ export function Footer() {
             </h3>
             <p className="mt-4 font-display text-lg font-semibold text-white">LEUNGE-ECS B.V.</p>
             <p className="mt-1 font-body text-sm text-mist/80">{content.footer.location}</p>
-            <a
-              href="#contact"
-              className="btn-premium-dark mt-5 inline-flex items-center gap-2 bg-accent-bright px-5 py-2.5 font-body text-sm font-bold uppercase tracking-wide text-navy-deep transition-colors hover:bg-white"
-            >
-              {content.nav.cta}
-              <span aria-hidden className="link-arrow">→</span>
-            </a>
+            <div className="mt-5 flex flex-col gap-2.5">
+              <Link
+                href="/service-request"
+                className="btn-premium-dark inline-flex items-center justify-center gap-2 bg-accent-bright px-5 py-2.5 font-body text-sm font-bold uppercase tracking-wide text-navy-deep transition-colors hover:bg-white"
+              >
+                {content.nav.ctaService}
+              </Link>
+              <Link
+                href="/parts-request"
+                className="inline-flex items-center justify-center gap-2 border border-white/30 px-5 py-2.5 font-body text-sm font-bold uppercase tracking-wide text-white transition-colors hover:border-white"
+              >
+                {content.nav.ctaParts}
+              </Link>
+              <Link
+                href="/contact"
+                className="nav-link mt-1 font-body text-sm text-mist/80 transition-colors hover:text-white"
+              >
+                Or get in touch
+              </Link>
+            </div>
           </div>
         </div>
 

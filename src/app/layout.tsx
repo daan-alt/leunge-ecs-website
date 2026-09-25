@@ -59,7 +59,7 @@ const jsonLd = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="nl" className={`${inter.variable} h-full`}>
+    <html lang="en" className={`${inter.variable} h-full`}>
       <body className="flex min-h-full flex-col bg-paper font-body text-ink antialiased">
         <script
           type="application/ld+json"

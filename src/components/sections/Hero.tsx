@@ -17,7 +17,14 @@ export function Hero() {
       </div>
 
       <div className="relative mx-auto w-full max-w-[1300px] px-6 pb-16 pt-40 lg:px-10">
-        <Reveal as="h1" className="text-balance max-w-3xl font-display font-bold leading-tight text-white">
+        <Reveal className="inline-flex items-center gap-2 border border-accent-bright/40 bg-white/5 px-3.5 py-1.5">
+          <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-accent-bright" />
+          <span className="font-body text-xs font-bold uppercase tracking-[0.2em] text-accent-bright">
+            {hero.badge}
+          </span>
+        </Reveal>
+
+        <Reveal delay={60} as="h1" className="text-balance mt-5 max-w-3xl font-display font-bold leading-tight text-white">
           <span className="block text-4xl sm:text-5xl lg:text-[55px] lg:leading-[1.3]">
             {hero.titleLine1}
           </span>

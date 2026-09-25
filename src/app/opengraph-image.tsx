@@ -15,7 +15,7 @@ export default function OpengraphImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           backgroundColor: "#13294b",
-          backgroundImage: "linear-gradient(135deg, #0f1d33 0%, #13294b 60%, #007aa6 100%)",
+          backgroundImage: "linear-gradient(135deg, #0f1d33 0%, #13294b 60%, #c4750f 100%)",
           padding: "80px",
           fontFamily: "Arial",
         }}
@@ -31,7 +31,7 @@ export default function OpengraphImage() {
           }}
         >
           <span>LEUNGE</span>
-          <span style={{ color: "#009fda" }}>-</span>
+          <span style={{ color: "#f5921e" }}>-</span>
           <span>ECS</span>
         </div>
 
@@ -46,7 +46,7 @@ export default function OpengraphImage() {
               maxWidth: 900,
             }}
           >
-            Onafhankelijke technische expertise.
+            Independent technical expertise.
           </div>
           <div
             style={{
@@ -57,7 +57,7 @@ export default function OpengraphImage() {
               letterSpacing: 4,
             }}
           >
-            NEDERLAND / INTERNATIONAAL
+            NETHERLANDS / WORLDWIDE
           </div>
         </div>
       </div>

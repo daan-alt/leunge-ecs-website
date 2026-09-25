@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { content } from "@/content";
 import { Reveal } from "@/components/ui/Reveal";
 import { InstrumentCluster } from "@/components/visuals/InstrumentCluster";
@@ -25,16 +26,30 @@ export function FinalCta() {
           {finalCta.body}
         </Reveal>
 
-        <Reveal delay={280} className="mt-10">
-          <a
-            href="#contact"
-            className="btn-premium-dark inline-flex items-center gap-3 bg-accent-bright px-9 py-4 font-body text-sm font-bold uppercase tracking-wide text-navy-deep transition-colors hover:bg-white"
-          >
-            {finalCta.cta}
-            <span aria-hidden className="link-arrow">
-              →
-            </span>
-          </a>
+        <Reveal delay={280} className="mt-10 flex flex-col items-center gap-5">
+          <div className="flex flex-col items-center gap-4 sm:flex-row">
+            <Link
+              href="/service-request"
+              className="btn-premium-dark inline-flex items-center gap-3 bg-accent-bright px-9 py-4 font-body text-sm font-bold uppercase tracking-wide text-navy-deep transition-colors hover:bg-white"
+            >
+              {finalCta.ctaService}
+              <span aria-hidden className="link-arrow">
+                →
+              </span>
+            </Link>
+            <Link
+              href="/parts-request"
+              className="btn-premium-dark inline-flex items-center gap-3 border border-white/30 px-9 py-4 font-body text-sm font-bold uppercase tracking-wide text-white transition-colors hover:border-white"
+            >
+              {finalCta.ctaParts}
+              <span aria-hidden className="link-arrow">
+                →
+              </span>
+            </Link>
+          </div>
+          <Link href="/contact" className="nav-link font-body text-sm text-mist/80 transition-colors hover:text-white">
+            {finalCta.ctaGeneral}
+          </Link>
         </Reveal>
       </div>
     </section>

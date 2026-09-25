@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { content } from "@/content";
 import { Reveal } from "@/components/ui/Reveal";
 import { TechnicalFrame } from "@/components/ui/TechnicalFrame";
@@ -25,13 +26,13 @@ export function Highlight() {
             {highlight.title}
           </h2>
           <p className="mt-5 max-w-lg font-body leading-relaxed text-mist/80">{highlight.body}</p>
-          <a
-            href="#contact"
+          <Link
+            href="/parts-request"
             className="btn-premium-dark mt-8 inline-flex items-center gap-2 bg-white px-7 py-3.5 font-body text-sm font-bold uppercase tracking-wide text-navy transition-colors hover:bg-accent-bright hover:text-white"
           >
             {highlight.cta}
             <span aria-hidden className="link-arrow">→</span>
-          </a>
+          </Link>
         </Reveal>
       </div>
     </section>

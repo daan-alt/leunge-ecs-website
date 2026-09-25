@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { content } from "@/content";
 import { Reveal } from "@/components/ui/Reveal";
 import {
@@ -34,6 +35,7 @@ export function Expertise() {
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {expertise.areas.map((area, i) => {
             const Icon = icons[i % icons.length];
+            const requestHref = area.title.includes("Spare Parts") ? "/parts-request" : "/service-request";
             return (
               <Reveal key={area.index} delay={80 * i}>
                 <article className="card-lift flex h-full flex-col border border-line bg-white shadow-sm">
@@ -51,13 +53,13 @@ export function Expertise() {
                     <p className="mt-2 font-body text-xs leading-relaxed text-ink/70">
                       {area.detail}
                     </p>
-                    <a
-                      href="#contact"
+                    <Link
+                      href={requestHref}
                       className="btn-premium mt-5 inline-flex w-fit items-center gap-2 bg-navy px-5 py-2.5 font-body text-xs font-bold uppercase tracking-wide text-white transition-colors hover:bg-accent"
                     >
-                      Meer info
+                      Get in touch
                       <span aria-hidden className="link-arrow">→</span>
-                    </a>
+                    </Link>
                   </div>
                 </article>
               </Reveal>
