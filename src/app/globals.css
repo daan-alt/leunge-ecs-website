@@ -6,24 +6,26 @@
    2026-09-25 — see docs/original-color-palette-backup.md to revert. */
 @theme {
   --color-navy: #13294b;
-  --color-navy-deep: #0f1d33;
-  --color-paper: #fcfeff;
-  --color-mist: #ebf9ff;
-  --color-mist-2: #e5f8ff;
-  --color-ink: #545659;
-  --color-ink-dark: #222222;
+  --color-navy-deep: #0d1b30;
+  --color-navy-ink: #08111f;
+  --color-paper: #f7f8fa;
+  --color-mist: #e8edf3;
+  --color-mist-2: #dbe3ec;
+  --color-ink: #4b5363;
+  --color-ink-dark: #0f1828;
   --color-accent: #c4750f;
   --color-accent-bright: #f5921e;
-  --color-line: #d7e4ec;
-  --color-cream: #f9f3ef;
+  --color-line: #d6dde6;
+  --color-cream: #f1eee8;
   --color-white: #ffffff;
 }
 
 /* Fonts come from next/font CSS variables applied at runtime on <html>,
    so they're defined with @theme inline rather than baked into @theme. */
 @theme inline {
-  --font-display: var(--font-inter), "Arial", "Helvetica Neue", sans-serif;
-  --font-body: var(--font-inter), "Arial", "Helvetica Neue", sans-serif;
+  --font-display: var(--font-archivo), "Arial", "Helvetica Neue", sans-serif;
+  --font-body: var(--font-geist), "Arial", "Helvetica Neue", sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
 }
 
 * {
@@ -54,6 +56,56 @@ body {
 
 .text-balance {
   text-wrap: balance;
+}
+
+/* Typographic system. Display = Archivo run slightly expanded; labels and
+   data = Geist Mono; body = Geist. Sizes are fluid so the hierarchy keeps its
+   contrast from phone to wide desktop. */
+.font-display {
+  font-stretch: 112%;
+  font-weight: 700;
+}
+.t-display {
+  font-size: clamp(2.6rem, 7.4vw, 6.75rem);
+  line-height: 0.96;
+  letter-spacing: -0.035em;
+}
+.t-h2 {
+  font-size: clamp(2.1rem, 4.8vw, 4.25rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+.t-h3 {
+  font-size: clamp(1.35rem, 2.2vw, 1.85rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+.t-lead {
+  font-size: clamp(1.05rem, 1.35vw, 1.3rem);
+  line-height: 1.6;
+}
+.t-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.t-eyebrow::before {
+  content: "";
+  width: 1.75rem;
+  height: 1px;
+  background: currentColor;
+}
+.t-mono {
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+}
+.section-y {
+  padding-block: clamp(5rem, 11vw, 10rem);
 }
 
 /* Reveal-on-scroll, pure CSS (scroll-driven animations — no JS observer).

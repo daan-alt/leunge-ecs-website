@@ -1,15 +1,29 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Archivo, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { content } from "@/content";
 import { SITE_URL } from "@/lib/utils";
 import { Navigation } from "@/components/layout/Navigation";
 import { Footer } from "@/components/layout/Footer";
 
-const inter = Inter({
-  variable: "--font-inter",
+// Display: Archivo's width axis lets headlines run slightly expanded (see .font-display).
+const archivo = Archivo({
+  variable: "--font-archivo",
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
+  axes: ["wdth"],
+  display: "swap",
+});
+
+const geist = Geist({
+  variable: "--font-geist",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -28,7 +42,7 @@ export const metadata: Metadata = {
     description: content.meta.ogDescription,
     url: SITE_URL,
     siteName: "LEUNGE-ECS B.V.",
-    locale: "nl_NL",
+    locale: "en_GB",
     type: "website",
   },
   twitter: {
@@ -58,7 +72,7 @@ const jsonLd = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${inter.variable} h-full`}>
+    <html lang="en" className={`${archivo.variable} ${geist.variable} ${geistMono.variable} h-full`}>
       <body className="flex min-h-full flex-col bg-paper font-body text-ink antialiased">
         <script
           type="application/ld+json"
