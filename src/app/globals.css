@@ -465,3 +465,35 @@ button:disabled:hover > .link-arrow {
 .link-line:hover {
   gap: 1.1rem;
 }
+
+/* Hero entrance: one staggered rise on load (pure CSS, so nothing can get
+   stuck hidden). Delays are set inline per element. */
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+}
+.hero-in {
+  animation: hero-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Gentle parallax on framed photos: the image drifts slower than the page.
+   Scroll-driven, progressive enhancement only. */
+@supports (animation-timeline: view()) {
+  .frame-parallax img {
+    animation: frame-parallax linear both;
+    animation-timeline: view();
+    animation-range: cover;
+  }
+}
+@keyframes frame-parallax {
+  from { transform: translateY(-5%) scale(1.14); }
+  to { transform: translateY(5%) scale(1.14); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-in,
+  .frame-parallax img {
+    animation: none !important;
+  }
+}

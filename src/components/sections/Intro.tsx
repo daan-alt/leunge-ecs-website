@@ -23,7 +23,7 @@ export function Intro() {
 
         <div className="mt-16 grid gap-12 lg:mt-24 lg:grid-cols-12 lg:gap-16">
           <Reveal className="relative lg:col-span-6">
-            <TechnicalFrame className="aspect-[4/3] w-full">
+            <TechnicalFrame parallax className="aspect-[4/3] w-full">
               <Photo
                 image={intro.image}
                 sizes="(min-width: 1400px) 640px, (min-width: 1024px) 45vw, 92vw"

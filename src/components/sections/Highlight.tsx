@@ -25,7 +25,7 @@ export function Highlight() {
         </Reveal>
 
         <Reveal className="lg:col-span-7">
-          <TechnicalFrame className="aspect-[4/3] w-full">
+          <TechnicalFrame parallax className="aspect-[4/3] w-full">
             <Photo
               image={highlight.image}
               sizes="(min-width: 1400px) 780px, (min-width: 1024px) 55vw, 92vw"

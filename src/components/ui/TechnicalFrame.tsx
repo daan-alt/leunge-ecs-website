@@ -5,6 +5,8 @@ interface TechnicalFrameProps {
   children?: ReactNode;
   caption?: string;
   className?: string;
+  /** Slow scroll-driven drift of the photo inside the frame. */
+  parallax?: boolean;
 }
 
 /**
@@ -13,9 +15,9 @@ interface TechnicalFrameProps {
  * marks, so differently lit photos read as one set instead of loose stock
  * blocks.
  */
-export function TechnicalFrame({ children, caption, className }: TechnicalFrameProps) {
+export function TechnicalFrame({ children, caption, className, parallax }: TechnicalFrameProps) {
   return (
-    <div className={cn("technical-frame relative overflow-hidden bg-navy-deep", className)}>
+    <div className={cn("technical-frame relative overflow-hidden bg-navy-deep", parallax && "frame-parallax", className)}>
       <div className="absolute inset-0 bg-gradient-to-br from-navy via-navy-deep to-navy-ink" />
       <div className="relative flex h-full w-full items-center justify-center">{children}</div>
       <div aria-hidden className="frame-tone pointer-events-none absolute inset-0 z-[5]" />
