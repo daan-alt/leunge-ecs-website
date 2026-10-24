@@ -65,7 +65,7 @@ export function FinalCta() {
               </li>
             ))}
           </ul>
-          <p className="t-mono mt-6 max-w-md text-xs leading-relaxed text-mist/55">{finalCta.responseNote}</p>
+          <p className="t-mono mt-6 max-w-md text-xs leading-relaxed text-mist/60">{finalCta.responseNote}</p>
           <Link href="/contact" className="link-line mt-8 text-mist/80 hover:text-white">
             {finalCta.ctaGeneral}
             <span aria-hidden>→</span>

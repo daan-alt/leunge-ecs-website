@@ -16,7 +16,7 @@ export function Principles() {
         <div className="absolute inset-0 bg-gradient-to-r from-navy-ink/90 to-transparent" />
       </div>
 
-      <div className="wrap relative">
+      <div className="wrap col-guides relative">
         <Reveal>
           <span className="t-eyebrow text-accent-bright">{principles.label}</span>
         </Reveal>

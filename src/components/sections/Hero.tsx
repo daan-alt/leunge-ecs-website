@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { content } from "@/content";
 import { ControlPanel } from "@/components/visuals/ControlPanel";
+import { HeroParallax } from "@/components/ui/HeroParallax";
 
 export function Hero() {
   const { hero } = content;
@@ -12,13 +13,14 @@ export function Hero() {
     >
       <div aria-hidden className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-navy-ink via-navy-deep to-navy" />
-        <div className="absolute inset-x-0 top-0 bottom-36 text-white lg:bottom-24">
+        <HeroParallax className="absolute inset-x-0 top-0 bottom-36 text-white will-change-transform lg:bottom-24">
           <ControlPanel layout="wide" className="lg:hidden" />
           <ControlPanel layout="right" className="hidden lg:block" />
-        </div>
+        </HeroParallax>
         <div className="absolute inset-0 bg-gradient-to-r from-navy-ink/90 via-navy-ink/60 to-navy-ink/20 lg:from-navy-ink lg:via-navy-ink/85 lg:via-45% lg:to-transparent" />
         <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-navy-ink to-transparent" />
         <div className="hero-grain absolute inset-0" />
+        <div className="wrap col-guides absolute inset-y-0 left-0 right-0" />
       </div>
 
       <div className="relative mx-auto flex w-full max-w-[1400px] flex-1 flex-col justify-center px-6 pb-12 pt-12 lg:px-10 lg:pb-10 lg:pt-10">
@@ -48,7 +50,7 @@ export function Hero() {
           </Link>
         </div>
 
-        <p className="t-mono mt-6 max-w-xl text-xs leading-relaxed text-mist/50">{hero.tagline}</p>
+        <p className="t-mono mt-6 max-w-xl text-xs leading-relaxed text-mist/60">{hero.tagline}</p>
       </div>
 
       <dl className="relative border-t border-white/10 bg-navy-ink/60 backdrop-blur-sm">
@@ -58,7 +60,7 @@ export function Hero() {
               key={stat.label}
               className={`px-6 py-5 lg:px-10 lg:py-7 ${i % 2 === 1 ? "border-l border-white/10" : ""} ${i >= 2 ? "border-t border-white/10 lg:border-t-0" : ""} ${i > 0 ? "lg:border-l lg:border-white/10" : ""}`}
             >
-              <dt className="t-mono text-[0.68rem] uppercase tracking-[0.18em] text-mist/45">{stat.label}</dt>
+              <dt className="t-mono text-[0.68rem] uppercase tracking-[0.18em] text-mist/60">{stat.label}</dt>
               <dd className="font-display mt-2 text-base text-white lg:text-xl">{stat.value}</dd>
             </div>
           ))}

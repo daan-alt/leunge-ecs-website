@@ -584,3 +584,69 @@ button:disabled:hover > .link-arrow {
 @media (min-width: 1024px) {
   .col-guides::before { margin-inline: 2.5rem; }
 }
+
+/* Service-name band between sections: two identical rows scroll by half the
+   track so the loop is seamless. Words alternate solid / outlined. */
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 60s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+.marquee-word {
+  font-size: clamp(2rem, 4.6vw, 4rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(15, 24, 40, 0.5);
+}
+.marquee-word-solid {
+  color: var(--color-ink-dark);
+  -webkit-text-stroke: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none !important;
+  }
+}
+
+/* Active page in the header: underline stays drawn. */
+.nav-link.is-active::after {
+  right: 0;
+}
+
+/* Skip link: off-screen until focused. */
+.skip-link {
+  position: fixed;
+  left: 1rem;
+  top: -4rem;
+  z-index: 100;
+  padding: 0.75rem 1.25rem;
+  background: var(--color-accent-bright);
+  color: var(--color-navy-ink);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: top 0.2s ease;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* Lenis (SmoothScroll): let it own the easing, never fight native smooth scroll. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}

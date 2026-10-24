@@ -47,7 +47,7 @@ export function ExpertiseList({ areas, cta }: { areas: ExpertiseArea[]; cta: str
                 <span
                   className={cn(
                     "t-mono w-8 shrink-0 text-xs transition-colors duration-300",
-                    isActive ? "text-accent" : "text-ink/50"
+                    isActive ? "text-accent" : "text-ink/60"
                   )}
                 >
                   {area.index}
@@ -64,7 +64,7 @@ export function ExpertiseList({ areas, cta }: { areas: ExpertiseArea[]; cta: str
                   aria-hidden
                   className={cn(
                     "text-xl transition-all duration-300",
-                    isActive ? "rotate-90 text-accent" : "text-ink/40"
+                    isActive ? "rotate-90 text-accent" : "text-ink/60"
                   )}
                 >
                   →
@@ -84,7 +84,7 @@ export function ExpertiseList({ areas, cta }: { areas: ExpertiseArea[]; cta: str
                       <Blueprint area={area} />
                     </div>
                     <p className="max-w-xl font-body leading-relaxed text-ink">{area.description}</p>
-                    <p className="t-mono mt-4 max-w-xl text-xs leading-relaxed text-ink/70">{area.detail}</p>
+                    <p className="t-mono mt-4 max-w-xl text-xs leading-relaxed text-ink/85">{area.detail}</p>
                     <Link href={requestHref} className="link-line mt-6 text-navy hover:text-accent">
                       {cta}
                       <span aria-hidden>→</span>
@@ -113,7 +113,7 @@ export function ExpertiseList({ areas, cta }: { areas: ExpertiseArea[]; cta: str
               </div>
             ))}
           </div>
-          <div className="t-mono mt-4 flex items-center justify-between text-[0.7rem] uppercase tracking-[0.18em] text-ink/60">
+          <div className="t-mono mt-4 flex items-center justify-between text-[0.7rem] uppercase tracking-[0.18em] text-ink/85">
             <span>{areas[active].index} / {String(areas.length).padStart(2, "0")}</span>
             <span>{areas[active].title}</span>
           </div>

@@ -32,10 +32,10 @@ export function TechnicalDepth() {
             <div key={group.label} className="border-b border-r border-line p-6 lg:p-9">
               <div className="t-mono flex items-baseline justify-between gap-4 text-[0.7rem] uppercase tracking-[0.18em]">
                 <span className="text-accent">
-                  <span className="mr-3 text-ink/40">{String(gi + 1).padStart(2, "0")}</span>
+                  <span className="mr-3 text-ink/60">{String(gi + 1).padStart(2, "0")}</span>
                   {group.label}
                 </span>
-                <span className="text-ink/40">{String(group.items.length).padStart(2, "0")}</span>
+                <span className="text-ink/60">{String(group.items.length).padStart(2, "0")}</span>
               </div>
 
               <ul className="mt-6">
@@ -46,7 +46,7 @@ export function TechnicalDepth() {
                       key={item}
                       className="group flex items-baseline gap-4 border-t border-line py-3.5 transition-colors duration-200 hover:bg-mist/60"
                     >
-                      <span className="t-mono w-6 shrink-0 text-[0.7rem] text-ink/40">
+                      <span className="t-mono w-6 shrink-0 text-[0.7rem] text-ink/60">
                         {String(number).padStart(2, "0")}
                       </span>
                       <span className="font-body text-[1.05rem] font-medium text-ink-dark transition-colors duration-200 group-hover:text-navy">

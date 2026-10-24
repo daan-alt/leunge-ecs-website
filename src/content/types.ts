@@ -91,6 +91,7 @@ export interface SiteContent {
     links: NavLink[];
     ctaService: string;
     ctaParts: string;
+    skipLabel: string;
   };
   hero: {
     badge: string;
@@ -124,6 +125,11 @@ export interface SiteContent {
     title: string;
     intro: string;
     steps: { index: string; title: string; body: string }[];
+  };
+  situations: {
+    label: string;
+    title: string;
+    items: { title: string; body: string; cta: string; href: string }[];
   };
   principles: {
     label: string;

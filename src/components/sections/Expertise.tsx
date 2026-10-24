@@ -26,7 +26,7 @@ export function Expertise() {
           <ExpertiseList areas={expertise.areas} cta={expertise.cta} />
         </div>
 
-        <Reveal as="p" className="t-mono mt-12 max-w-xl text-xs leading-relaxed text-ink/70">
+        <Reveal as="p" className="t-mono mt-12 max-w-xl text-xs leading-relaxed text-ink/85">
           {expertise.note}
         </Reveal>
       </div>

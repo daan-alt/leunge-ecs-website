@@ -60,6 +60,7 @@ export const en: SiteContent = {
     ],
     ctaService: "Request Service",
     ctaParts: "Request Parts",
+    skipLabel: "Skip to content",
   },
   hero: {
     badge: "Independent technical expertise",
@@ -124,6 +125,36 @@ export const en: SiteContent = {
         index: "04",
         title: "Execution",
         body: "Work on board or on location, or delivery of the parts, with documentation such as test reports where applicable.",
+      },
+    ],
+  },
+  situations: {
+    label: "When to get in touch",
+    title: "Reasons to pick up the phone.",
+    items: [
+      {
+        title: "A fault you can't solve on board",
+        body: "Technical service, troubleshooting and support, on board or on location.",
+        cta: "Request service",
+        href: "/service-request",
+      },
+      {
+        title: "An Alpha lubrication system that needs attention",
+        body: "Inspection, maintenance, overhaul, adjustment or optimization on main engines.",
+        cta: "Request service",
+        href: "/service-request",
+      },
+      {
+        title: "A genuine part to source and ship",
+        body: "From a single OEM part to a complete package for a vessel or project.",
+        cta: "Request parts",
+        href: "/parts-request",
+      },
+      {
+        title: "A control system to modify, commission or test",
+        body: "Automation, PLC/HMI solutions, measurements and test reports.",
+        cta: "Request service",
+        href: "/service-request",
       },
     ],
   },

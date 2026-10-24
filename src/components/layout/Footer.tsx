@@ -60,7 +60,7 @@ export function Footer() {
             <ul className="mt-8 space-y-3.5">
               {content.expertise.areas.map((area) => (
                 <li key={area.index} className="flex items-baseline gap-3">
-                  <span className="t-mono text-[0.65rem] text-mist/35">{area.index}</span>
+                  <span className="t-mono text-[0.65rem] text-mist/60">{area.index}</span>
                   <Link
                     href="/#expertise"
                     className="nav-link font-body text-sm text-mist/75 transition-colors hover:text-white"
@@ -101,7 +101,7 @@ export function Footer() {
           <div className="footer-wordmark font-display">LEUNGE-ECS</div>
         </div>
 
-        <div className="t-mono relative flex flex-col gap-3 border-t border-white/10 pt-6 text-[0.7rem] uppercase tracking-[0.14em] text-mist/45 md:flex-row md:items-center md:justify-between">
+        <div className="t-mono relative flex flex-col gap-3 border-t border-white/10 pt-6 text-[0.7rem] uppercase tracking-[0.14em] text-mist/60 md:flex-row md:items-center md:justify-between">
           <span>{footer.rightsLine(year)}</span>
           <span>{footer.location}</span>
         </div>

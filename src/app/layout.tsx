@@ -6,6 +6,7 @@ import { SITE_URL } from "@/lib/utils";
 import { Navigation } from "@/components/layout/Navigation";
 import { Footer } from "@/components/layout/Footer";
 import { MobileCtaBar } from "@/components/layout/MobileCtaBar";
+import { SmoothScroll } from "@/components/layout/SmoothScroll";
 
 // Display: Archivo's width axis lets headlines run slightly expanded (see .font-display).
 const archivo = Archivo({
@@ -87,10 +88,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <a href="#main" className="skip-link">
+          {content.nav.skipLabel}
+        </a>
         <Navigation />
-        <main className="flex-1">{children}</main>
+        <main id="main" tabIndex={-1} className="flex-1 outline-none">
+          {children}
+        </main>
         <Footer />
         <MobileCtaBar />
+        <SmoothScroll />
       </body>
     </html>
   );

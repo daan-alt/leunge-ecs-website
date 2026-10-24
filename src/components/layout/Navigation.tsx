@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { content } from "@/content";
 import { Logo } from "@/components/ui/Logo";
 import { cn } from "@/lib/utils";
@@ -9,6 +10,10 @@ import { cn } from "@/lib/utils";
 export function Navigation() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname() ?? "/";
+  // Only whole pages are marked; the in-page anchors (/#expertise) have no page of their own.
+  const isActive = (href: string) =>
+    href === "/#top" ? pathname === "/" : !href.startsWith("/#") && pathname.startsWith(href);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -47,7 +52,11 @@ export function Navigation() {
             <li key={link.href}>
               <Link
                 href={link.href}
-                className="nav-link t-mono text-[0.78rem] uppercase tracking-[0.14em] text-mist/80 transition-colors hover:text-white"
+                aria-current={isActive(link.href) ? "page" : undefined}
+                className={cn(
+                  "nav-link t-mono text-[0.78rem] uppercase tracking-[0.14em] transition-colors hover:text-white",
+                  isActive(link.href) ? "is-active text-white" : "text-mist/80"
+                )}
               >
                 {link.label}
               </Link>
@@ -100,6 +109,7 @@ export function Navigation() {
 
     {/* Sibling of the header on purpose: the header's backdrop-filter would otherwise become the containing block of this fixed panel. */}
       <div
+        data-lenis-prevent
         className={cn(
           "fixed inset-x-0 top-16 bottom-0 z-[45] overflow-y-auto bg-navy-ink transition-[opacity,visibility] duration-300 lg:hidden",
           open ? "visible opacity-100" : "invisible opacity-0"
@@ -115,7 +125,7 @@ export function Navigation() {
                   className="font-display flex items-baseline justify-between py-5 text-3xl text-white transition-colors hover:text-accent-bright"
                 >
                   {link.label}
-                  <span className="t-mono text-xs text-mist/40">0{i + 1}</span>
+                  <span className="t-mono text-xs text-mist/60">0{i + 1}</span>
                 </Link>
               </li>
             ))}

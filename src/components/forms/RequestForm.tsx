@@ -29,7 +29,7 @@ function ExtraFieldInput({ field, optional }: { field: ExtraField; optional: str
   const label = (
     <>
       {field.label}
-      {!field.required && <span className="text-ink/60"> ({optional})</span>}
+      {!field.required && <span className="text-ink/85"> ({optional})</span>}
     </>
   );
   return (
@@ -160,7 +160,7 @@ export function RequestForm({ content, kind }: { content: RequestFormContent; ki
                   <div className="relative field-underline">
                     <input id="company" name="company" type="text" placeholder=" " className={fieldClass} />
                     <label htmlFor="company" className={labelClass}>
-                      {content.form.company} <span className="text-ink/60">({content.form.optional})</span>
+                      {content.form.company} <span className="text-ink/85">({content.form.optional})</span>
                     </label>
                   </div>
                 </div>
@@ -175,7 +175,7 @@ export function RequestForm({ content, kind }: { content: RequestFormContent; ki
                   <div className="relative field-underline">
                     <input id="phone" name="phone" type="tel" placeholder=" " className={fieldClass} />
                     <label htmlFor="phone" className={labelClass}>
-                      {content.form.phone} <span className="text-ink/60">({content.form.optional})</span>
+                      {content.form.phone} <span className="text-ink/85">({content.form.optional})</span>
                     </label>
                   </div>
                 </div>
@@ -191,7 +191,7 @@ export function RequestForm({ content, kind }: { content: RequestFormContent; ki
                 <div className="relative field-underline">
                   <input id="subject" name="subject_detail" type="text" placeholder=" " className={fieldClass} />
                   <label htmlFor="subject" className={labelClass}>
-                    {content.form.subject} <span className="text-ink/60">({content.form.optional})</span>
+                    {content.form.subject} <span className="text-ink/85">({content.form.optional})</span>
                   </label>
                 </div>
 
@@ -211,9 +211,9 @@ export function RequestForm({ content, kind }: { content: RequestFormContent; ki
 
                 <div>
                   <label htmlFor="attachment" className="block font-body text-sm font-semibold text-navy">
-                    {content.form.file} <span className="text-ink/60 font-normal">({content.form.optional})</span>
+                    {content.form.file} <span className="text-ink/85 font-normal">({content.form.optional})</span>
                   </label>
-                  <p className="mt-1 font-body text-xs text-ink/70">
+                  <p className="mt-1 font-body text-xs text-ink/85">
                     {uploadsEnabled ? content.form.fileHint : content.form.fileUnavailable}
                   </p>
                   <input
@@ -231,7 +231,7 @@ export function RequestForm({ content, kind }: { content: RequestFormContent; ki
                     className="disabled:cursor-not-allowed disabled:opacity-50 mt-3 block w-full border border-dashed border-line px-4 py-3 font-body text-sm text-ink file:mr-4 file:border-0 file:bg-navy file:px-4 file:py-2 file:font-body file:text-xs file:font-bold file:uppercase file:tracking-wide file:text-white hover:file:bg-accent"
                   />
                   {fileNames.length > 0 && (
-                    <p className="mt-2 font-body text-xs text-ink/70">{fileNames.join(", ")}</p>
+                    <p className="mt-2 font-body text-xs text-ink/85">{fileNames.join(", ")}</p>
                   )}
                   {fileError && <p className="mt-2 font-body text-sm text-red-600">{content.form[fileError]}</p>}
                 </div>
