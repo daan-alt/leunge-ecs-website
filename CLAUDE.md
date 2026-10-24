@@ -48,7 +48,7 @@ another `next dev` in this folder (Next locks its dist dir).
   `public/images/<name>-<width>.webp`; full-size originals in `design-assets/originals/` (not deployed).
   `docs/ai-image-prompts.md` / `docs/hero-video-concept-*.md` hold the image/video briefs. The old SVGs
   `EngineSchematic`, `PartsDiagram`, `PrecisionMark`, `ServiceIcons` are now unused.
-- **Homepage sections** (`src/components/sections/`, order in `app/page.tsx`): Hero, Intro, Expertise (client `ExpertiseList`: accordion + sticky photo), Highlight (parts), Process, Principles, TechnicalDepth, FinalCta. Inner pages open with `ui/PageHero`. Header is dark (`Navigation`, mobile menu overlay is a sibling of `<header>` because of backdrop-filter); `MobileCtaBar` is fixed on mobile except on form pages. Per-page OG images use `lib/og.tsx`.
+- **Homepage sections** (`src/components/sections/`, order in `app/page.tsx`): Hero, Intro, Expertise (client `ExpertiseList`: accordion + sticky photo), Highlight (parts), Process, Principles, TechnicalDepth, FinalCta (a request "console" of three link rows over `visuals/ChartBackdrop`, a formula-generated nautical chart; the third row deep-links `/service-request?urgency=emergency`, read in `RequestForm`). Inner pages open with `ui/PageHero`. Header is dark (`Navigation`, mobile menu overlay is a sibling of `<header>` because of backdrop-filter); The footer has a status bar (`FooterStatus`: live Amsterdam clock, back-to-top) and a cropped outline wordmark. `MobileCtaBar` is fixed on mobile except on form pages. Per-page OG images use `lib/og.tsx`.
 - Path alias `@/*` → `src/*`.
 
 ## Forms

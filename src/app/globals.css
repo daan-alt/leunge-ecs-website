@@ -500,3 +500,35 @@ button:disabled:hover > .link-arrow {
     animation: none !important;
   }
 }
+
+/* Nautical-chart backdrop (FinalCta): route dashes flow along the plotted
+   course; the compass ring turns very slowly. The svg also carries
+   `.control-panel`, so reduced motion freezes both. */
+@keyframes chart-flow {
+  to { stroke-dashoffset: -48; }
+}
+.chart-route {
+  stroke-dasharray: 3 9;
+  animation: chart-flow 2.4s linear infinite;
+}
+.chart-rotate {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: slow-spin 160s linear infinite;
+}
+
+/* Footer wordmark: outlined, very low contrast, cut off by the footer's
+   bottom by a fixed-height wrapper (~60% of the glyphs show). */
+.footer-wordmark {
+  font-size: clamp(2.5rem, 12.4vw, 11.5rem);
+  line-height: 0.8;
+  letter-spacing: -0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.16);
+  white-space: nowrap;
+  text-align: center;
+}
+.footer-wordmark-crop {
+  height: clamp(1.6rem, 7.6vw, 7rem);
+  overflow: hidden;
+}

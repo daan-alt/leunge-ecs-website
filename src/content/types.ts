@@ -157,8 +157,9 @@ export interface SiteContent {
     titleLine1: string;
     titleLine2: string;
     body: string;
-    ctaService: string;
-    ctaParts: string;
+    label: string;
+    options: { index: string; title: string; description: string; href: string; tag?: string }[];
+    responseNote: string;
     ctaGeneral: string;
   };
   serviceRequest: RequestFormContent;
@@ -175,6 +176,9 @@ export interface SiteContent {
     expertiseLabel: string;
     contactLabel: string;
     contactCta: string;
+    availability: string;
+    timeLabel: string;
+    backToTop: string;
     tagline: string;
     rightsLine: (year: number) => string;
     location: string;

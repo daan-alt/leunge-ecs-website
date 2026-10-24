@@ -1,48 +1,75 @@
 import Link from "next/link";
 import { content } from "@/content";
 import { Reveal } from "@/components/ui/Reveal";
-import { InstrumentCluster } from "@/components/visuals/InstrumentCluster";
+import { ChartBackdrop } from "@/components/visuals/ChartBackdrop";
 
+// Closing block: instead of two buttons, a request "console" — one row per
+// way in, each a full-width link that fills orange on hover — over a faint
+// nautical chart.
 export function FinalCta() {
   const { finalCta } = content;
 
   return (
-    <section className="relative overflow-hidden bg-navy-deep py-28 lg:py-44">
-      <div aria-hidden className="absolute -bottom-1/3 -right-1/6 h-[80vmin] w-[80vmin] text-white/[0.09]">
-        <InstrumentCluster />
+    <section className="section-y relative overflow-hidden bg-navy-deep">
+      <div aria-hidden className="absolute inset-0 text-white">
+        <ChartBackdrop />
       </div>
       <div aria-hidden className="hero-grain absolute inset-0" />
-      <div aria-hidden className="absolute inset-0 bg-gradient-to-r from-navy-deep via-navy-deep/60 to-transparent" />
+      <div aria-hidden className="absolute inset-0 bg-gradient-to-r from-navy-deep/95 via-navy-deep/45 to-transparent" />
+      <div aria-hidden className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-navy-deep to-transparent" />
 
-      <div className="wrap relative">
-        <Reveal as="h2" className="font-display t-display max-w-[12em] text-white">
-          {finalCta.titleLine1}
-          <br />
-          <span className="text-accent-bright">{finalCta.titleLine2}</span>
-        </Reveal>
+      <div className="wrap relative grid gap-16 lg:grid-cols-12 lg:items-end lg:gap-12">
+        <div className="lg:col-span-6">
+          <Reveal>
+            <span className="t-eyebrow text-accent-bright">{finalCta.label}</span>
+          </Reveal>
+          <Reveal as="h2" className="font-display t-display mt-8 text-white">
+            {finalCta.titleLine1}
+            <br />
+            <span className="text-accent-bright">{finalCta.titleLine2}</span>
+          </Reveal>
+          <Reveal as="p" className="t-lead mt-10 max-w-md text-mist/75">
+            {finalCta.body}
+          </Reveal>
+        </div>
 
-        <Reveal as="p" className="t-lead mt-10 max-w-xl text-mist/75">
-          {finalCta.body}
-        </Reveal>
-
-        <Reveal className="mt-12 flex flex-col items-start gap-8">
-          <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
-            <Link
-              href="/service-request"
-              className="btn-premium-dark inline-flex items-center justify-center gap-3 bg-accent-bright px-9 py-4 font-body text-sm font-semibold uppercase tracking-[0.08em] text-navy-ink transition-colors hover:bg-white"
-            >
-              {finalCta.ctaService}
-              <span aria-hidden className="link-arrow">→</span>
-            </Link>
-            <Link
-              href="/parts-request"
-              className="btn-premium-dark inline-flex items-center justify-center gap-3 border border-white/30 px-9 py-4 font-body text-sm font-semibold uppercase tracking-[0.08em] text-white transition-colors hover:border-white hover:bg-white/5"
-            >
-              {finalCta.ctaParts}
-              <span aria-hidden className="link-arrow">→</span>
-            </Link>
-          </div>
-          <Link href="/contact" className="link-line text-mist/80 hover:text-white">
+        <Reveal className="lg:col-span-6">
+          <ul className="border-b border-white/15 bg-navy-deep/60 backdrop-blur-[3px]">
+            {finalCta.options.map((option) => (
+              <li key={option.index}>
+                <Link
+                  href={option.href}
+                  className="group grid grid-cols-[auto_1fr_auto] items-center gap-5 border-t border-white/15 px-6 py-7 transition-colors duration-300 hover:border-accent-bright hover:bg-accent-bright lg:gap-7 lg:px-8 lg:py-9"
+                >
+                  <span className="t-mono text-xs text-accent-bright transition-colors duration-300 group-hover:text-navy-ink">
+                    {option.index}
+                  </span>
+                  <span>
+                    <span className="font-display t-h3 flex flex-wrap items-center gap-x-4 gap-y-2 text-white transition-colors duration-300 group-hover:text-navy-ink">
+                      {option.title}
+                      {option.tag && (
+                        <span className="t-mono inline-flex items-center gap-2 border border-accent-bright px-2 py-0.5 text-[0.65rem] font-normal uppercase tracking-[0.18em] text-accent-bright transition-colors duration-300 group-hover:border-navy-ink group-hover:text-navy-ink">
+                          <span aria-hidden className="cp-led h-1.5 w-1.5 rounded-full bg-current" />
+                          {option.tag}
+                        </span>
+                      )}
+                    </span>
+                    <span className="mt-2 block font-body text-sm leading-relaxed text-mist/65 transition-colors duration-300 group-hover:text-navy-ink/80">
+                      {option.description}
+                    </span>
+                  </span>
+                  <span
+                    aria-hidden
+                    className="text-2xl text-white transition-all duration-300 group-hover:translate-x-1 group-hover:text-navy-ink"
+                  >
+                    →
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <p className="t-mono mt-6 max-w-md text-xs leading-relaxed text-mist/55">{finalCta.responseNote}</p>
+          <Link href="/contact" className="link-line mt-8 text-mist/80 hover:text-white">
             {finalCta.ctaGeneral}
             <span aria-hidden>→</span>
           </Link>

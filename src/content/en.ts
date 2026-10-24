@@ -254,8 +254,29 @@ export const en: SiteContent = {
     titleLine1: "A technical challenge?",
     titleLine2: "Let's talk.",
     body: "Whether it's technical supervision, engineering expertise or hands-on technical support: it starts with a conversation.",
-    ctaService: "Request Service",
-    ctaParts: "Request Parts",
+    label: "Request",
+    options: [
+      {
+        index: "01",
+        title: "Request service",
+        description: "Technical service, troubleshooting and support on board.",
+        href: "/service-request",
+      },
+      {
+        index: "02",
+        title: "Request parts",
+        description: "Genuine OEM spare parts: from a single part to a complete package.",
+        href: "/parts-request",
+      },
+      {
+        index: "03",
+        title: "Vessel out of service?",
+        description: "Mark your service request as an emergency.",
+        href: "/service-request?urgency=emergency",
+        tag: "Urgent",
+      },
+    ],
+    responseNote: "A personal response follows, usually within a few working days.",
     ctaGeneral: "Or get in touch for anything else",
   },
   serviceRequest: {
@@ -329,6 +350,9 @@ export const en: SiteContent = {
     expertiseLabel: "Expertise",
     contactLabel: "Contact",
     contactCta: "Or get in touch",
+    availability: "Available worldwide",
+    timeLabel: "Netherlands",
+    backToTop: "Back to top",
     tagline:
       "Technical service, genuine spare parts and engineering for seagoing vessels — available worldwide.",
     rightsLine: (year: number) => `© ${year} LEUNGE-ECS B.V. All rights reserved.`,

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import type { ExtraField, RequestFormContent } from "@/content/types";
 import { Reveal } from "@/components/ui/Reveal";
 import { PageHero } from "@/components/ui/PageHero";
@@ -62,6 +62,15 @@ export function RequestForm({ content, kind }: { content: RequestFormContent; ki
   const [status, setStatus] = useState<Status>("idle");
   const [fileNames, setFileNames] = useState<string[]>([]);
   const [fileError, setFileError] = useState<FileError | "fileUploadError" | null>(null);
+
+  // Deep link from the homepage ("Vessel out of service?"): /service-request?urgency=emergency
+  useEffect(() => {
+    const urgency = new URLSearchParams(window.location.search).get("urgency");
+    const select = document.getElementById("f-urgency");
+    if (!urgency || !(select instanceof HTMLSelectElement)) return;
+    const match = Array.from(select.options).find((o) => o.value.toLowerCase().startsWith(urgency.toLowerCase()));
+    if (match) select.value = match.value;
+  }, []);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
