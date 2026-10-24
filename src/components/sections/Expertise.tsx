@@ -1,23 +1,7 @@
 import Link from "next/link";
 import { content } from "@/content";
 import { Reveal } from "@/components/ui/Reveal";
-import {
-  IconOnboardService,
-  IconLubrication,
-  IconSpareParts,
-  IconAutomation,
-  IconEngineering,
-  IconTesting,
-} from "@/components/visuals/ServiceIcons";
-
-const icons = [
-  IconOnboardService,
-  IconLubrication,
-  IconSpareParts,
-  IconAutomation,
-  IconEngineering,
-  IconTesting,
-];
+import { Photo } from "@/components/ui/Photo";
 
 export function Expertise() {
   const { expertise } = content;
@@ -34,16 +18,19 @@ export function Expertise() {
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {expertise.areas.map((area, i) => {
-            const Icon = icons[i % icons.length];
             const requestHref = area.title.includes("Spare Parts") ? "/parts-request" : "/service-request";
             return (
               <Reveal key={area.index} delay={80 * i}>
                 <article className="card-lift flex h-full flex-col border border-line bg-white shadow-sm">
                   <div className="relative flex aspect-[16/10] items-center justify-center overflow-hidden bg-gradient-to-br from-navy to-navy-deep">
-                    <span className="absolute left-4 top-4 font-body text-xs font-bold tracking-wide text-white/40">
+                    <span className="absolute left-4 top-4 z-10 font-body text-xs font-bold tracking-wide text-white/40">
                       {area.index}
                     </span>
-                    <Icon className="card-lift-icon h-16 w-16 text-mist/85" />
+                    <Photo
+                      image={area.image}
+                      sizes="(min-width: 1280px) 390px, (min-width: 1024px) 30vw, (min-width: 640px) 44vw, 92vw"
+                      className="card-lift-icon"
+                    />
                   </div>
                   <div className="flex flex-1 flex-col p-6">
                     <h3 className="font-display text-lg font-bold text-navy">{area.title}</h3>

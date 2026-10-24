@@ -2,7 +2,7 @@ import Link from "next/link";
 import { content } from "@/content";
 import { Reveal } from "@/components/ui/Reveal";
 import { TechnicalFrame } from "@/components/ui/TechnicalFrame";
-import { EngineSchematic } from "@/components/visuals/EngineSchematic";
+import { Photo } from "@/components/ui/Photo";
 
 export function ServicesIntro() {
   const { servicesIntro } = content;
@@ -32,9 +32,10 @@ export function ServicesIntro() {
 
         <Reveal delay={150}>
           <TechnicalFrame className="aspect-[4/3] w-full">
-            <div className="h-2/3 w-2/3 text-mist/60">
-              <EngineSchematic />
-            </div>
+            <Photo
+              image={servicesIntro.image}
+              sizes="(min-width: 1280px) 580px, (min-width: 1024px) 45vw, 92vw"
+            />
           </TechnicalFrame>
         </Reveal>
       </div>

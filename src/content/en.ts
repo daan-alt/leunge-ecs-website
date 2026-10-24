@@ -84,17 +84,20 @@ export const en: SiteContent = {
       "We work with you to determine the most suitable form of technical support, with attention to transparency, cost-effectiveness and flexibility.",
     ],
     cta: "Contact us",
+    image: { src: "/images/services-technical-expertise", alt: "Marine service engineer in a white hard hat inspecting a large engine section with a handheld tablet and torch in a ship's engine room.", width: 1200, height: 896, variants: [640, 1200] },
   },
   highlight: {
     label: "Genuine Spare Parts",
     title: "Genuine spare parts",
     body: "Sourcing, purchasing and delivery of genuine OEM spare parts, fast and correctly delivered: from a single part to a complete package for a vessel or project. With the technical background to determine the right specification and coordinate delivery tightly.",
     cta: "Request parts",
+    image: { src: "/images/spare-parts-workbench", alt: "Genuine marine engine spare parts on a steel workbench: a piston with connecting rod, a gear, copper washers, seals and a gasket, next to an open shipping box.", width: 1200, height: 896, variants: [640, 1200] },
   },
   approach: {
     label: "Our Approach",
     title: "Precision over promises",
     body: "LEUNGE-ECS works from four principles: experience, independence, pragmatism and precision. No unnecessary layers, no empty marketing language. Just technical clarity about what a situation requires and what it takes to move forward.",
+    image: { src: "/images/approach-precision-inspection", alt: "Engineer in a hard hat and ear defenders examining pipe flanges by torchlight in a dimly lit engine room.", width: 1200, height: 670, variants: [640, 1200] },
   },
   credibility: {
     label: "EXPERIENCE",
@@ -119,6 +122,7 @@ export const en: SiteContent = {
         description:
           "Technical service, troubleshooting and maintenance on board seagoing vessels. A service engineer can join on board when continuous technical support is needed.",
         detail: "Onboard service · Troubleshooting · Support during the voyage.",
+        image: { src: "/images/expertise-technical-service", alt: "Service engineer shining a torch along pipework and flanges during an onboard inspection of a marine engine.", width: 800, height: 447, variants: [480, 800] },
       },
       {
         index: "02",
@@ -126,6 +130,7 @@ export const en: SiteContent = {
         description:
           "Inspection, maintenance and overhaul of Alpha lubrication systems on main engines, including troubleshooting, adjustment, commissioning and optimization.",
         detail: "Main engines · Commissioning · Optimization.",
+        image: { src: "/images/expertise-alpha-lubrication", alt: "Close-up of stainless steel lubrication tubing and a lubricator block on a marine engine, with a drop of oil at the fitting.", width: 800, height: 447, variants: [480, 800] },
       },
       {
         index: "03",
@@ -133,6 +138,7 @@ export const en: SiteContent = {
         description:
           "Delivery of genuine OEM spare parts: sourcing, purchasing and complete parts packages for vessels and projects.",
         detail: "OEM parts · Sourcing & purchasing · Complete packages.",
+        image: { src: "/images/expertise-spare-parts", alt: "Warehouse aisle with boxed parts and a wrapped turbocharger on a wooden pallet, a forklift in the distance.", width: 800, height: 447, variants: [480, 800] },
       },
       {
         index: "04",
@@ -140,6 +146,7 @@ export const en: SiteContent = {
         description:
           "Automation systems, control panels and PLC/HMI solutions, including troubleshooting and modifications.",
         detail: "PLC & HMI · Control panels · Modifications.",
+        image: { src: "/images/expertise-automation", alt: "Open marine control cabinet with a PLC and neatly wired terminals, a laptop connected for programming beside it.", width: 800, height: 447, variants: [480, 800] },
       },
       {
         index: "05",
@@ -147,6 +154,7 @@ export const en: SiteContent = {
         description:
           "Mechanical and electrical engineering, system design and modifications, with technical documentation and drawings.",
         detail: "Mechanical engineering · Electrical engineering · Technical documentation.",
+        image: { src: "/images/expertise-engineering", alt: "Desk with ship engineering drawings, calipers and a laptop showing a 3D model, with port cranes visible through the window.", width: 800, height: 447, variants: [480, 800] },
       },
       {
         index: "06",
@@ -154,6 +162,7 @@ export const en: SiteContent = {
         description:
           "Electrical inspections, testing of equipment and systems, commissioning, and measurements with accompanying test reports.",
         detail: "Measurements · Test reports · Documentation.",
+        image: { src: "/images/expertise-inspection-commissioning", alt: "Technician with a clipboard testing wiring terminals in a ship's switchboard, a porthole with the sea behind him.", width: 800, height: 447, variants: [480, 800] },
       },
     ],
     note: "These core services are delivered worldwide, on board or on location. The exact scope is agreed per request.",

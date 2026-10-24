@@ -2,7 +2,7 @@ import Link from "next/link";
 import { content } from "@/content";
 import { Reveal } from "@/components/ui/Reveal";
 import { TechnicalFrame } from "@/components/ui/TechnicalFrame";
-import { PartsDiagram } from "@/components/visuals/PartsDiagram";
+import { Photo } from "@/components/ui/Photo";
 
 export function Highlight() {
   const { highlight } = content;
@@ -12,9 +12,10 @@ export function Highlight() {
       <div className="mx-auto grid max-w-[1300px] gap-12 px-6 lg:grid-cols-2 lg:items-center lg:gap-16 lg:px-10">
         <Reveal>
           <TechnicalFrame className="aspect-[4/3] w-full">
-            <div className="h-2/3 w-2/3 text-mist/50">
-              <PartsDiagram />
-            </div>
+            <Photo
+              image={highlight.image}
+              sizes="(min-width: 1280px) 580px, (min-width: 1024px) 45vw, 92vw"
+            />
           </TechnicalFrame>
         </Reveal>
 

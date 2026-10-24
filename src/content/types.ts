@@ -3,11 +3,23 @@ export interface NavLink {
   href: string;
 }
 
+// `src` is the path without size suffix; files live at `${src}-${width}.webp`
+// in /public for every width in `variants`. `width`/`height` = intrinsic size
+// of the largest variant (used for the aspect ratio hint only).
+export interface ContentImage {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  variants: number[];
+}
+
 export interface ExpertiseArea {
   index: string;
   title: string;
   description: string;
   detail: string;
+  image: ContentImage;
 }
 
 export interface TechSpecGroup {
@@ -97,17 +109,20 @@ export interface SiteContent {
     title: string;
     body: string[];
     cta: string;
+    image: ContentImage;
   };
   highlight: {
     label: string;
     title: string;
     body: string;
     cta: string;
+    image: ContentImage;
   };
   approach: {
     label: string;
     title: string;
     body: string;
+    image: ContentImage;
   };
   credibility: {
     label: string;

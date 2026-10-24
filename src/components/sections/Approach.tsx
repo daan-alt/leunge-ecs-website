@@ -1,7 +1,7 @@
 import { content } from "@/content";
 import { Reveal } from "@/components/ui/Reveal";
 import { TechnicalFrame } from "@/components/ui/TechnicalFrame";
-import { PrecisionMark } from "@/components/visuals/PrecisionMark";
+import { Photo } from "@/components/ui/Photo";
 
 export function Approach() {
   const { approach } = content;
@@ -11,9 +11,10 @@ export function Approach() {
       <div className="mx-auto grid max-w-[1300px] gap-10 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-16 lg:px-10">
         <Reveal>
           <TechnicalFrame className="aspect-[16/10] w-full">
-            <div className="h-2/3 w-2/3 text-mist/60">
-              <PrecisionMark />
-            </div>
+            <Photo
+              image={approach.image}
+              sizes="(min-width: 1280px) 520px, (min-width: 1024px) 40vw, 92vw"
+            />
           </TechnicalFrame>
         </Reveal>
 
