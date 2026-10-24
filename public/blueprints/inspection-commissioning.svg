@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-label="Blueprint-style drawing of a test setup: a measurement screen with a waveform and cursors, probes, a checklist of test points and an approval stamp.">
+  <defs>
+    <pattern id="g1" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="#9fb4d0" stroke-opacity=".07"/></pattern>
+    <pattern id="g2" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M100 0H0V100" fill="none" stroke="#9fb4d0" stroke-opacity=".15"/></pattern>
+    <pattern id="hatch" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0V9" stroke="#cfe0f5" stroke-opacity=".45" stroke-width="1.2"/></pattern>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#9fb4d0"/></marker>
+  </defs>
+  <rect width="800" height="800" fill="#0d1b30"/>
+  <rect width="800" height="800" fill="url(#g1)"/>
+  <rect width="800" height="800" fill="url(#g2)"/>
+  <rect x="24" y="24" width="752" height="752" fill="none" stroke="#9fb4d0" stroke-opacity=".4"/>
+  <g stroke="#9fb4d0" stroke-opacity=".7">
+    <path d="M24 74H44M24 726H44M776 74H756M776 726H756M74 24V44M726 24V44M74 776V756M726 776V756"/>
+  </g>
+  <g fill="none" stroke="#cfe0f5" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round">
+    <rect x="110" y="90" width="580" height="290"/>
+    <rect x="126" y="106" width="548" height="258" stroke-opacity=".5"/>
+    <path d="M194.5 106V364" stroke="#9fb4d0" stroke-opacity=".28" stroke-width="1"/>
+    <path d="M263.0 106V364" stroke="#9fb4d0" stroke-opacity=".28" stroke-width="1"/>
+    <path d="M331.5 106V364" stroke="#9fb4d0" stroke-opacity=".28" stroke-width="1"/>
+    <path d="M400.0 106V364" stroke="#9fb4d0" stroke-opacity=".28" stroke-width="1"/>
+    <path d="M468.5 106V364" stroke="#9fb4d0" stroke-opacity=".28" stroke-width="1"/>
+    <path d="M537.0 106V364" stroke="#9fb4d0" stroke-opacity=".28" stroke-width="1"/>
+    <path d="M605.5 106V364" stroke="#9fb4d0" stroke-opacity=".28" stroke-width="1"/>
+    <path d="M126 149.0H674" stroke="#9fb4d0" stroke-opacity=".28" stroke-width="1"/>
+    <path d="M126 192.0H674" stroke="#9fb4d0" stroke-opacity=".28" stroke-width="1"/>
+    <path d="M126 235.0H674" stroke="#9fb4d0" stroke-opacity=".28" stroke-width="1"/>
+    <path d="M126 278.0H674" stroke="#9fb4d0" stroke-opacity=".28" stroke-width="1"/>
+    <path d="M126 321.0H674" stroke="#9fb4d0" stroke-opacity=".28" stroke-width="1"/>
+    <polyline points="126.0,235.0 132.1,204.3 138.2,178.3 144.3,161.8 150.4,157.9 156.4,167.5 162.5,189.2 168.6,219.2 174.7,252.2 180.8,282.5 186.9,304.6 193.0,314.7 199.1,310.7 205.2,293.6 211.2,266.3 217.3,233.7 223.4,201.6 229.5,175.6 235.6,160.3 241.7,158.2 247.8,169.4 253.9,191.8 260.0,221.2 266.0,252.3 272.1,279.5 278.2,298.3 284.3,305.6 290.4,300.5 296.5,284.3 302.6,260.2 308.7,232.8 314.8,206.9 320.8,187.0 326.9,176.3 333.0,176.2 339.1,186.2 345.2,203.9 351.3,225.9 357.4,248.1 363.5,266.7 369.6,278.6 375.6,282.2 381.7,277.6 387.8,266.0 393.9,250.1 400.0,233.0 406.1,217.6 412.2,206.6 418.3,201.4 424.4,202.3 430.4,208.8 436.5,218.9 442.6,230.8 448.7,242.0 454.8,250.8 460.9,256.0 467.0,257.0 473.1,254.1 479.2,248.4 485.2,241.2 491.3,233.9 497.4,227.7 503.5,223.5 509.6,221.9 515.7,222.6 521.8,225.3 527.9,229.2 534.0,233.6 540.0,237.7 546.1,241.0 552.2,243.0 558.3,243.5 564.4,242.6 570.5,240.5 576.6,237.6 582.7,234.3 588.8,231.1 594.8,228.3 600.9,226.6 607.0,226.2 613.1,227.2 619.2,229.9 625.3,233.7 631.4,238.4 637.5,243.1 643.6,246.9 649.6,249.0 655.7,248.8 661.8,245.9 667.9,240.4 674.0,233.1" stroke="#f5921e" stroke-width="2"/>
+    <polyline points="126.0,275.7 132.1,259.0 138.2,238.1 144.3,216.7 150.4,198.4 156.4,186.5 162.5,183.1 168.6,188.6 174.7,202.2 180.8,221.6 186.9,243.2 193.0,263.4 199.1,278.7 205.2,286.4 211.2,285.1 217.3,275.2 223.4,258.2 229.5,237.2 235.6,215.9 241.7,197.8 247.8,186.2 253.9,183.1 260.0,189.0 266.0,202.9 272.1,222.4 278.2,244.1 284.3,264.2 290.4,279.2 296.5,286.5 302.6,284.9 308.7,274.6 314.8,257.4 320.8,236.4 326.9,215.1 333.0,197.2 339.1,185.9 345.2,183.2 351.3,189.4 357.4,203.6 363.5,223.2 369.6,244.9 375.6,264.9 381.7,279.6 387.8,286.6 393.9,284.7 400.0,274.1 406.1,256.7 412.2,235.5 418.3,214.3 424.4,196.6 430.4,185.6 436.5,183.3 442.6,189.9 448.7,204.3 454.8,224.1 460.9,245.8 467.0,265.6 473.1,280.1 479.2,286.7 485.2,284.4 491.3,273.5 497.4,255.9 503.5,234.6 509.6,213.5 515.7,196.0 521.8,185.4 527.9,183.4 534.0,190.3 540.0,205.0 546.1,225.0 552.2,246.6 558.3,266.3 564.4,280.5 570.5,286.8 576.6,284.1 582.7,272.9 588.8,255.1 594.8,233.7 600.9,212.7 607.0,195.5 613.1,185.1 619.2,183.5 625.3,190.8 631.4,205.7 637.5,225.8 643.6,247.5 649.6,267.0 655.7,280.9 661.8,286.9 667.9,283.8 674.0,272.3" stroke="#cfe0f5" stroke-opacity=".55" stroke-dasharray="5 4"/>
+    <path d="M280 106V364M470 106V364" stroke="#f5921e" stroke-dasharray="3 4" stroke-width="1"/>
+    <text x="286" y="122" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#f5921e">T1</text>
+    <text x="476" y="122" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#f5921e">T2</text>
+    <path d="M240 380V430Q240 450 220 450H190" stroke-opacity=".8"/>
+    <path d="M300 380V440Q300 460 320 460H350" stroke-opacity=".8"/>
+    <circle cx="184" cy="450" r="6"/><circle cx="356" cy="460" r="6"/>
+    <rect x="130" y="500" width="22" height="22"/>
+    <path d="M135 512L141 518L149 505" stroke="#f5921e" stroke-width="2.2"/>
+    <path d="M176 511H420" stroke-opacity=".6"/>
+    <rect x="470" y="503" width="90" height="16" stroke-opacity=".6"/>
+    <rect x="130" y="536" width="22" height="22"/>
+    <path d="M135 548L141 554L149 541" stroke="#f5921e" stroke-width="2.2"/>
+    <path d="M176 547H396" stroke-opacity=".6"/>
+    <rect x="470" y="539" width="82" height="16" stroke-opacity=".6"/>
+    <rect x="130" y="572" width="22" height="22"/>
+    <path d="M135 584L141 590L149 577" stroke="#f5921e" stroke-width="2.2"/>
+    <path d="M176 583H372" stroke-opacity=".6"/>
+    <rect x="470" y="575" width="74" height="16" stroke-opacity=".6"/>
+    <rect x="130" y="608" width="22" height="22"/>
+    <path d="M135 620L141 626L149 613" stroke="#f5921e" stroke-width="2.2"/>
+    <path d="M176 619H348" stroke-opacity=".6"/>
+    <rect x="470" y="611" width="66" height="16" stroke-opacity=".6"/>
+    <rect x="130" y="644" width="22" height="22"/>
+    <path d="M176 655H324" stroke-opacity=".6"/>
+    <rect x="470" y="647" width="58" height="16" stroke-opacity=".6"/>
+    <circle cx="640" cy="590" r="52" stroke="#f5921e" stroke-dasharray="3 5"/>
+    <circle cx="640" cy="590" r="40" stroke="#f5921e"/>
+    <path d="M620 590L636 606L662 574" stroke="#f5921e" stroke-width="3"/>
+    <g stroke="#9fb4d0" stroke-width="1" fill="none">
+      <path d="M280 400V416M470 400V416"/>
+      <path d="M280 410H470" marker-start="url(#arr)" marker-end="url(#arr)"/>
+    </g>
+    <text x="375.0" y="404" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#9fb4d0">t</text>
+  </g>
+  <g stroke="#9fb4d0" stroke-opacity=".6" fill="none">
+    <rect x="504" y="716" width="256" height="44"/>
+    <path d="M594 716V760M504 738H760"/>
+  </g>
+  <g font-family="ui-monospace,Menlo,Consolas,monospace" font-size="11" fill="#9fb4d0" letter-spacing="1.2">
+    <text x="514" y="731">FIG.</text><text x="548" y="731" fill="#f5921e">06</text>
+    <text x="604" y="731">SCALE</text><text x="660" y="731">N.T.S.</text>
+    <text x="514" y="753">INSPECTION &amp; TEST</text>
+  </g>
+</svg>

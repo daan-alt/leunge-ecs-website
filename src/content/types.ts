@@ -19,7 +19,8 @@ export interface ExpertiseArea {
   title: string;
   description: string;
   detail: string;
-  image: ContentImage;
+  /** Hand-drawn SVG in public/blueprints (fixed colours, made for the dark panel). */
+  blueprint: { src: string; alt: string };
 }
 
 export interface TechSpecGroup {

@@ -162,7 +162,7 @@ export const en: SiteContent = {
         description:
           "Technical service, troubleshooting and maintenance on board seagoing vessels. A service engineer can join on board when continuous technical support is needed.",
         detail: "Onboard service · Troubleshooting · Support during the voyage.",
-        image: { src: "/images/expertise-technical-service", alt: "Service engineer shining a torch along pipework and flanges during an onboard inspection of a marine engine.", width: 800, height: 447, variants: [480, 800] },
+        blueprint: { src: "/blueprints/technical-service.svg", alt: "Blueprint-style line drawing of a four-cylinder marine engine in side view, with three marked inspection points." },
       },
       {
         index: "02",
@@ -170,7 +170,7 @@ export const en: SiteContent = {
         description:
           "Inspection, maintenance and overhaul of Alpha lubrication systems on main engines, including troubleshooting, adjustment, commissioning and optimization.",
         detail: "Main engines · Commissioning · Optimization.",
-        image: { src: "/images/expertise-alpha-lubrication", alt: "Close-up of stainless steel lubrication tubing and a lubricator block on a marine engine, with a drop of oil at the fitting.", width: 800, height: 447, variants: [480, 800] },
+        blueprint: { src: "/blueprints/alpha-lubrication.svg", alt: "Blueprint-style cross-section of a cylinder liner with piston rings and oil injection points fed from a lubricator unit." },
       },
       {
         index: "03",
@@ -178,7 +178,7 @@ export const en: SiteContent = {
         description:
           "Delivery of genuine OEM spare parts: sourcing, purchasing and complete parts packages for vessels and projects.",
         detail: "OEM parts · Sourcing & purchasing · Complete packages.",
-        image: { src: "/images/expertise-spare-parts", alt: "Warehouse aisle with boxed parts and a wrapped turbocharger on a wooden pallet, a forklift in the distance.", width: 800, height: 447, variants: [480, 800] },
+        blueprint: { src: "/blueprints/spare-parts.svg", alt: "Blueprint-style exploded view of a piston with rings, pin, connecting rod, a gasket and washers, each marked with a numbered balloon." },
       },
       {
         index: "04",
@@ -186,7 +186,7 @@ export const en: SiteContent = {
         description:
           "Automation systems, control panels and PLC/HMI solutions, including troubleshooting and modifications.",
         detail: "PLC & HMI · Control panels · Modifications.",
-        image: { src: "/images/expertise-automation", alt: "Open marine control cabinet with a PLC and neatly wired terminals, a laptop connected for programming beside it.", width: 800, height: 447, variants: [480, 800] },
+        blueprint: { src: "/blueprints/automation.svg", alt: "Blueprint-style front view of an open control cabinet with a PLC rack, operator panel, relays, a terminal strip and cable duct." },
       },
       {
         index: "05",
@@ -194,7 +194,7 @@ export const en: SiteContent = {
         description:
           "Mechanical and electrical engineering, system design and modifications, with technical documentation and drawings.",
         detail: "Mechanical engineering · Electrical engineering · Technical documentation.",
-        image: { src: "/images/expertise-engineering", alt: "Desk with ship engineering drawings, calipers and a laptop showing a 3D model, with port cranes visible through the window.", width: 800, height: 447, variants: [480, 800] },
+        blueprint: { src: "/blueprints/engineering.svg", alt: "Blueprint-style engineering drawing of a flange in front view and section, with centre lines, a bolt circle and dimension lines." },
       },
       {
         index: "06",
@@ -202,7 +202,7 @@ export const en: SiteContent = {
         description:
           "Electrical inspections, testing of equipment and systems, commissioning, and measurements with accompanying test reports.",
         detail: "Measurements · Test reports · Documentation.",
-        image: { src: "/images/expertise-inspection-commissioning", alt: "Technician with a clipboard testing wiring terminals in a ship's switchboard, a porthole with the sea behind him.", width: 800, height: 447, variants: [480, 800] },
+        blueprint: { src: "/blueprints/inspection-commissioning.svg", alt: "Blueprint-style drawing of a test setup: a measurement screen with a waveform and cursors, probes, a checklist of test points and an approval stamp." },
       },
     ],
     note: "These core services are delivered worldwide, on board or on location. The exact scope is agreed per request.",

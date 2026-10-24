@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-label="Blueprint-style engineering drawing of a flange in front view and section, with centre lines, a bolt circle and dimension lines.">
+  <defs>
+    <pattern id="g1" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="#9fb4d0" stroke-opacity=".07"/></pattern>
+    <pattern id="g2" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M100 0H0V100" fill="none" stroke="#9fb4d0" stroke-opacity=".15"/></pattern>
+    <pattern id="hatch" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0V9" stroke="#cfe0f5" stroke-opacity=".45" stroke-width="1.2"/></pattern>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#9fb4d0"/></marker>
+  </defs>
+  <rect width="800" height="800" fill="#0d1b30"/>
+  <rect width="800" height="800" fill="url(#g1)"/>
+  <rect width="800" height="800" fill="url(#g2)"/>
+  <rect x="24" y="24" width="752" height="752" fill="none" stroke="#9fb4d0" stroke-opacity=".4"/>
+  <g stroke="#9fb4d0" stroke-opacity=".7">
+    <path d="M24 74H44M24 726H44M776 74H756M776 726H756M74 24V44M726 24V44M74 776V756M726 776V756"/>
+  </g>
+  <g fill="none" stroke="#cfe0f5" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round">
+    <circle cx="290" cy="360" r="150"/>
+    <circle cx="290" cy="360" r="86" stroke-dasharray="6 4" stroke-opacity=".6"/>
+    <circle cx="290" cy="360" r="56"/>
+    <circle cx="290" cy="360" r="112" stroke="#9fb4d0" stroke-dasharray="14 4 3 4" stroke-width="1"/>
+    <circle cx="393.5" cy="402.9" r="14"/>
+    <circle cx="332.9" cy="463.5" r="14"/>
+    <circle cx="247.1" cy="463.5" r="14"/>
+    <circle cx="186.5" cy="402.9" r="14"/>
+    <circle cx="186.5" cy="317.1" r="14"/>
+    <circle cx="247.1" cy="256.5" r="14"/>
+    <circle cx="332.9" cy="256.5" r="14"/>
+    <circle cx="393.5" cy="317.1" r="14"/>
+    <path d="M100 360L480 360" stroke="#9fb4d0" stroke-width="1" stroke-dasharray="14 4 3 4"/>
+    <path d="M290 170L290 550" stroke="#9fb4d0" stroke-width="1" stroke-dasharray="14 4 3 4"/>
+    <g stroke="#f5921e" stroke-width="1.6"><path d="M90 360H120M460 360H490"/>
+      <path d="M100 346V374M480 346V374"/></g>
+    <text x="74" y="364" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="13" fill="#f5921e">A</text>
+    <text x="496" y="364" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="13" fill="#f5921e">A</text>
+    <path d="M560 210H604V304H680V416H604V510H560Z" fill="url(#hatch)"/>
+    <path d="M560 304H604M560 416H604" stroke-dasharray="5 4" stroke-opacity=".6"/>
+    <path d="M540 360L710 360" stroke="#9fb4d0" stroke-width="1" stroke-dasharray="14 4 3 4"/>
+    <text x="600" y="184" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#9fb4d0">A-A</text>
+    <g stroke="#9fb4d0" stroke-width="1" fill="none">
+      <path d="M140 566V586M440 566V586"/>
+      <path d="M140 580H440" marker-start="url(#arr)" marker-end="url(#arr)"/>
+    </g>
+    <text x="290.0" y="574" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#9fb4d0">D1</text>
+    <g stroke="#9fb4d0" stroke-width="1" fill="none">
+      <path d="M234 626V646M346 626V646"/>
+      <path d="M234 640H346" marker-start="url(#arr)" marker-end="url(#arr)"/>
+    </g>
+    <text x="290.0" y="634" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#9fb4d0">d</text>
+    <g stroke="#9fb4d0" stroke-width="1" fill="none">
+      <path d="M720 210H740M720 510H740"/>
+      <path d="M734 210V510" marker-start="url(#arr)" marker-end="url(#arr)"/>
+    </g>
+    <text x="744" y="364.0" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#9fb4d0">D1</text>
+    <g stroke="#9fb4d0" stroke-width="1" fill="none">
+      <path d="M560 560V576M604 560V576"/>
+      <path d="M560 570H604" marker-start="url(#arr)" marker-end="url(#arr)"/>
+    </g>
+    <text x="582.0" y="564" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#9fb4d0">t</text>
+    <g stroke="#f5921e" fill="none">
+      <path d="M393.5 402.9L470 560" stroke-width="1.2"/>
+      <circle cx="393.5" cy="402.9" r="3" fill="#f5921e" stroke="none"/>
+      <circle cx="470" cy="560" r="13" fill="#0d1b30" stroke-width="1.4"/>
+    </g>
+    <text x="470" y="564" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#f5921e">1</text>
+  </g>
+  <g stroke="#9fb4d0" stroke-opacity=".6" fill="none">
+    <rect x="504" y="716" width="256" height="44"/>
+    <path d="M594 716V760M504 738H760"/>
+  </g>
+  <g font-family="ui-monospace,Menlo,Consolas,monospace" font-size="11" fill="#9fb4d0" letter-spacing="1.2">
+    <text x="514" y="731">FIG.</text><text x="548" y="731" fill="#f5921e">05</text>
+    <text x="604" y="731">SCALE</text><text x="660" y="731">N.T.S.</text>
+    <text x="514" y="753">ENGINEERING</text>
+  </g>
+</svg>

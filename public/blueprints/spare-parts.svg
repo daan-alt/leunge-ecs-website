@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-label="Blueprint-style exploded view of a piston with rings, pin, connecting rod, a gasket and washers, each marked with a numbered balloon.">
+  <defs>
+    <pattern id="g1" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="#9fb4d0" stroke-opacity=".07"/></pattern>
+    <pattern id="g2" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M100 0H0V100" fill="none" stroke="#9fb4d0" stroke-opacity=".15"/></pattern>
+    <pattern id="hatch" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0V9" stroke="#cfe0f5" stroke-opacity=".45" stroke-width="1.2"/></pattern>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#9fb4d0"/></marker>
+  </defs>
+  <rect width="800" height="800" fill="#0d1b30"/>
+  <rect width="800" height="800" fill="url(#g1)"/>
+  <rect width="800" height="800" fill="url(#g2)"/>
+  <rect x="24" y="24" width="752" height="752" fill="none" stroke="#9fb4d0" stroke-opacity=".4"/>
+  <g stroke="#9fb4d0" stroke-opacity=".7">
+    <path d="M24 74H44M24 726H44M776 74H756M776 726H756M74 24V44M726 24V44M74 776V756M726 776V756"/>
+  </g>
+  <g fill="none" stroke="#cfe0f5" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M400 80L400 700" stroke="#9fb4d0" stroke-width="1" stroke-dasharray="14 4 3 4"/>
+    <path d="M330 170Q330 118 372 110H428Q470 118 470 170V236H330Z"/>
+    <path d="M330 146H470"/>
+    <path d="M330 158H470"/>
+    <path d="M330 170H470"/>
+    <circle cx="400" cy="206" r="14" stroke-dasharray="4 3"/>
+    <ellipse cx="400" cy="282" rx="82" ry="15"/>
+    <ellipse cx="400" cy="282" rx="70" ry="11" stroke-opacity=".5"/>
+    <ellipse cx="400" cy="312" rx="82" ry="15"/>
+    <ellipse cx="400" cy="312" rx="70" ry="11" stroke-opacity=".5"/>
+    <ellipse cx="400" cy="342" rx="82" ry="15"/>
+    <ellipse cx="400" cy="342" rx="70" ry="11" stroke-opacity=".5"/>
+    <rect x="344" y="388" width="112" height="26"/>
+    <ellipse cx="344" cy="401" rx="8" ry="13"/>
+    <ellipse cx="456" cy="401" rx="8" ry="13"/>
+    <circle cx="400" cy="480" r="30"/><circle cx="400" cy="480" r="15"/>
+    <path d="M386 508L376 604M414 508L424 604"/>
+    <circle cx="400" cy="650" r="50"/><circle cx="400" cy="650" r="30"/>
+    <path d="M376 604Q376 614 360 624M424 604Q424 614 440 624"/>
+    <rect x="110" y="300" width="130" height="130" rx="14"/>
+    <circle cx="175" cy="365" r="38"/>
+    <circle cx="128" cy="318" r="6"/>
+    <circle cx="222" cy="318" r="6"/>
+    <circle cx="128" cy="412" r="6"/>
+    <circle cx="222" cy="412" r="6"/>
+    <circle cx="590" cy="290" r="22"/><circle cx="590" cy="290" r="10"/>
+    <circle cx="630" cy="330" r="22"/><circle cx="630" cy="330" r="10"/>
+    <circle cx="590" cy="370" r="22"/><circle cx="590" cy="370" r="10"/>
+    <g stroke="#9fb4d0" stroke-dasharray="3 4" stroke-width="1">
+      <path d="M330 236L330 390M470 236L470 390"/>
+    </g>
+    <g stroke="#f5921e" fill="none">
+      <path d="M470 140L560 140" stroke-width="1.2"/>
+      <circle cx="470" cy="140" r="3" fill="#f5921e" stroke="none"/>
+      <circle cx="560" cy="140" r="13" fill="#0d1b30" stroke-width="1.4"/>
+    </g>
+    <text x="560" y="144" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#f5921e">1</text>
+    <g stroke="#f5921e" fill="none">
+      <path d="M482 297L560 227" stroke-width="1.2"/>
+      <circle cx="482" cy="297" r="3" fill="#f5921e" stroke="none"/>
+      <circle cx="560" cy="227" r="13" fill="#0d1b30" stroke-width="1.4"/>
+    </g>
+    <text x="560" y="231" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#f5921e">2</text>
+    <g stroke="#f5921e" fill="none">
+      <path d="M456 401L690 440" stroke-width="1.2"/>
+      <circle cx="456" cy="401" r="3" fill="#f5921e" stroke="none"/>
+      <circle cx="690" cy="440" r="13" fill="#0d1b30" stroke-width="1.4"/>
+    </g>
+    <text x="690" y="444" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#f5921e">3</text>
+    <g stroke="#f5921e" fill="none">
+      <path d="M430 590L560 560" stroke-width="1.2"/>
+      <circle cx="430" cy="590" r="3" fill="#f5921e" stroke="none"/>
+      <circle cx="560" cy="560" r="13" fill="#0d1b30" stroke-width="1.4"/>
+    </g>
+    <text x="560" y="564" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#f5921e">4</text>
+    <g stroke="#f5921e" fill="none">
+      <path d="M175 300L175 230" stroke-width="1.2"/>
+      <circle cx="175" cy="300" r="3" fill="#f5921e" stroke="none"/>
+      <circle cx="175" cy="230" r="13" fill="#0d1b30" stroke-width="1.4"/>
+    </g>
+    <text x="175" y="234" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#f5921e">5</text>
+    <g stroke="#f5921e" fill="none">
+      <path d="M612 290L690 220" stroke-width="1.2"/>
+      <circle cx="612" cy="290" r="3" fill="#f5921e" stroke="none"/>
+      <circle cx="690" cy="220" r="13" fill="#0d1b30" stroke-width="1.4"/>
+    </g>
+    <text x="690" y="224" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#f5921e">6</text>
+  </g>
+  <g stroke="#9fb4d0" stroke-opacity=".6" fill="none">
+    <rect x="504" y="716" width="256" height="44"/>
+    <path d="M594 716V760M504 738H760"/>
+  </g>
+  <g font-family="ui-monospace,Menlo,Consolas,monospace" font-size="11" fill="#9fb4d0" letter-spacing="1.2">
+    <text x="514" y="731">FIG.</text><text x="548" y="731" fill="#f5921e">03</text>
+    <text x="604" y="731">SCALE</text><text x="660" y="731">N.T.S.</text>
+    <text x="514" y="753">SPARE PARTS</text>
+  </g>
+</svg>

@@ -3,9 +3,25 @@
 import { useState } from "react";
 import Link from "next/link";
 import type { ExpertiseArea } from "@/content/types";
-import { Photo } from "@/components/ui/Photo";
-import { TechnicalFrame } from "@/components/ui/TechnicalFrame";
-import { cn } from "@/lib/utils";
+import { cn, BASE_PATH } from "@/lib/utils";
+
+// The drawings are standalone SVG files with their own dark background, so they
+// sit in a plain panel (no photo tone). Loaded as <img> to keep the paths out of
+// the RSC payload.
+function Blueprint({ area, className }: { area: ExpertiseArea; className?: string }) {
+  return (
+    // eslint-disable-next-line @next/next/no-img-element -- static export, SVG needs no optimizer
+    <img
+      src={`${BASE_PATH}${area.blueprint.src}`}
+      alt={area.blueprint.alt}
+      width={800}
+      height={800}
+      loading="lazy"
+      decoding="async"
+      className={cn("h-full w-full object-contain", className)}
+    />
+  );
+}
 
 // Editorial service index: one row per area, the active row opens to show its
 // text; on desktop a sticky photo to the right follows the active row.
@@ -64,9 +80,9 @@ export function ExpertiseList({ areas, cta }: { areas: ExpertiseArea[]; cta: str
               >
                 <div className="overflow-hidden">
                   <div className="pb-8 pl-13 lg:pl-16">
-                    <TechnicalFrame className="mb-6 aspect-[16/9] w-full lg:hidden">
-                      <Photo image={area.image} sizes="92vw" />
-                    </TechnicalFrame>
+                    <div className="mb-6 aspect-square w-full overflow-hidden border border-white/10 bg-navy-deep lg:hidden">
+                      <Blueprint area={area} />
+                    </div>
                     <p className="max-w-xl font-body leading-relaxed text-ink">{area.description}</p>
                     <p className="t-mono mt-4 max-w-xl text-xs leading-relaxed text-ink/70">{area.detail}</p>
                     <Link href={requestHref} className="link-line mt-6 text-navy hover:text-accent">
@@ -83,7 +99,7 @@ export function ExpertiseList({ areas, cta }: { areas: ExpertiseArea[]; cta: str
 
       <div className="hidden lg:col-span-5 lg:block">
         <div className="sticky top-28">
-          <TechnicalFrame className="aspect-[4/5] w-full">
+          <div className="relative aspect-square w-full overflow-hidden border border-white/10 bg-navy-deep">
             {areas.map((area, i) => (
               <div
                 key={area.index}
@@ -93,10 +109,10 @@ export function ExpertiseList({ areas, cta }: { areas: ExpertiseArea[]; cta: str
                 )}
                 aria-hidden={i !== active}
               >
-                <Photo image={area.image} sizes="(min-width: 1400px) 520px, 38vw" />
+                <Blueprint area={area} />
               </div>
             ))}
-          </TechnicalFrame>
+          </div>
           <div className="t-mono mt-4 flex items-center justify-between text-[0.7rem] uppercase tracking-[0.18em] text-ink/60">
             <span>{areas[active].index} / {String(areas.length).padStart(2, "0")}</span>
             <span>{areas[active].title}</span>

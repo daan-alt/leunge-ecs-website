@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-label="Blueprint-style cross-section of a cylinder liner with piston rings and oil injection points fed from a lubricator unit.">
+  <defs>
+    <pattern id="g1" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="#9fb4d0" stroke-opacity=".07"/></pattern>
+    <pattern id="g2" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M100 0H0V100" fill="none" stroke="#9fb4d0" stroke-opacity=".15"/></pattern>
+    <pattern id="hatch" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0V9" stroke="#cfe0f5" stroke-opacity=".45" stroke-width="1.2"/></pattern>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#9fb4d0"/></marker>
+  </defs>
+  <rect width="800" height="800" fill="#0d1b30"/>
+  <rect width="800" height="800" fill="url(#g1)"/>
+  <rect width="800" height="800" fill="url(#g2)"/>
+  <rect x="24" y="24" width="752" height="752" fill="none" stroke="#9fb4d0" stroke-opacity=".4"/>
+  <g stroke="#9fb4d0" stroke-opacity=".7">
+    <path d="M24 74H44M24 726H44M776 74H756M776 726H756M74 24V44M726 24V44M74 776V756M726 776V756"/>
+  </g>
+  <g fill="none" stroke="#cfe0f5" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round">
+    <rect x="290" y="170" width="40" height="440" fill="url(#hatch)"/>
+    <rect x="470" y="170" width="40" height="440" fill="url(#hatch)"/>
+    <path d="M270 150H530V170H270Z" fill="url(#hatch)"/>
+    <path d="M330 170V610M470 170V610"/>
+    <path d="M334 440V400Q334 384 350 384H450Q466 384 466 400V440Z"/>
+    <path d="M334 402H466"/>
+    <rect x="334" y="398" width="9" height="8" fill="#cfe0f5" fill-opacity=".5"/>
+    <rect x="457" y="398" width="9" height="8" fill="#cfe0f5" fill-opacity=".5"/>
+    <path d="M334 414H466"/>
+    <rect x="334" y="410" width="9" height="8" fill="#cfe0f5" fill-opacity=".5"/>
+    <rect x="457" y="410" width="9" height="8" fill="#cfe0f5" fill-opacity=".5"/>
+    <path d="M334 426H466"/>
+    <rect x="334" y="422" width="9" height="8" fill="#cfe0f5" fill-opacity=".5"/>
+    <rect x="457" y="422" width="9" height="8" fill="#cfe0f5" fill-opacity=".5"/>
+    <rect x="338" y="440" width="124" height="70"/>
+    <rect x="384" y="510" width="32" height="130"/>
+    <path d="M400 120L400 690" stroke="#9fb4d0" stroke-width="1" stroke-dasharray="14 4 3 4"/>
+    <rect x="90" y="200" width="110" height="130"/>
+    <rect x="100" y="212" width="90" height="26"/>
+    <circle cx="112.0" cy="290" r="4.5"/>
+    <circle cx="127.2" cy="290" r="4.5"/>
+    <circle cx="142.4" cy="290" r="4.5"/>
+    <circle cx="157.6" cy="290" r="4.5"/>
+    <circle cx="172.8" cy="290" r="4.5"/>
+    <circle cx="188.0" cy="290" r="4.5"/>
+    <g stroke="#f5921e" stroke-width="1.8">
+      <path d="M200 252H250V302H290"/>
+      <path d="M200 270H236V346H290"/>
+      <path d="M145 200V176H570V318H510"/>
+      <path d="M165 200V186H556V366H510"/>
+    </g>
+    <path d="M330 302L316 302" stroke="#f5921e" stroke-width="2.4"/>
+    <circle cx="330" cy="302" r="3.5" fill="#f5921e" stroke="none"/>
+    <path d="M330 346L316 346" stroke="#f5921e" stroke-width="2.4"/>
+    <circle cx="330" cy="346" r="3.5" fill="#f5921e" stroke="none"/>
+    <path d="M470 318L484 318" stroke="#f5921e" stroke-width="2.4"/>
+    <circle cx="470" cy="318" r="3.5" fill="#f5921e" stroke="none"/>
+    <path d="M470 366L484 366" stroke="#f5921e" stroke-width="2.4"/>
+    <circle cx="470" cy="366" r="3.5" fill="#f5921e" stroke="none"/>
+    <path d="M344 300Q349 306 344 310Q339 306 344 300Z" fill="#f5921e" stroke="none" fill-opacity=".8"/>
+    <path d="M344 344Q349 350 344 354Q339 350 344 344Z" fill="#f5921e" stroke="none" fill-opacity=".8"/>
+    <path d="M456 316Q461 322 456 326Q451 322 456 316Z" fill="#f5921e" stroke="none" fill-opacity=".8"/>
+    <path d="M456 364Q461 370 456 374Q451 370 456 364Z" fill="#f5921e" stroke="none" fill-opacity=".8"/>
+    <g stroke="#9fb4d0" stroke-width="1" fill="none">
+      <path d="M586 170H606M586 610H606"/>
+      <path d="M600 170V610" marker-start="url(#arr)" marker-end="url(#arr)"/>
+    </g>
+    <text x="610" y="394.0" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#9fb4d0">S</text>
+    <g stroke="#f5921e" fill="none">
+      <path d="M145 200L145 130" stroke-width="1.2"/>
+      <circle cx="145" cy="200" r="3" fill="#f5921e" stroke="none"/>
+      <circle cx="145" cy="130" r="13" fill="#0d1b30" stroke-width="1.4"/>
+    </g>
+    <text x="145" y="134" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#f5921e">A</text>
+    <g stroke="#f5921e" fill="none">
+      <path d="M290 302L232 420" stroke-width="1.2"/>
+      <circle cx="290" cy="302" r="3" fill="#f5921e" stroke="none"/>
+      <circle cx="232" cy="420" r="13" fill="#0d1b30" stroke-width="1.4"/>
+    </g>
+    <text x="232" y="424" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#f5921e">1</text>
+    <g stroke="#f5921e" fill="none">
+      <path d="M510 318L566 250" stroke-width="1.2"/>
+      <circle cx="510" cy="318" r="3" fill="#f5921e" stroke="none"/>
+      <circle cx="566" cy="250" r="13" fill="#0d1b30" stroke-width="1.4"/>
+    </g>
+    <text x="566" y="254" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="12" fill="#f5921e">2</text>
+  </g>
+  <g stroke="#9fb4d0" stroke-opacity=".6" fill="none">
+    <rect x="504" y="716" width="256" height="44"/>
+    <path d="M594 716V760M504 738H760"/>
+  </g>
+  <g font-family="ui-monospace,Menlo,Consolas,monospace" font-size="11" fill="#9fb4d0" letter-spacing="1.2">
+    <text x="514" y="731">FIG.</text><text x="548" y="731" fill="#f5921e">02</text>
+    <text x="604" y="731">SCALE</text><text x="660" y="731">N.T.S.</text>
+    <text x="514" y="753">LUBRICATION</text>
+  </g>
+</svg>
