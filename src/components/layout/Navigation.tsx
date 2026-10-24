@@ -25,11 +25,12 @@ export function Navigation() {
   }, [open]);
 
   return (
+    <>
     <header
       className={cn(
         "sticky inset-x-0 top-0 z-50 border-b transition-[background-color,border-color,backdrop-filter] duration-300",
         scrolled || open
-          ? "border-white/10 bg-navy-ink/85 backdrop-blur-xl"
+          ? "border-white/10 bg-navy-ink/95 backdrop-blur-xl"
           : "border-white/5 bg-navy-ink"
       )}
     >
@@ -95,10 +96,12 @@ export function Navigation() {
       </nav>
 
       <span aria-hidden className="scroll-progress absolute inset-x-0 -bottom-px h-px bg-accent-bright" />
+    </header>
 
+    {/* Sibling of the header on purpose: the header's backdrop-filter would otherwise become the containing block of this fixed panel. */}
       <div
         className={cn(
-          "fixed inset-x-0 top-16 bottom-0 overflow-y-auto bg-navy-ink transition-[opacity,visibility] duration-300 lg:hidden",
+          "fixed inset-x-0 top-16 bottom-0 z-[45] overflow-y-auto bg-navy-ink transition-[opacity,visibility] duration-300 lg:hidden",
           open ? "visible opacity-100" : "invisible opacity-0"
         )}
       >
@@ -135,6 +138,6 @@ export function Navigation() {
           </div>
         </div>
       </div>
-    </header>
+    </>
   );
 }

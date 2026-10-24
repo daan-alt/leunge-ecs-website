@@ -28,8 +28,11 @@ another `next dev` in this folder (Next locks its dist dir).
   `@/content`). Never hardcode UI text in components.
 - `src/app/icon.tsx` / `opengraph-image.tsx` use inline styles — colors/text there are duplicated by hand.
 - **Tailwind v4, CSS-first**: tokens in the `@theme` block of `src/app/globals.css` (`navy`, `accent`,
-  `accent-bright`, `mist`, `ink`, `line`, …). Custom classes there: `.btn-premium(-dark)`, `.field-underline`,
-  `.card-lift`, `.reveal`/`.reveal-line`, and the hero `.cp-*` animations.
+  `accent-bright`, `mist`, `ink`, `line`, …). Fonts (next/font in `layout.tsx`): Archivo (display, width axis, see
+  `.font-display`), Geist (body), Geist Mono (`font-mono`/`.t-mono` labels). Custom classes in `globals.css`:
+  type scale `.t-display/.t-h2/.t-h3/.t-lead/.t-eyebrow`, layout `.wrap`/`.section-y`, `.btn-premium(-dark)`,
+  `.link-line`, `.field-underline`, `.reveal`/`.reveal-line`, `.hero-in`, `.frame-tone`/`.frame-parallax`
+  (photo treatment), `.scroll-progress` and the hero `.cp-*` animations. See `docs/redesign-notes.md` for the design rationale.
 - **Reveal**: `Reveal` adds `.reveal`/`.reveal-line`; the fade-in is a pure-CSS scroll-driven animation
   (`animation-timeline: view()`) in `globals.css`. Content is visible by default — don't reintroduce a JS
   observer that hides content until it runs (it broke pages opened via client-side navigation).
@@ -39,6 +42,13 @@ another `next dev` in this folder (Next locks its dist dir).
 - **Logo**: `Logo.tsx` loads `public/logo.svg` / `logo-light.svg` (footer) as `<img>` — prefix asset URLs
   with `BASE_PATH` from `@/lib/utils` (Link can't do it for `<img src>`). Keep heavy static SVG out of
   server components: their markup is duplicated in the RSC payload.
+- **Photos**: each image is a `ContentImage` (`src` base path, `alt`, `variants` widths) in `src/content/en.ts`,
+  rendered by `components/ui/Photo.tsx` (plain `<img>` + `srcset`, no optimizer in a static export) inside a
+  fixed-aspect `TechnicalFrame` (adds the shared navy tone/grain/corner marks; `parallax` prop optional). WebP variants live at
+  `public/images/<name>-<width>.webp`; full-size originals in `design-assets/originals/` (not deployed).
+  `docs/ai-image-prompts.md` / `docs/hero-video-concept-*.md` hold the image/video briefs. The old SVGs
+  `EngineSchematic`, `PartsDiagram`, `PrecisionMark`, `ServiceIcons` are now unused.
+- **Homepage sections** (`src/components/sections/`, order in `app/page.tsx`): Hero, Intro, Expertise (client `ExpertiseList`: accordion + sticky photo), Highlight (parts), Process, Principles, TechnicalDepth, FinalCta. Inner pages open with `ui/PageHero`. Header is dark (`Navigation`, mobile menu overlay is a sibling of `<header>` because of backdrop-filter); `MobileCtaBar` is fixed on mobile except on form pages. Per-page OG images use `lib/og.tsx`.
 - Path alias `@/*` → `src/*`.
 
 ## Forms

@@ -21,7 +21,7 @@ export function Hero() {
         <div className="hero-grain absolute inset-0" />
       </div>
 
-      <div className="relative mx-auto flex w-full max-w-[1400px] flex-1 flex-col justify-center px-6 pb-14 pt-16 lg:px-10 lg:pb-20">
+      <div className="relative mx-auto flex w-full max-w-[1400px] flex-1 flex-col justify-center px-6 pb-12 pt-12 lg:px-10 lg:pb-10 lg:pt-10">
         <span className="t-eyebrow hero-in text-accent-bright">{hero.badge}</span>
 
         <h1 className="font-display t-display mt-7 max-w-[10em] text-white">
@@ -29,9 +29,9 @@ export function Hero() {
           <span className="hero-in block text-white/55" style={{ animationDelay: "240ms" }}>{hero.titleLine2}</span>
         </h1>
 
-        <p className="t-lead hero-in mt-8 max-w-xl text-mist/85" style={{ animationDelay: "380ms" }}>{hero.subtitle}</p>
+        <p className="t-lead hero-in mt-7 max-w-xl text-mist/85" style={{ animationDelay: "380ms" }}>{hero.subtitle}</p>
 
-        <div className="hero-in mt-10 hidden gap-4 lg:flex lg:items-center" style={{ animationDelay: "500ms" }}>
+        <div className="hero-in mt-8 hidden gap-4 lg:flex lg:items-center" style={{ animationDelay: "500ms" }}>
           <Link
             href="/service-request"
             className="btn-premium-dark inline-flex items-center justify-center gap-3 bg-accent-bright px-8 py-4 font-body text-sm font-semibold uppercase tracking-[0.08em] text-navy-ink transition-colors hover:bg-white"
@@ -48,7 +48,7 @@ export function Hero() {
           </Link>
         </div>
 
-        <p className="t-mono mt-8 max-w-xl text-xs leading-relaxed text-mist/50">{hero.tagline}</p>
+        <p className="t-mono mt-6 max-w-xl text-xs leading-relaxed text-mist/50">{hero.tagline}</p>
       </div>
 
       <dl className="relative border-t border-white/10 bg-navy-ink/60 backdrop-blur-sm">

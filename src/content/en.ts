@@ -271,7 +271,7 @@ export const en: SiteContent = {
       { name: "IMO number", label: "IMO number", type: "text", inputMode: "numeric" },
       { name: "Port / location", label: "Port / location", type: "text" },
       { name: "ETA", label: "ETA (arrival date)", type: "date" },
-      { name: "System / engine type", label: "System / engine type (e.g. Alpha Lubricator, engine make & model)", type: "text", wide: true },
+      { name: "System / engine type", label: "System / engine make & type", type: "text", wide: true },
       {
         name: "Urgency",
         label: "Urgency",
