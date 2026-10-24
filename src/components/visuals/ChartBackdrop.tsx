@@ -69,15 +69,15 @@ export function ChartBackdrop({ className }: { className?: string }) {
       {/* Graticule */}
       <g>
         {verticals.map((x) => (
-          <line key={`v${x}`} x1={x} y1="0" x2={x} y2={H} strokeOpacity={x % 300 === 0 ? 0.24 : 0.1} />
+          <line key={`v${x}`} x1={x} y1="0" x2={x} y2={H} strokeOpacity={x % 300 === 0 ? 0.24 : 0.1} className={x % 300 === 0 ? "" : "max-lg:hidden"} />
         ))}
         {horizontals.map((y) => (
-          <line key={`h${y}`} x1="0" y1={y} x2={W} y2={y} strokeOpacity={y % 300 === 0 ? 0.24 : 0.1} />
+          <line key={`h${y}`} x1="0" y1={y} x2={W} y2={y} strokeOpacity={y % 300 === 0 ? 0.24 : 0.1} className={y % 300 === 0 ? "" : "max-lg:hidden"} />
         ))}
       </g>
 
       {/* Depth contours */}
-      <g strokeOpacity="0.2">
+      <g strokeOpacity="0.2" className="max-lg:hidden">
         {[70, 130, 190, 250, 310].map((R, i) => (
           <path key={R} d={contour(420, 520, R, i * 0.6)} />
         ))}

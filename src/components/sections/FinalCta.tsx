@@ -5,7 +5,8 @@ import { ChartBackdrop } from "@/components/visuals/ChartBackdrop";
 
 // Closing block: instead of two buttons, a request "console" — one row per
 // way in, each a full-width link that fills orange on hover — over a faint
-// nautical chart.
+// nautical chart. Row layout lives in `.console-row` (globals.css): stacked
+// on phones, three columns from lg.
 export function FinalCta() {
   const { finalCta } = content;
 
@@ -18,7 +19,7 @@ export function FinalCta() {
       <div aria-hidden className="absolute inset-0 bg-gradient-to-r from-navy-deep/95 via-navy-deep/45 to-transparent" />
       <div aria-hidden className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-navy-deep to-transparent" />
 
-      <div className="wrap relative grid gap-16 lg:grid-cols-12 lg:items-end lg:gap-12">
+      <div className="wrap col-guides relative grid gap-14 lg:grid-cols-12 lg:items-end lg:gap-12">
         <div className="lg:col-span-6">
           <Reveal>
             <span className="t-eyebrow text-accent-bright">{finalCta.label}</span>
@@ -34,33 +35,29 @@ export function FinalCta() {
         </div>
 
         <Reveal className="lg:col-span-6">
-          <ul className="border-b border-white/15 bg-navy-deep/60 backdrop-blur-[3px]">
+          <ul className="border-b border-white/15 bg-navy-deep/95 lg:bg-navy-deep/60 lg:backdrop-blur-[3px]">
             {finalCta.options.map((option) => (
               <li key={option.index}>
                 <Link
                   href={option.href}
-                  className="group grid grid-cols-[auto_1fr_auto] items-center gap-5 border-t border-white/15 px-6 py-7 transition-colors duration-300 hover:border-accent-bright hover:bg-accent-bright lg:gap-7 lg:px-8 lg:py-9"
+                  className={`console-row group border-t border-white/15 transition-colors duration-300 hover:border-accent-bright hover:bg-accent-bright ${
+                    option.tag ? "border-l-2 border-l-accent-bright bg-accent-bright/[0.07]" : ""
+                  }`}
                 >
-                  <span className="t-mono text-xs text-accent-bright transition-colors duration-300 group-hover:text-navy-ink">
+                  <span className="console-index t-mono flex items-center gap-3 text-xs text-accent-bright transition-colors duration-300 group-hover:text-navy-ink">
                     {option.index}
+                    {option.tag && <UrgentTag tag={option.tag} className="lg:hidden" />}
                   </span>
-                  <span>
-                    <span className="font-display t-h3 flex flex-wrap items-center gap-x-4 gap-y-2 text-white transition-colors duration-300 group-hover:text-navy-ink">
-                      {option.title}
-                      {option.tag && (
-                        <span className="t-mono inline-flex items-center gap-2 border border-accent-bright px-2 py-0.5 text-[0.65rem] font-normal uppercase tracking-[0.18em] text-accent-bright transition-colors duration-300 group-hover:border-navy-ink group-hover:text-navy-ink">
-                          <span aria-hidden className="cp-led h-1.5 w-1.5 rounded-full bg-current" />
-                          {option.tag}
-                        </span>
-                      )}
-                    </span>
-                    <span className="mt-2 block font-body text-sm leading-relaxed text-mist/65 transition-colors duration-300 group-hover:text-navy-ink/80">
-                      {option.description}
-                    </span>
+                  <span className="console-title font-display t-h3 flex flex-wrap items-center gap-x-4 gap-y-2 text-white transition-colors duration-300 group-hover:text-navy-ink">
+                    {option.title}
+                    {option.tag && <UrgentTag tag={option.tag} className="max-lg:hidden" />}
+                  </span>
+                  <span className="console-desc font-body text-sm leading-relaxed text-mist/65 transition-colors duration-300 group-hover:text-navy-ink/80">
+                    {option.description}
                   </span>
                   <span
                     aria-hidden
-                    className="text-2xl text-white transition-all duration-300 group-hover:translate-x-1 group-hover:text-navy-ink"
+                    className="console-arrow text-2xl text-white transition-all duration-300 group-hover:translate-x-1 group-hover:text-navy-ink"
                   >
                     →
                   </span>
@@ -76,5 +73,16 @@ export function FinalCta() {
         </Reveal>
       </div>
     </section>
+  );
+}
+
+function UrgentTag({ tag, className }: { tag: string; className?: string }) {
+  return (
+    <span
+      className={`t-mono inline-flex items-center gap-2 border border-accent-bright px-2 py-0.5 text-[0.65rem] font-normal uppercase tracking-[0.18em] text-accent-bright transition-colors duration-300 group-hover:border-navy-ink group-hover:text-navy-ink ${className ?? ""}`}
+    >
+      <span aria-hidden className="cp-led h-1.5 w-1.5 rounded-full bg-current" />
+      {tag}
+    </span>
   );
 }
