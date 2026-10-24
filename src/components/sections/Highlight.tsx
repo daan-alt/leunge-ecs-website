@@ -8,32 +8,29 @@ export function Highlight() {
   const { highlight } = content;
 
   return (
-    <section id="onderdelen" className="bg-navy py-20 lg:py-24">
-      <div className="mx-auto grid max-w-[1300px] gap-12 px-6 lg:grid-cols-2 lg:items-center lg:gap-16 lg:px-10">
-        <Reveal>
-          <TechnicalFrame className="aspect-[4/3] w-full">
-            <Photo
-              image={highlight.image}
-              sizes="(min-width: 1280px) 580px, (min-width: 1024px) 45vw, 92vw"
-            />
-          </TechnicalFrame>
-        </Reveal>
-
-        <Reveal delay={150}>
-          <span className="font-body text-xs font-bold uppercase tracking-[0.2em] text-accent-bright">
-            {highlight.label}
-          </span>
-          <h2 className="text-balance mt-4 font-display text-3xl font-bold leading-tight text-white sm:text-4xl">
-            {highlight.title}
-          </h2>
-          <p className="mt-5 max-w-lg font-body leading-relaxed text-mist/80">{highlight.body}</p>
+    <section id="parts" className="section-y relative overflow-hidden bg-navy-ink text-white">
+      <div aria-hidden className="hero-grain absolute inset-0" />
+      <div className="wrap relative grid gap-14 lg:grid-cols-12 lg:items-center lg:gap-16">
+        <Reveal className="lg:col-span-5">
+          <span className="t-eyebrow text-accent-bright">{highlight.label}</span>
+          <h2 className="font-display t-h2 mt-8 text-white">{highlight.title}</h2>
+          <p className="t-lead mt-8 max-w-lg text-mist/75">{highlight.body}</p>
           <Link
             href="/parts-request"
-            className="btn-premium-dark mt-8 inline-flex items-center gap-2 bg-white px-7 py-3.5 font-body text-sm font-bold uppercase tracking-wide text-navy transition-colors hover:bg-accent-bright hover:text-white"
+            className="btn-premium-dark mt-10 inline-flex items-center gap-3 bg-accent-bright px-8 py-4 font-body text-sm font-semibold uppercase tracking-[0.08em] text-navy-ink transition-colors hover:bg-white"
           >
             {highlight.cta}
             <span aria-hidden className="link-arrow">→</span>
           </Link>
+        </Reveal>
+
+        <Reveal className="lg:col-span-7">
+          <TechnicalFrame className="aspect-[4/3] w-full">
+            <Photo
+              image={highlight.image}
+              sizes="(min-width: 1400px) 780px, (min-width: 1024px) 55vw, 92vw"
+            />
+          </TechnicalFrame>
         </Reveal>
       </div>
     </section>

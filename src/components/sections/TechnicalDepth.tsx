@@ -1,47 +1,46 @@
 import { content } from "@/content";
 import { Reveal } from "@/components/ui/Reveal";
 
+// Laid out like a datasheet: a label column and the disciplines as a ruled list.
 export function TechnicalDepth() {
   const { techSpec } = content;
 
   return (
-    <section className="bg-navy py-20 lg:py-28">
-      <div className="mx-auto max-w-[1300px] px-6 lg:px-10">
-        <Reveal>
-          <span className="font-body text-xs font-bold uppercase tracking-[0.2em] text-accent-bright">
-            {techSpec.label}
-          </span>
-        </Reveal>
-
-        <div className="mt-4 grid gap-8 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
-          <Reveal delay={100} as="h2" className="text-balance font-display text-3xl font-bold leading-tight text-white sm:text-4xl">
-            {techSpec.title}
-          </Reveal>
-          <Reveal delay={180} as="p" className="max-w-md self-end font-body leading-relaxed text-mist/80">
+    <section className="section-y bg-white">
+      <div className="wrap">
+        <div className="grid gap-8 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-7">
+            <Reveal>
+              <span className="t-eyebrow text-accent">{techSpec.label}</span>
+            </Reveal>
+            <Reveal as="h2" className="font-display t-h2 mt-8 max-w-[11em] text-ink-dark">
+              {techSpec.title}
+            </Reveal>
+          </div>
+          <Reveal as="p" className="t-lead max-w-md self-end text-ink lg:col-span-5">
             {techSpec.intro}
           </Reveal>
         </div>
 
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {techSpec.groups.map((group, i) => (
+        <dl className="mt-16 border-b border-line lg:mt-24">
+          {techSpec.groups.map((group) => (
             <Reveal
               key={group.label}
-              delay={90 * i}
-              className="border border-white/15 bg-white/5 p-7 transition-colors duration-300 hover:border-accent-bright hover:bg-white/10"
+              className="grid gap-4 border-t border-line py-8 lg:grid-cols-12 lg:gap-16 lg:py-10"
             >
-              <span className="font-body text-xs font-bold uppercase tracking-[0.2em] text-accent-bright">
+              <dt className="t-mono text-xs uppercase tracking-[0.18em] text-accent lg:col-span-4">
                 {group.label}
-              </span>
-              <ul className="mt-5 space-y-2.5 border-t border-white/15 pt-5">
+              </dt>
+              <dd className="flex flex-wrap gap-x-10 gap-y-3 lg:col-span-8">
                 {group.items.map((item) => (
-                  <li key={item} className="font-body text-sm text-mist/90">
+                  <span key={item} className="font-display t-h3 text-ink-dark">
                     {item}
-                  </li>
+                  </span>
                 ))}
-              </ul>
+              </dd>
             </Reveal>
           ))}
-        </div>
+        </dl>
       </div>
     </section>
   );

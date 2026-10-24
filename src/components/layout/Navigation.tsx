@@ -11,28 +11,42 @@ export function Navigation() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
   return (
     <header
       className={cn(
-        "sticky inset-x-0 top-0 z-50 border-b border-line bg-white transition-shadow duration-300",
-        scrolled && "header-elevated"
+        "sticky inset-x-0 top-0 z-50 border-b transition-[background-color,border-color,backdrop-filter] duration-300",
+        scrolled || open
+          ? "border-white/10 bg-navy-ink/85 backdrop-blur-xl"
+          : "border-white/5 bg-navy-ink"
       )}
     >
-      <nav className="mx-auto flex h-20 max-w-[1300px] items-center justify-between px-6 lg:px-10">
-        <Logo />
+      <nav
+        className={cn(
+          "mx-auto flex max-w-[1400px] items-center justify-between px-6 transition-[height] duration-300 lg:px-10",
+          scrolled ? "h-16" : "h-16 lg:h-20"
+        )}
+      >
+        <Logo light priority imgClassName={scrolled ? "h-11 lg:h-12" : "h-12 lg:h-14"} />
 
-        <ul className="hidden items-center gap-8 lg:flex">
+        <ul className="hidden items-center gap-10 lg:flex">
           {content.nav.links.map((link) => (
             <li key={link.href}>
               <Link
                 href={link.href}
-                className="nav-link font-body text-sm font-semibold uppercase tracking-wide text-ink transition-colors hover:text-accent"
+                className="nav-link t-mono text-[0.78rem] uppercase tracking-[0.14em] text-mist/80 transition-colors hover:text-white"
               >
                 {link.label}
               </Link>
@@ -43,13 +57,13 @@ export function Navigation() {
         <div className="hidden items-center gap-3 lg:flex">
           <Link
             href="/service-request"
-            className="btn-premium group inline-flex items-center gap-2 border border-navy px-5 py-3 font-body text-sm font-bold uppercase tracking-wide text-navy transition-colors hover:border-accent hover:text-accent"
+            className="btn-premium-dark inline-flex items-center gap-2 border border-white/25 px-5 py-2.5 font-body text-[0.8rem] font-semibold uppercase tracking-[0.08em] text-white transition-colors hover:border-white hover:bg-white/5"
           >
             {content.nav.ctaService}
           </Link>
           <Link
             href="/parts-request"
-            className="btn-premium group inline-flex items-center gap-2 bg-navy px-5 py-3 font-body text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-accent"
+            className="btn-premium-dark inline-flex items-center gap-2 bg-accent-bright px-5 py-2.5 font-body text-[0.8rem] font-semibold uppercase tracking-[0.08em] text-navy-ink transition-colors hover:bg-white"
           >
             {content.nav.ctaParts}
             <span aria-hidden className="link-arrow">→</span>
@@ -59,20 +73,20 @@ export function Navigation() {
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          className="flex h-10 w-10 items-center justify-center border border-line transition-colors hover:border-accent lg:hidden"
+          className="flex h-10 w-10 items-center justify-center border border-white/20 transition-colors hover:border-accent-bright lg:hidden"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
         >
           <span className="relative block h-3 w-4">
             <span
               className={cn(
-                "absolute left-0 top-0 h-px w-4 bg-navy transition-all",
+                "absolute left-0 top-0 h-px w-4 bg-white transition-all",
                 open && "top-1.5 rotate-45"
               )}
             />
             <span
               className={cn(
-                "absolute left-0 bottom-0 h-px w-4 bg-navy transition-all",
+                "absolute left-0 bottom-0 h-px w-4 bg-white transition-all",
                 open && "bottom-1.5 -rotate-45"
               )}
             />
@@ -80,38 +94,41 @@ export function Navigation() {
         </button>
       </nav>
 
+      <span aria-hidden className="scroll-progress absolute inset-x-0 -bottom-px h-px bg-accent-bright" />
+
       <div
         className={cn(
-          "absolute inset-x-0 top-full overflow-hidden bg-white transition-[max-height] duration-300 ease-in-out lg:hidden",
-          open ? "max-h-[32rem] shadow-lg" : "max-h-0"
+          "fixed inset-x-0 top-16 bottom-0 overflow-y-auto bg-navy-ink transition-[opacity,visibility] duration-300 lg:hidden",
+          open ? "visible opacity-100" : "invisible opacity-0"
         )}
       >
-        <div className="overflow-hidden border-t border-line px-6 py-6">
-          <ul className="flex flex-col gap-5">
-            {content.nav.links.map((link) => (
-              <li key={link.href}>
+        <div className="flex min-h-full flex-col px-6 pb-10 pt-8">
+          <ul className="flex flex-col">
+            {content.nav.links.map((link, i) => (
+              <li key={link.href} className="border-b border-white/10">
                 <Link
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="font-display text-xl font-bold text-navy transition-colors hover:text-accent"
+                  className="font-display flex items-baseline justify-between py-5 text-3xl text-white transition-colors hover:text-accent-bright"
                 >
                   {link.label}
+                  <span className="t-mono text-xs text-mist/40">0{i + 1}</span>
                 </Link>
               </li>
             ))}
           </ul>
-          <div className="mt-8 flex flex-col gap-3">
+          <div className="mt-auto flex flex-col gap-3 pt-10">
             <Link
               href="/service-request"
               onClick={() => setOpen(false)}
-              className="btn-premium inline-flex w-full items-center justify-center gap-2 border border-navy px-5 py-3.5 font-body text-sm font-bold uppercase tracking-wide text-navy"
+              className="inline-flex w-full items-center justify-center border border-white/30 px-5 py-4 font-body text-sm font-semibold uppercase tracking-[0.08em] text-white"
             >
               {content.nav.ctaService}
             </Link>
             <Link
               href="/parts-request"
               onClick={() => setOpen(false)}
-              className="btn-premium inline-flex w-full items-center justify-center gap-2 bg-navy px-5 py-3.5 font-body text-sm font-bold uppercase tracking-wide text-white"
+              className="inline-flex w-full items-center justify-center bg-accent-bright px-5 py-4 font-body text-sm font-semibold uppercase tracking-[0.08em] text-navy-ink"
             >
               {content.nav.ctaParts}
             </Link>

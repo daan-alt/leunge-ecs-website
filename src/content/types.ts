@@ -97,18 +97,18 @@ export interface SiteContent {
     titleLine2: string;
     subtitle: string;
     tagline: string;
+    ctaService: string;
+    ctaParts: string;
+    stats: { label: string; value: string }[];
   };
-  brandStatement: {
+  intro: {
     label: string;
-    lineOne: string;
-    lineTwo: string;
-    body: string;
-  };
-  servicesIntro: {
-    label: string;
-    title: string;
+    statement: string;
     body: string[];
     cta: string;
+    stat: string;
+    statLabel: string;
+    statDetail: string;
     image: ContentImage;
   };
   highlight: {
@@ -118,18 +118,17 @@ export interface SiteContent {
     cta: string;
     image: ContentImage;
   };
-  approach: {
+  process: {
     label: string;
     title: string;
-    body: string;
-    image: ContentImage;
+    intro: string;
+    steps: { index: string; title: string; body: string }[];
   };
-  credibility: {
+  principles: {
     label: string;
-    stat: string;
-    statLabel: string;
-    statDetail: string;
-    secondary: { label: string; value: string }[];
+    title: string;
+    items: { title: string; body: string }[];
+    image: ContentImage;
   };
   expertise: {
     label: string;
@@ -137,6 +136,7 @@ export interface SiteContent {
     intro: string;
     areas: ExpertiseArea[];
     note: string;
+    cta: string;
   };
   techSpec: {
     label: string;
@@ -147,10 +147,11 @@ export interface SiteContent {
   about: {
     label: string;
     title: string;
-    paragraphs: string[];
+    lead: string;
+    pathLabel: string;
+    path: { marker: string; title: string; body: string }[];
     name: string;
     role: string;
-    imageCaption: string;
   };
   finalCta: {
     titleLine1: string;
@@ -163,7 +164,17 @@ export interface SiteContent {
   serviceRequest: RequestFormContent;
   partsRequest: RequestFormContent;
   contactGeneral: RequestFormContent;
+  notFound: {
+    label: string;
+    title: string;
+    body: string;
+    cta: string;
+  };
   footer: {
+    navigationLabel: string;
+    expertiseLabel: string;
+    contactLabel: string;
+    contactCta: string;
     tagline: string;
     rightsLine: (year: number) => string;
     location: string;

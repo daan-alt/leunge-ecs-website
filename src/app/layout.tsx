@@ -5,6 +5,7 @@ import { content } from "@/content";
 import { SITE_URL } from "@/lib/utils";
 import { Navigation } from "@/components/layout/Navigation";
 import { Footer } from "@/components/layout/Footer";
+import { MobileCtaBar } from "@/components/layout/MobileCtaBar";
 
 // Display: Archivo's width axis lets headlines run slightly expanded (see .font-display).
 const archivo = Archivo({
@@ -73,7 +74,7 @@ const jsonLd = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${archivo.variable} ${geist.variable} ${geistMono.variable} h-full`}>
-      <body className="flex min-h-full flex-col bg-paper font-body text-ink antialiased">
+      <body className="flex min-h-full flex-col bg-paper font-body text-ink antialiased pb-[3.25rem] lg:pb-0">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -81,6 +82,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Navigation />
         <main className="flex-1">{children}</main>
         <Footer />
+        <MobileCtaBar />
       </body>
     </html>
   );

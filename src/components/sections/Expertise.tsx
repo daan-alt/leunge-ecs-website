@@ -1,60 +1,32 @@
-import Link from "next/link";
 import { content } from "@/content";
 import { Reveal } from "@/components/ui/Reveal";
-import { Photo } from "@/components/ui/Photo";
+import { ExpertiseList } from "./ExpertiseList";
 
 export function Expertise() {
   const { expertise } = content;
 
   return (
-    <section id="expertise" className="bg-mist pt-12 pb-20 lg:pt-16 lg:pb-28">
-      <div className="mx-auto max-w-[1300px] px-6 lg:px-10">
-        <Reveal as="h2" className="text-balance max-w-2xl font-display text-3xl font-bold leading-tight text-navy sm:text-4xl">
-          {expertise.title}
-        </Reveal>
-        <Reveal delay={100} as="p" className="mt-5 max-w-xl font-body leading-relaxed text-ink">
-          {expertise.intro}
-        </Reveal>
-
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {expertise.areas.map((area, i) => {
-            const requestHref = area.title.includes("Spare Parts") ? "/parts-request" : "/service-request";
-            return (
-              <Reveal key={area.index} delay={80 * i}>
-                <article className="card-lift flex h-full flex-col border border-line bg-white shadow-sm">
-                  <div className="relative flex aspect-[16/10] items-center justify-center overflow-hidden bg-gradient-to-br from-navy to-navy-deep">
-                    <span className="absolute left-4 top-4 z-10 font-body text-xs font-bold tracking-wide text-white/40">
-                      {area.index}
-                    </span>
-                    <Photo
-                      image={area.image}
-                      sizes="(min-width: 1280px) 390px, (min-width: 1024px) 30vw, (min-width: 640px) 44vw, 92vw"
-                      className="card-lift-icon"
-                    />
-                  </div>
-                  <div className="flex flex-1 flex-col p-6">
-                    <h3 className="font-display text-lg font-bold text-navy">{area.title}</h3>
-                    <p className="mt-3 flex-1 font-body text-sm leading-relaxed text-ink">
-                      {area.description}
-                    </p>
-                    <p className="mt-2 font-body text-xs leading-relaxed text-ink/70">
-                      {area.detail}
-                    </p>
-                    <Link
-                      href={requestHref}
-                      className="btn-premium mt-5 inline-flex w-fit items-center gap-2 bg-navy px-5 py-2.5 font-body text-xs font-bold uppercase tracking-wide text-white transition-colors hover:bg-accent"
-                    >
-                      Get in touch
-                      <span aria-hidden className="link-arrow">→</span>
-                    </Link>
-                  </div>
-                </article>
-              </Reveal>
-            );
-          })}
+    <section id="expertise" className="section-y scroll-mt-16 bg-white">
+      <div className="wrap">
+        <div className="grid gap-8 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-7">
+            <Reveal>
+              <span className="t-eyebrow text-accent">{expertise.label}</span>
+            </Reveal>
+            <Reveal as="h2" className="font-display t-h2 mt-8 max-w-[11em] text-ink-dark">
+              {expertise.title}
+            </Reveal>
+          </div>
+          <Reveal as="p" className="t-lead max-w-md self-end text-ink lg:col-span-5">
+            {expertise.intro}
+          </Reveal>
         </div>
 
-        <Reveal delay={200} as="p" className="mt-10 max-w-xl font-body text-sm leading-relaxed text-ink/70">
+        <div className="mt-16 lg:mt-24">
+          <ExpertiseList areas={expertise.areas} cta={expertise.cta} />
+        </div>
+
+        <Reveal as="p" className="t-mono mt-12 max-w-xl text-xs leading-relaxed text-ink/70">
           {expertise.note}
         </Reveal>
       </div>

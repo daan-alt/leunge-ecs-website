@@ -62,28 +62,34 @@ export const en: SiteContent = {
     ctaParts: "Request Parts",
   },
   hero: {
-    badge: "Worldwide service and shipping",
-    titleLine1: "LEUNGE-ECS B.V.",
-    titleLine2: "Independent technical expertise",
+    badge: "Independent technical expertise",
+    titleLine1: "Marine technical service,",
+    titleLine2: "wherever your vessel calls.",
     subtitle:
       "Technical service, genuine spare parts and engineering for seagoing vessels, including Alpha Lubrication Systems, automation and commissioning.",
     tagline:
-      "Technical specialist with Dutch roots, available worldwide on board and on location. Active in the field since 1993, independent as LEUNGE-ECS since 2012.",
+      "LEUNGE-ECS B.V. — technical specialist with Dutch roots, available worldwide on board and on location.",
+    ctaService: "Request Service",
+    ctaParts: "Request Parts",
+    stats: [
+      { label: "In the field", value: "Since 1993" },
+      { label: "Independent", value: "Since 2012" },
+      { label: "Availability", value: "Worldwide" },
+      { label: "Where", value: "On board & on location" },
+    ],
   },
-  brandStatement: {
-    label: "PRINCIPLE",
-    lineOne: "Complex technical systems demand more than expertise.",
-    lineTwo: "They demand experience.",
-    body: "LEUNGE-ECS combines hands-on experience, engineering knowledge and technical supervision. Not from a remote office, but from decades of work in engine rooms, on location, and during failures that don't wait for a report.",
-  },
-  servicesIntro: {
-    label: "Technical Expertise",
-    title: "Technical expertise",
+  intro: {
+    label: "Who we are",
+    statement: "A failure at sea doesn't wait for a report. We work from the engine room, not from a remote office.",
     body: [
       "LEUNGE-ECS supports seagoing vessels with technical service and maintenance, Alpha Lubrication Systems service, automation and control engineering, engineering and genuine OEM spare parts. A service engineer can join on board when continuous technical support is needed.",
       "We work with you to determine the most suitable form of technical support, with attention to transparency, cost-effectiveness and flexibility.",
     ],
     cta: "Contact us",
+    stat: "30+",
+    statLabel: "years of technical experience",
+    statDetail:
+      "Built up in field service, engineering, troubleshooting and technical supervision since 1993.",
     image: { src: "/images/services-technical-expertise", alt: "Marine service engineer in a white hard hat inspecting a large engine section with a handheld tablet and torch in a ship's engine room.", width: 1200, height: 896, variants: [640, 1200] },
   },
   highlight: {
@@ -93,22 +99,56 @@ export const en: SiteContent = {
     cta: "Request parts",
     image: { src: "/images/spare-parts-workbench", alt: "Genuine marine engine spare parts on a steel workbench: a piston with connecting rod, a gear, copper washers, seals and a gasket, next to an open shipping box.", width: 1200, height: 896, variants: [640, 1200] },
   },
-  approach: {
-    label: "Our Approach",
-    title: "Precision over promises",
-    body: "LEUNGE-ECS works from four principles: experience, independence, pragmatism and precision. No unnecessary layers, no empty marketing language. Just technical clarity about what a situation requires and what it takes to move forward.",
-    image: { src: "/images/approach-precision-inspection", alt: "Engineer in a hard hat and ear defenders examining pipe flanges by torchlight in a dimly lit engine room.", width: 1200, height: 670, variants: [640, 1200] },
-  },
-  credibility: {
-    label: "EXPERIENCE",
-    stat: "30+",
-    statLabel: "years of technical experience",
-    statDetail:
-      "Built up in field service, engineering, troubleshooting and technical supervision since 1993.",
-    secondary: [
-      { label: "INDEPENDENT", value: "Technical specialist" },
-      { label: "INTERNATIONAL", value: "Worldwide availability" },
+  process: {
+    label: "How it works",
+    title: "From first message to work on board.",
+    intro:
+      "Every request is different. This is how it generally runs, from the first description to the finished job.",
+    steps: [
+      {
+        index: "01",
+        title: "Request",
+        body: "Describe the vessel, the system and the situation through the request form. Photos and nameplate details speed up the diagnosis.",
+      },
+      {
+        index: "02",
+        title: "Assessment",
+        body: "A personal response follows. The technical situation is clarified, and it is determined whether an engineer should join on board or parts need to be sourced.",
+      },
+      {
+        index: "03",
+        title: "Scope & offer",
+        body: "Scope, approach and delivery are agreed per request, with attention to transparency, cost-effectiveness and flexibility.",
+      },
+      {
+        index: "04",
+        title: "Execution",
+        body: "Work on board or on location, or delivery of the parts, with documentation such as test reports where applicable.",
+      },
     ],
+  },
+  principles: {
+    label: "Our approach",
+    title: "Four principles. No empty marketing language.",
+    items: [
+      {
+        title: "Experience",
+        body: "Hands-on work in engine rooms and on location, and in failures that don't wait for a report.",
+      },
+      {
+        title: "Independence",
+        body: "An independent technical specialist since 2012, working directly with you.",
+      },
+      {
+        title: "Pragmatism",
+        body: "No unnecessary layers. The most suitable form of support is determined together, case by case.",
+      },
+      {
+        title: "Precision",
+        body: "Technical clarity about what a situation requires and what it takes to move forward.",
+      },
+    ],
+    image: { src: "/images/approach-precision-inspection", alt: "Engineer in a hard hat and ear defenders examining pipe flanges by torchlight in a dimly lit engine room.", width: 1200, height: 670, variants: [640, 1200] },
   },
   expertise: {
     label: "EXPERTISE",
@@ -166,6 +206,7 @@ export const en: SiteContent = {
       },
     ],
     note: "These core services are delivered worldwide, on board or on location. The exact scope is agreed per request.",
+    cta: "Get in touch",
   },
   techSpec: {
     label: "TECHNICAL DEPTH",
@@ -180,16 +221,34 @@ export const en: SiteContent = {
     ],
   },
   about: {
-    label: "ABOUT",
+    label: "About",
     title: "Experience, built in the field.",
-    paragraphs: [
-      "Technical experience isn't built behind a desk. It's built in engine rooms, during start-up procedures, in failures that call for an immediate decision, and on locations where systems simply have to work.",
-      "That experience began in 1993, with start-up, service and troubleshooting on gas production installations in the Dutch offshore sector. A period followed as Superintendent Engineer in field service, focused on control systems for marine engines, and passing on that knowledge as a trainer.",
-      "The focus then shifted to electronic systems and technical supervision, as Superintendent Electronic Engineer. Since 2012 he has worked independently as an independent Technical Superintendent, through LEUNGE-ECS, with three decades of experience as the starting point for every technical question.",
+    lead: "Technical experience isn't built behind a desk. It's built in engine rooms, during start-up procedures, in failures that call for an immediate decision, and on locations where systems simply have to work.",
+    pathLabel: "Career path",
+    path: [
+      {
+        marker: "1993",
+        title: "Start-up, service and troubleshooting",
+        body: "On gas production installations in the Dutch offshore sector.",
+      },
+      {
+        marker: "Field service",
+        title: "Superintendent Engineer",
+        body: "Focused on control systems for marine engines, and passing on that knowledge as a trainer.",
+      },
+      {
+        marker: "Electronics",
+        title: "Superintendent Electronic Engineer",
+        body: "Electronic systems and technical supervision.",
+      },
+      {
+        marker: "2012",
+        title: "Independent as LEUNGE-ECS",
+        body: "Working as an independent Technical Superintendent, with three decades of experience as the starting point for every technical question.",
+      },
     ],
     name: "Technical Superintendent",
     role: "Active since 1993 · Independent since 2012",
-    imageCaption: "Portrait to follow",
   },
   finalCta: {
     titleLine1: "A technical challenge?",
@@ -259,7 +318,17 @@ export const en: SiteContent = {
     scopeLabel: "Availability",
     scope: "Worldwide service and shipping",
   },
+  notFound: {
+    label: "Error 404",
+    title: "This page is off course.",
+    body: "The page you are looking for doesn't exist or has moved. Return to the start, or get in touch directly.",
+    cta: "Back to home",
+  },
   footer: {
+    navigationLabel: "Navigation",
+    expertiseLabel: "Expertise",
+    contactLabel: "Contact",
+    contactCta: "Or get in touch",
     tagline:
       "Technical service, genuine spare parts and engineering for seagoing vessels — available worldwide.",
     rightsLine: (year: number) => `© ${year} LEUNGE-ECS B.V. All rights reserved.`,

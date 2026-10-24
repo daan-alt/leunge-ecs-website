@@ -9,10 +9,10 @@ import { cn } from "@/lib/utils";
 // Line weights as strokeOpacity against `currentColor` (set by the wrapper in
 // Hero.tsx). Oil pulses and injection points use the accent via a nested
 // `text-accent-bright` group, so both colors still come from theme tokens.
-const FRAME = 0.14;
-const STRUCTURE = 0.3;
-const DETAIL = 0.1;
-const LABEL = 0.32;
+const FRAME = 0.3;
+const STRUCTURE = 0.55;
+const DETAIL = 0.2;
+const LABEL = 0.6;
 
 // Delay helper — every moving part gets its own offset so nothing pulses in unison.
 const delay = (s: number): CSSProperties => ({ animationDelay: `${s}s` });

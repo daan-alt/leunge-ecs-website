@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { content } from "@/content";
 import { ControlPanel } from "@/components/visuals/ControlPanel";
 
@@ -5,42 +6,64 @@ export function Hero() {
   const { hero } = content;
 
   return (
-    <section id="top" className="relative flex min-h-[calc(100svh-5rem)] items-end overflow-hidden bg-navy-deep">
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-navy-deep via-navy to-navy" />
-        <div className="absolute inset-0 text-white">
+    <section
+      id="top"
+      className="relative flex min-h-[calc(100svh-4rem)] flex-col overflow-hidden bg-navy-ink lg:min-h-[calc(100svh-5rem)]"
+    >
+      <div aria-hidden className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-navy-ink via-navy-deep to-navy" />
+        <div className="absolute inset-x-0 top-0 bottom-36 text-white lg:bottom-24">
           <ControlPanel layout="wide" className="lg:hidden" />
           <ControlPanel layout="right" className="hidden lg:block" />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-navy-deep/75 via-navy-deep/45 to-navy-deep/10 lg:from-navy-deep lg:via-navy-deep/70 lg:to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/80 via-transparent to-transparent lg:from-navy-deep lg:via-navy-deep/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-navy-ink/90 via-navy-ink/60 to-navy-ink/20 lg:from-navy-ink lg:via-navy-ink/85 lg:via-45% lg:to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-navy-ink to-transparent" />
+        <div className="hero-grain absolute inset-0" />
       </div>
 
-      <div className="relative mx-auto w-full max-w-[1300px] px-6 pb-16 pt-40 lg:px-10">
-        <div className="inline-flex items-center gap-2 border border-accent-bright/40 bg-white/5 px-3.5 py-1.5">
-          <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-accent-bright" />
-          <span className="font-body text-xs font-bold uppercase tracking-[0.2em] text-accent-bright">
-            {hero.badge}
-          </span>
-        </div>
+      <div className="relative mx-auto flex w-full max-w-[1400px] flex-1 flex-col justify-center px-6 pb-14 pt-16 lg:px-10 lg:pb-20">
+        <span className="t-eyebrow text-accent-bright">{hero.badge}</span>
 
-        <h1 className="text-balance mt-5 max-w-3xl font-display font-bold leading-tight text-white">
-          <span className="block text-4xl sm:text-5xl lg:text-[55px] lg:leading-[1.3]">
-            {hero.titleLine1}
-          </span>
-          <span className="mt-2 block text-3xl sm:text-4xl lg:text-[42px] lg:leading-[1.25]">
-            {hero.titleLine2}
-          </span>
+        <h1 className="font-display t-display mt-7 max-w-[10em] text-white">
+          <span className="block">{hero.titleLine1}</span>
+          <span className="block text-white/55">{hero.titleLine2}</span>
         </h1>
 
-        <p className="text-balance mt-5 max-w-xl font-body text-lg leading-relaxed text-mist">
-          {hero.subtitle}
-        </p>
+        <p className="t-lead mt-8 max-w-xl text-mist/85">{hero.subtitle}</p>
 
-        <p className="mt-3 max-w-xl font-body text-sm leading-relaxed text-mist/70">
-          {hero.tagline}
-        </p>
+        <div className="mt-10 hidden gap-4 lg:flex lg:items-center">
+          <Link
+            href="/service-request"
+            className="btn-premium-dark inline-flex items-center justify-center gap-3 bg-accent-bright px-8 py-4 font-body text-sm font-semibold uppercase tracking-[0.08em] text-navy-ink transition-colors hover:bg-white"
+          >
+            {hero.ctaService}
+            <span aria-hidden className="link-arrow">→</span>
+          </Link>
+          <Link
+            href="/parts-request"
+            className="btn-premium-dark inline-flex items-center justify-center gap-3 border border-white/30 px-8 py-4 font-body text-sm font-semibold uppercase tracking-[0.08em] text-white transition-colors hover:border-white hover:bg-white/5"
+          >
+            {hero.ctaParts}
+            <span aria-hidden className="link-arrow">→</span>
+          </Link>
+        </div>
+
+        <p className="t-mono mt-8 max-w-xl text-xs leading-relaxed text-mist/50">{hero.tagline}</p>
       </div>
+
+      <dl className="relative border-t border-white/10 bg-navy-ink/60 backdrop-blur-sm">
+        <div className="mx-auto grid max-w-[1400px] grid-cols-2 lg:grid-cols-4">
+          {hero.stats.map((stat, i) => (
+            <div
+              key={stat.label}
+              className={`px-6 py-5 lg:px-10 lg:py-7 ${i % 2 === 1 ? "border-l border-white/10" : ""} ${i >= 2 ? "border-t border-white/10 lg:border-t-0" : ""} ${i > 0 ? "lg:border-l lg:border-white/10" : ""}`}
+            >
+              <dt className="t-mono text-[0.68rem] uppercase tracking-[0.18em] text-mist/45">{stat.label}</dt>
+              <dd className="font-display mt-2 text-base text-white lg:text-xl">{stat.value}</dd>
+            </div>
+          ))}
+        </div>
+      </dl>
     </section>
   );
 }
