@@ -4,6 +4,7 @@ import { RequestForm } from "@/components/forms/RequestForm";
 
 export const metadata: Metadata = {
   title: content.serviceRequest.title,
+  alternates: { canonical: "/service-request" },
   description: content.serviceRequest.intro,
 };
 

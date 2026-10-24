@@ -7,6 +7,7 @@ import { FinalCta } from "@/components/sections/FinalCta";
 export const metadata: Metadata = {
   title: content.about.title,
   description: content.about.lead,
+  alternates: { canonical: "/about" },
 };
 
 export default function AboutPage() {

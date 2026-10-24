@@ -14,7 +14,7 @@ export default function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "#13294b",
+          backgroundColor: "#08111f",
         }}
       >
         <div

@@ -69,6 +69,14 @@ const jsonLd = {
     addressCountry: "NL",
   },
   knowsAbout: content.expertise.areas.map((a) => a.title),
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: content.expertise.title,
+    itemListElement: content.expertise.areas.map((a) => ({
+      "@type": "Offer",
+      itemOffered: { "@type": "Service", name: a.title, description: a.description },
+    })),
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

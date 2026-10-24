@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import type { ExtraField, RequestFormContent } from "@/content/types";
 import { Reveal } from "@/components/ui/Reveal";
+import { PageHero } from "@/components/ui/PageHero";
 import { ACCEPT, uploadFiles, uploadsEnabled, validateFiles, type FileError } from "@/lib/uploads";
 
 type Status = "idle" | "uploading" | "submitting" | "success" | "error";
@@ -17,7 +18,7 @@ const SUBJECT_PREFIX: Record<Kind, string> = {
 const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
 
 const fieldClass =
-  "peer w-full border-0 border-b border-line bg-transparent py-3 font-body text-navy placeholder:text-transparent focus:border-accent focus:outline-none";
+  "peer w-full rounded-none border-0 border-b border-line bg-transparent py-3 font-body text-base text-ink-dark placeholder:text-transparent focus:border-accent focus:outline-none user-invalid:border-red-600";
 // Date/select inputs always show a value, so their label sits in the raised position.
 const staticLabelClass = "pointer-events-none absolute left-0 -top-3.5 font-body text-xs text-ink";
 const labelClass =
@@ -105,56 +106,41 @@ export function RequestForm({ content, kind }: { content: RequestFormContent; ki
   }
 
   return (
-    <section className="relative bg-white py-20 lg:py-28">
-      <div className="mx-auto max-w-[1300px] px-6 lg:px-10">
-        <Reveal>
-          <span className="font-body text-xs font-bold uppercase tracking-[0.2em] text-accent">
-            {content.label}
-          </span>
-        </Reveal>
+    <>
+      <PageHero label={content.label} title={content.title} lead={content.intro} h1 />
 
-        <div className="mt-6 grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
-          <Reveal delay={100}>
-            <h1 className="text-balance font-display text-3xl font-bold leading-tight text-navy sm:text-4xl">
-              {content.title}
-            </h1>
-            <p className="mt-5 max-w-sm font-body leading-relaxed text-ink">{content.intro}</p>
+      <section className="section-y relative bg-paper">
+        <div className="wrap">
+          <div className="grid gap-14 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20">
+            <aside className="lg:sticky lg:top-28 lg:self-start">
+              <dl className="space-y-8">
+                <div className="border-t border-ink-dark/20 pt-5">
+                  <dt className="t-eyebrow text-accent">{content.directLabel}</dt>
+                  <dd className="font-display t-h3 mt-4 text-ink-dark">{content.location}</dd>
+                </div>
+                <div className="border-t border-ink-dark/20 pt-5">
+                  <dt className="t-eyebrow text-accent">{content.scopeLabel}</dt>
+                  <dd className="font-display t-h3 mt-4 text-ink-dark">{content.scope}</dd>
+                </div>
+              </dl>
+              {content.specsNote && (
+                <div className="mt-10 border-l-2 border-accent bg-white px-5 py-4">
+                  <p className="t-mono text-[0.7rem] uppercase tracking-[0.18em] text-accent">
+                    {content.specsLabel}
+                  </p>
+                  <p className="mt-2 font-body text-sm leading-relaxed text-ink">{content.specsNote}</p>
+                </div>
+              )}
+            </aside>
 
-            <dl className="mt-10 space-y-5 border-t border-line pt-7">
-              <div>
-                <dt className="font-body text-xs font-bold uppercase tracking-[0.2em] text-accent">
-                  {content.directLabel}
-                </dt>
-                <dd className="mt-2 font-display text-lg font-bold text-navy">{content.location}</dd>
-              </div>
-              <div>
-                <dt className="font-body text-xs font-bold uppercase tracking-[0.2em] text-accent">
-                  {content.scopeLabel}
-                </dt>
-                <dd className="mt-2 font-display text-lg font-bold text-navy">{content.scope}</dd>
-              </div>
-            </dl>
-          </Reveal>
-
-          <Reveal delay={200}>
+            <Reveal>
             {status === "success" ? (
-              <div className="border border-line bg-mist p-10">
-                <p className="font-display text-2xl font-bold text-navy">{content.form.success}</p>
+              <div role="status" className="border border-line bg-white p-8 sm:p-12">
+                <p className="font-display t-h3 text-ink-dark">{content.form.success}</p>
                 <p className="mt-3 font-body text-ink">{content.form.successDetail}</p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-8" noValidate>
-                {content.specsNote && (
-                  <div className="border-l-2 border-accent bg-mist px-5 py-4">
-                    <p className="font-body text-xs font-bold uppercase tracking-[0.15em] text-accent">
-                      {content.specsLabel}
-                    </p>
-                    <p className="mt-1.5 font-body text-sm leading-relaxed text-ink">
-                      {content.specsNote}
-                    </p>
-                  </div>
-                )}
-
+              <form onSubmit={handleSubmit} className="space-y-9 border border-line bg-white p-6 sm:p-10">
                 <div className="grid gap-8 sm:grid-cols-2">
                   <div className="relative field-underline">
                     <input id="name" name="name" type="text" required placeholder=" " className={fieldClass} />
@@ -242,13 +228,13 @@ export function RequestForm({ content, kind }: { content: RequestFormContent; ki
                 </div>
 
                 {status === "error" && (
-                  <p className="font-body text-sm text-red-600">{content.form.error}</p>
+                  <p role="alert" className="font-body text-sm text-red-600">{content.form.error}</p>
                 )}
 
                 <button
                   type="submit"
                   disabled={status === "submitting" || status === "uploading"}
-                  className="btn-premium inline-flex items-center gap-2 bg-navy px-8 py-3.5 font-body text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-accent disabled:opacity-60 disabled:hover:translate-y-0 disabled:hover:shadow-none"
+                  className="btn-premium inline-flex items-center gap-3 bg-navy-ink px-9 py-4 font-body text-sm font-semibold uppercase tracking-[0.08em] text-white transition-colors hover:bg-accent disabled:opacity-60 disabled:hover:translate-y-0 disabled:hover:shadow-none"
                 >
                   {status === "uploading"
                     ? content.form.uploading
@@ -264,8 +250,9 @@ export function RequestForm({ content, kind }: { content: RequestFormContent; ki
               </form>
             )}
           </Reveal>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
