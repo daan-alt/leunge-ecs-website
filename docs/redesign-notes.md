@@ -24,3 +24,22 @@ Uitgevoerd volgens `docs/redesign-plan.md`, zonder input van de klant. Geen verz
 4. **Concrete cijfers** (schepen, havens, reactietijd) alleen als ze kloppen.
 5. Eventueel een **portret** voor de Over-pagina en een **zakelijk e-mailadres/telefoon** voor een zichtbaar direct contact.
 6. Daarna kan de hero-video uit `docs/hero-video-concept-*.md` gemaakt worden.
+
+# Ronde 2 (branch `polish`)
+
+Uitgevoerd volgens `docs/redesign-plan-2.md`. Opnieuw geen verzonnen feiten, geen nieuwe foto's of AI-beelden.
+
+## Gemaakte keuzes
+
+- **A, request console op mobiel:** rijen zijn gestapeld (nummer + pijl bovenin, daaronder kop en tekst, volle breedte) via `.console-row`; de urgente rij heeft een oranje linkerlijn en lichte oranje achtergrond met het label naast het nummer; de achtergrond achter de rijen is op mobiel vrijwel dicht en de kaart heeft daar minder lijnen. Desktop is ongewijzigd.
+- **B, datasheet:** `TechnicalDepth` is nu vier omkaderde blokken (2x2, mobiel 1 kolom) met genummerde items 01-10 op een stippellijn. Inhoud is exact die van `en.ts`. De losse regel "10 / TECHNICAL DEPTH" is weggelaten (zei niets).
+- **C, blauwdrukken:** zes zelf getekende SVG's in `public/blueprints/` vervangen de AI-foto's in de dienstenlijst (`ExpertiseArea.image` is nu `blueprint`). Alleen generieke labels (A/B/C, 1-6, L/H/D/t); geen merken, onderdeelnummers of cijfers. Het paneel is vierkant (desktop én mobiel). De foto's in Intro, Highlight en Principles blijven. De nu ongebruikte `public/images/expertise-*.webp` zijn niet verwijderd.
+- **D, details:** doorlopende tekstband met de zes dienstnamen (CSS, pauze bij hover, uit bij reduced motion); sectie "When to get in touch" met vier uitnodigingen die doorlinken naar het juiste formulier (alleen formuleringen die al in de diensten staan); muis-parallax op de hero-achtergrond (alleen fijne aanwijzer, niet bij reduced motion); smooth scroll met `lenis` (alleen muis, niet bij reduced motion; werkt met `/#anchor`-links, de scroll-gedreven reveals en de formulierpagina's, getest met een headless browser); actieve pagina in het menu (`aria-current`); kolomgeleiders in Hero, Principles en FinalCta; "Skip to content"-link; nieuw favicon en apple-icon (druppel in getand tandwiel) via `lib/brand-mark.tsx`.
+- **Contrast:** kleine, gedempte teksten (`text-mist/35-55`, `text-ink/60-70`) zijn opgehoogd naar `mist/60` en `ink/85` (richting WCAG AA). Decoratieve nummers zijn bewust lichter gelaten.
+- **Een bug onderweg:** de globale `* { border-color }` stond buiten een CSS-laag en overschreef `border-white/10`; nu in `@layer base`.
+
+## Niet gedaan / beperkingen
+
+- **Lighthouse** is niet gedraaid (geen betrouwbare headless-run in deze omgeving); contrast en toetsenbord (skip-link, focus) zijn handmatig gecontroleerd.
+- De blauwdrukken zijn bewust schematisch; echte foto's of tekeningen van de klant blijven beter.
+- Het mobiele "tekstband" en de "When to get in touch"-lijst zijn nieuw en niet door de klant beoordeeld.
