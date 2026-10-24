@@ -28,8 +28,11 @@
   --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
 }
 
-* {
-  border-color: var(--color-line);
+/* In the base layer so border-white/10 etc. on dark sections can override it. */
+@layer base {
+  * {
+    border-color: var(--color-line);
+  }
 }
 
 html {

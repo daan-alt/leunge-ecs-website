@@ -24,7 +24,8 @@ export function Logo({
         alt=""
         width={light ? 168 : 135}
         height={light ? 80 : 64}
-        className={cn(light ? "h-20 w-auto" : "h-16 w-auto", imgClassName)}
+        // cn() doesn't resolve conflicting utilities, so imgClassName replaces the default height instead of adding to it.
+        className={cn("w-auto", imgClassName ?? (light ? "h-20" : "h-16"))}
         loading={eager ? "eager" : "lazy"}
         fetchPriority={eager ? "high" : "auto"}
       />
