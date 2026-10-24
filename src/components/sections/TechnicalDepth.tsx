@@ -5,7 +5,10 @@ import { Reveal } from "@/components/ui/Reveal";
 // dotted leader, instead of large headings. Numbering runs across the groups.
 export function TechnicalDepth() {
   const { techSpec } = content;
-  let counter = 0;
+  // Running item number across groups, computed up front (no mutation during render).
+  const offsets = techSpec.groups.map((_, i) =>
+    techSpec.groups.slice(0, i).reduce((n, g) => n + g.items.length, 0)
+  );
 
   return (
     <section className="bg-white py-20 lg:py-28">
@@ -36,15 +39,15 @@ export function TechnicalDepth() {
               </div>
 
               <ul className="mt-6">
-                {group.items.map((item) => {
-                  counter += 1;
+                {group.items.map((item, ii) => {
+                  const number = offsets[gi] + ii + 1;
                   return (
                     <li
                       key={item}
                       className="group flex items-baseline gap-4 border-t border-line py-3.5 transition-colors duration-200 hover:bg-mist/60"
                     >
                       <span className="t-mono w-6 shrink-0 text-[0.7rem] text-ink/40">
-                        {String(counter).padStart(2, "0")}
+                        {String(number).padStart(2, "0")}
                       </span>
                       <span className="font-body text-[1.05rem] font-medium text-ink-dark transition-colors duration-200 group-hover:text-navy">
                         {item}
