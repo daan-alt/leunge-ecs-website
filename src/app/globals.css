@@ -31,7 +31,7 @@
 /* Fonts come from next/font CSS variables applied at runtime on <html>,
    so they're defined with @theme inline rather than baked into @theme. */
 :root {
-  --grain-tile: url("data:image/png;base64,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");
+  --grain-tile: url("data:image/png;base64,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");
 }
 
 @theme inline {
@@ -675,4 +675,103 @@ main > :not(:first-child),
 footer {
   content-visibility: auto;
   contain-intrinsic-size: auto 900px;
+}
+
+/* ---- Anatomy (scrollytelling) ---------------------------------------------
+   `.anatomy-track` is a tall box; its stage is pinned (sticky) while the track
+   scrolls past. The track is the view timeline; every `.an-*` element plays a
+   slice of it: --s/--e are fractions (0..1) of the pinned window, which starts
+   at --w0 and spans --wspan of the track's cover range. Without scroll-driven
+   animation support (or with reduced motion) nothing animates and the figure
+   shows its finished, exploded state. */
+.anatomy-track {
+  --w0: 25%;
+  --wspan: 50%;
+  height: 320vh;
+}
+.anatomy-stage {
+  position: sticky;
+  top: 4.5rem;
+  height: calc(100svh - 4.5rem);
+}
+@media (max-width: 1023px) {
+  .anatomy-track {
+    --w0: 12%;
+    --wspan: 46%;
+    height: 240vh;
+  }
+  .anatomy-stage {
+    height: calc(100svh - 4.5rem);
+    align-content: start;
+    padding-top: 1rem;
+  }
+  .anatomy-list {
+    display: none;
+  }
+}
+
+@keyframes an-explode {
+  from { transform: translateY(var(--collapse, 0px)); }
+}
+@keyframes an-side {
+  from { opacity: 0; transform: translateX(var(--from-x, 0px)); }
+}
+@keyframes an-pop {
+  from { opacity: 0; }
+}
+@keyframes an-draw {
+  from { stroke-dashoffset: 1; }
+}
+@keyframes an-note {
+  from { opacity: 0.28; }
+}
+
+@supports (animation-timeline: view()) {
+  .anatomy-track {
+    view-timeline: --anatomy block;
+  }
+  .an-part,
+  .an-side,
+  .an-pop,
+  .an-fade,
+  .an-note,
+  .an-draw {
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+    animation-duration: 1ms; /* required by some engines; the timeline drives it */
+    animation-timeline: --anatomy;
+    animation-range:
+      cover calc(var(--w0) + var(--s) * var(--wspan))
+      cover calc(var(--w0) + var(--e) * var(--wspan));
+  }
+  .an-part { animation-name: an-explode; animation-timing-function: ease-in-out; }
+  .an-side { animation-name: an-side; }
+  .an-pop,
+  .an-fade { animation-name: an-pop; }
+  .an-note { animation-name: an-note; }
+  .an-draw { animation-name: an-draw; stroke-dasharray: 1; }
+}
+.an-pop,
+.an-pop * { transform-box: fill-box; }
+
+@media (prefers-reduced-motion: reduce) {
+  .an-part,
+  .an-side,
+  .an-pop,
+  .an-fade,
+  .an-note,
+  .an-draw {
+    animation: none !important;
+  }
+  .anatomy-track {
+    height: auto;
+  }
+  .anatomy-stage {
+    position: static;
+    height: auto;
+    padding-block: 3rem;
+  }
+  .anatomy-list {
+    display: block;
+  }
 }

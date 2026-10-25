@@ -2,6 +2,8 @@ import { Hero } from "@/components/sections/Hero";
 import { Intro } from "@/components/sections/Intro";
 import { Expertise } from "@/components/sections/Expertise";
 import { Highlight } from "@/components/sections/Highlight";
+import { Anatomy } from "@/components/sections/Anatomy";
+import { features } from "@/lib/features";
 import { ServiceMarquee } from "@/components/sections/ServiceMarquee";
 import { Situations } from "@/components/sections/Situations";
 import { Process } from "@/components/sections/Process";
@@ -16,6 +18,7 @@ export default function Home() {
       <Intro />
       <Expertise />
       <Highlight />
+      {features.scrolly && <Anatomy />}
       <ServiceMarquee />
       <Process />
       <Situations />
