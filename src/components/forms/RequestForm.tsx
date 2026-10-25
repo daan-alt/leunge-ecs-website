@@ -22,7 +22,7 @@ const fieldClass =
 // Date/select inputs always show a value, so their label sits in the raised position.
 const staticLabelClass = "pointer-events-none absolute left-0 -top-3.5 font-body text-xs text-ink";
 const labelClass =
-  "pointer-events-none absolute left-0 top-3 font-body text-ink transition-all peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-accent peer-[:not(:placeholder-shown)]:-top-3.5 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-ink";
+  "pointer-events-none absolute left-0 top-3 font-body text-ink transition-all peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-accent-ink peer-[:not(:placeholder-shown)]:-top-3.5 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-ink";
 
 function ExtraFieldInput({ field, optional }: { field: ExtraField; optional: string }) {
   const id = `f-${field.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
@@ -124,17 +124,17 @@ export function RequestForm({ content, kind }: { content: RequestFormContent; ki
             <aside className="lg:sticky lg:top-28 lg:self-start">
               <dl className="space-y-8">
                 <div className="border-t border-ink-dark/20 pt-5">
-                  <dt className="t-eyebrow text-accent">{content.directLabel}</dt>
+                  <dt className="t-eyebrow text-accent-ink">{content.directLabel}</dt>
                   <dd className="font-display t-h3 mt-4 text-ink-dark">{content.location}</dd>
                 </div>
                 <div className="border-t border-ink-dark/20 pt-5">
-                  <dt className="t-eyebrow text-accent">{content.scopeLabel}</dt>
+                  <dt className="t-eyebrow text-accent-ink">{content.scopeLabel}</dt>
                   <dd className="font-display t-h3 mt-4 text-ink-dark">{content.scope}</dd>
                 </div>
               </dl>
               {content.specsNote && (
                 <div className="mt-10 border-l-2 border-accent bg-white px-5 py-4">
-                  <p className="t-mono text-[0.7rem] uppercase tracking-[0.18em] text-accent">
+                  <p className="t-mono text-[0.7rem] uppercase tracking-[0.18em] text-accent-ink">
                     {content.specsLabel}
                   </p>
                   <p className="mt-2 font-body text-sm leading-relaxed text-ink">{content.specsNote}</p>

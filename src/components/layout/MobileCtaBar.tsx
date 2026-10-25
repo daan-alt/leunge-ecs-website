@@ -13,13 +13,13 @@ export function MobileCtaBar() {
 
   return (
     <div className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-2 border-t border-white/10 bg-navy-ink/90 backdrop-blur-xl lg:hidden">
-      <Link
+      <Link prefetch={false}
         href="/service-request"
         className="flex items-center justify-center border-r border-white/10 px-4 py-4 font-body text-[0.78rem] font-semibold uppercase tracking-[0.08em] text-white"
       >
         {content.nav.ctaService}
       </Link>
-      <Link
+      <Link prefetch={false}
         href="/parts-request"
         className="flex items-center justify-center bg-accent-bright px-4 py-4 font-body text-[0.78rem] font-semibold uppercase tracking-[0.08em] text-navy-ink"
       >

@@ -34,14 +34,14 @@ export function Hero() {
         <p className="t-lead hero-in mt-7 max-w-xl text-mist/85" style={{ animationDelay: "380ms" }}>{hero.subtitle}</p>
 
         <div className="hero-in mt-8 hidden gap-4 lg:flex lg:items-center" style={{ animationDelay: "500ms" }}>
-          <Link
+          <Link prefetch={false}
             href="/service-request"
             className="btn-premium-dark inline-flex items-center justify-center gap-3 bg-accent-bright px-8 py-4 font-body text-sm font-semibold uppercase tracking-[0.08em] text-navy-ink transition-colors hover:bg-white"
           >
             {hero.ctaService}
             <span aria-hidden className="link-arrow">→</span>
           </Link>
-          <Link
+          <Link prefetch={false}
             href="/parts-request"
             className="btn-premium-dark inline-flex items-center justify-center gap-3 border border-white/30 px-8 py-4 font-body text-sm font-semibold uppercase tracking-[0.08em] text-white transition-colors hover:border-white hover:bg-white/5"
           >
@@ -53,8 +53,8 @@ export function Hero() {
         <p className="t-mono mt-6 max-w-xl text-xs leading-relaxed text-mist/60">{hero.tagline}</p>
       </div>
 
-      <dl className="relative border-t border-white/10 bg-navy-ink/60 backdrop-blur-sm">
-        <div className="mx-auto grid max-w-[1400px] grid-cols-2 lg:grid-cols-4">
+      <div className="relative border-t border-white/10 bg-navy-ink/80">
+        <dl className="mx-auto grid max-w-[1400px] grid-cols-2 lg:grid-cols-4">
           {hero.stats.map((stat, i) => (
             <div
               key={stat.label}
@@ -64,8 +64,8 @@ export function Hero() {
               <dd className="font-display mt-2 text-base text-white lg:text-xl">{stat.value}</dd>
             </div>
           ))}
-        </div>
-      </dl>
+        </dl>
+      </div>
     </section>
   );
 }

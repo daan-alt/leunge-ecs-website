@@ -47,7 +47,7 @@ export function ExpertiseList({ areas, cta }: { areas: ExpertiseArea[]; cta: str
                 <span
                   className={cn(
                     "t-mono w-8 shrink-0 text-xs transition-colors duration-300",
-                    isActive ? "text-accent" : "text-ink/60"
+                    isActive ? "text-accent-ink" : "text-ink/85"
                   )}
                 >
                   {area.index}
@@ -64,7 +64,7 @@ export function ExpertiseList({ areas, cta }: { areas: ExpertiseArea[]; cta: str
                   aria-hidden
                   className={cn(
                     "text-xl transition-all duration-300",
-                    isActive ? "rotate-90 text-accent" : "text-ink/60"
+                    isActive ? "rotate-90 text-accent-ink" : "text-ink/85"
                   )}
                 >
                   →
@@ -85,7 +85,7 @@ export function ExpertiseList({ areas, cta }: { areas: ExpertiseArea[]; cta: str
                     </div>
                     <p className="max-w-xl font-body leading-relaxed text-ink">{area.description}</p>
                     <p className="t-mono mt-4 max-w-xl text-xs leading-relaxed text-ink/85">{area.detail}</p>
-                    <Link href={requestHref} className="link-line mt-6 text-navy hover:text-accent">
+                    <Link prefetch={false} href={requestHref} className="link-line mt-6 text-navy hover:text-accent-ink">
                       {cta}
                       <span aria-hidden>→</span>
                     </Link>

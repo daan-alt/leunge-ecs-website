@@ -15,7 +15,7 @@ export function Highlight() {
           <span className="t-eyebrow text-accent-bright">{highlight.label}</span>
           <h2 className="font-display t-h2 mt-8 text-white">{highlight.title}</h2>
           <p className="t-lead mt-8 max-w-lg text-mist/75">{highlight.body}</p>
-          <Link
+          <Link prefetch={false}
             href="/parts-request"
             className="btn-premium-dark mt-10 inline-flex items-center gap-3 bg-accent-bright px-8 py-4 font-body text-sm font-semibold uppercase tracking-[0.08em] text-navy-ink transition-colors hover:bg-white"
           >

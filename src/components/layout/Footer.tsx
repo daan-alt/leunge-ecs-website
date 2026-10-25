@@ -34,11 +34,11 @@ export function Footer() {
           </div>
 
           <nav aria-label="Footer navigation" className="lg:col-span-3">
-            <h3 className="t-eyebrow text-accent-bright">{footer.navigationLabel}</h3>
+            <h2 className="t-eyebrow text-accent-bright">{footer.navigationLabel}</h2>
             <ul className="mt-8 space-y-3">
               {content.nav.links.map((link) => (
                 <li key={link.href}>
-                  <Link
+                  <Link prefetch={false}
                     href={link.href}
                     className="group font-display inline-flex items-center gap-3 text-3xl text-white transition-colors hover:text-accent-bright"
                   >
@@ -56,12 +56,12 @@ export function Footer() {
           </nav>
 
           <nav aria-label="Footer expertise" className="lg:col-span-3">
-            <h3 className="t-eyebrow text-accent-bright">{footer.expertiseLabel}</h3>
+            <h2 className="t-eyebrow text-accent-bright">{footer.expertiseLabel}</h2>
             <ul className="mt-8 space-y-3.5">
               {content.expertise.areas.map((area) => (
                 <li key={area.index} className="flex items-baseline gap-3">
                   <span className="t-mono text-[0.65rem] text-mist/60">{area.index}</span>
-                  <Link
+                  <Link prefetch={false}
                     href="/#expertise"
                     className="nav-link font-body text-sm text-mist/75 transition-colors hover:text-white"
                   >
@@ -73,22 +73,22 @@ export function Footer() {
           </nav>
 
           <div className="lg:col-span-2">
-            <h3 className="t-eyebrow text-accent-bright">{footer.contactLabel}</h3>
+            <h2 className="t-eyebrow text-accent-bright">{footer.contactLabel}</h2>
             <p className="font-display mt-8 text-lg text-white">LEUNGE-ECS B.V.</p>
             <p className="mt-1 font-body text-sm text-mist/65">{footer.location}</p>
             <ul className="mt-6 space-y-3">
               <li>
-                <Link href="/service-request" className="nav-link font-body text-sm text-mist/80 hover:text-white">
+                <Link prefetch={false} href="/service-request" className="nav-link font-body text-sm text-mist/80 hover:text-white">
                   {content.nav.ctaService}
                 </Link>
               </li>
               <li>
-                <Link href="/parts-request" className="nav-link font-body text-sm text-mist/80 hover:text-white">
+                <Link prefetch={false} href="/parts-request" className="nav-link font-body text-sm text-mist/80 hover:text-white">
                   {content.nav.ctaParts}
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="nav-link font-body text-sm text-mist/80 hover:text-white">
+                <Link prefetch={false} href="/contact" className="nav-link font-body text-sm text-mist/80 hover:text-white">
                   {footer.contactCta}
                 </Link>
               </li>
