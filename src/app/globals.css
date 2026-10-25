@@ -676,6 +676,11 @@ footer {
   content-visibility: auto;
   contain-intrinsic-size: auto 900px;
 }
+/* The scrollytelling track is ~3x taller than the 900px estimate and pins a
+   sticky stage; skipping it would make the page height jump while scrolling. */
+main > #anatomy {
+  content-visibility: visible;
+}
 
 /* ---- Anatomy (scrollytelling) ---------------------------------------------
    `.anatomy-track` is a tall box; its stage is pinned (sticky) while the track
@@ -688,6 +693,10 @@ footer {
   --w0: 25%;
   --wspan: 50%;
   height: 320vh;
+}
+.anatomy-track,
+.anatomy-stage {
+  background-color: var(--color-navy-ink);
 }
 .anatomy-stage {
   position: sticky;
@@ -723,7 +732,8 @@ footer {
   from { stroke-dashoffset: 1; }
 }
 @keyframes an-note {
-  from { opacity: 0.28; }
+  /* Slides into place with its balloon; full contrast the whole time. */
+  from { transform: translateX(18px); }
 }
 
 @supports (animation-timeline: view()) {
