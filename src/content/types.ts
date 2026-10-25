@@ -122,6 +122,15 @@ export interface SiteContent {
     cta: string;
     image: ContentImage;
   };
+  anatomy: {
+    label: string;
+    title: string;
+    intro: string;
+    /** Describes the drawing for assistive technology. */
+    figureLabel: string;
+    parts: { title: string; body: string }[];
+    cta: string;
+  };
   process: {
     label: string;
     title: string;

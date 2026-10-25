@@ -100,6 +100,23 @@ export const en: SiteContent = {
     cta: "Request parts",
     image: { src: "/images/spare-parts-workbench", alt: "Genuine marine engine spare parts on a steel workbench: a piston with connecting rod, a gear, copper washers, seals and a gasket, next to an open shipping box.", width: 1200, height: 896, variants: [640, 1200] },
   },
+  anatomy: {
+    label: "Anatomy of a part",
+    title: "Every part has to fit.",
+    intro:
+      "A piston assembly is a good example: the right specification for every component, and all of them working together.",
+    figureLabel:
+      "Blueprint-style drawing of a piston assembly that pulls apart into its components: piston crown, rings, pin, connecting rod, a gasket and washers, each marked with a numbered balloon.",
+    parts: [
+      { title: "Piston crown", body: "Takes the combustion load and carries the ring grooves." },
+      { title: "Piston rings", body: "Seal the combustion chamber and control the oil film on the liner." },
+      { title: "Piston pin", body: "Connects the piston to the connecting rod." },
+      { title: "Connecting rod", body: "Transfers the load to the crankshaft." },
+      { title: "Gasket", body: "Seals the joint between two machined surfaces." },
+      { title: "Washers and seals", body: "Small parts with the same demands on specification." },
+    ],
+    cta: "Request parts",
+  },
   process: {
     label: "How it works",
     title: "From first message to work on board.",
