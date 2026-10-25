@@ -7,7 +7,7 @@ export default function NotFound() {
 
   return (
     <PageHero label={notFound.label} title={notFound.title} lead={notFound.body} h1>
-      <Link
+      <Link prefetch={false}
         href="/"
         className="btn-premium-dark mt-12 inline-flex items-center gap-3 bg-accent-bright px-9 py-4 font-body text-sm font-semibold uppercase tracking-[0.08em] text-navy-ink transition-colors hover:bg-white"
       >

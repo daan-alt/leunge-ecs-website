@@ -15,13 +15,25 @@
   --color-ink-dark: #0f1828;
   --color-accent: #c4750f;
   --color-accent-bright: #f5921e;
+  /* Accent for small text on light backgrounds (>= 4.5:1 on white and paper). */
+  --color-accent-ink: #965708;
   --color-line: #d6dde6;
   --color-cream: #f1eee8;
   --color-white: #ffffff;
+
+  /* Motion: one easing curve and three durations for the whole site. */
+  --ease-precision: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 0.2s;
+  --duration-base: 0.3s;
+  --duration-slow: 0.5s;
 }
 
 /* Fonts come from next/font CSS variables applied at runtime on <html>,
    so they're defined with @theme inline rather than baked into @theme. */
+:root {
+  --grain-tile: url("data:image/png;base64,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");
+}
+
 @theme inline {
   --font-display: var(--font-archivo), "Arial", "Helvetica Neue", sans-serif;
   --font-body: var(--font-geist), "Arial", "Helvetica Neue", sans-serif;
@@ -151,8 +163,8 @@ body {
    viewer. Timing uses the same "precision" ease as the reveal system. */
 .btn-premium {
   transition:
-    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.3s var(--ease-precision),
+    box-shadow 0.3s var(--ease-precision),
     background-color 0.25s ease,
     color 0.25s ease,
     border-color 0.25s ease;
@@ -171,8 +183,8 @@ body {
    sitting on navy backgrounds, where a navy-tinted shadow would disappear. */
 .btn-premium-dark {
   transition:
-    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.3s var(--ease-precision),
+    box-shadow 0.3s var(--ease-precision),
     background-color 0.25s ease,
     color 0.25s ease;
 }
@@ -188,7 +200,7 @@ body {
 
 .link-arrow {
   display: inline-block;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.3s var(--ease-precision);
 }
 .group:hover .link-arrow,
 a:hover > .link-arrow,
@@ -210,7 +222,7 @@ button:disabled:hover > .link-arrow {
   bottom: -6px;
   height: 2px;
   background: var(--color-accent-bright);
-  transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: right 0.3s var(--ease-precision);
 }
 .nav-link:hover::after,
 .nav-link:focus-visible::after {
@@ -219,8 +231,8 @@ button:disabled:hover > .link-arrow {
 
 .card-lift {
   transition:
-    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.35s var(--ease-precision),
+    box-shadow 0.35s var(--ease-precision),
     border-color 0.35s ease;
 }
 .card-lift:hover {
@@ -233,7 +245,7 @@ button:disabled:hover > .link-arrow {
   color: var(--color-white);
 }
 .card-lift-icon {
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), color 0.35s ease;
+  transition: transform 0.35s var(--ease-precision), color 0.35s ease;
 }
 
 .header-elevated {
@@ -250,7 +262,7 @@ button:disabled:hover > .link-arrow {
   height: 2px;
   width: 0;
   background: var(--color-accent-bright);
-  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: width 0.3s var(--ease-precision);
 }
 .field-underline:focus-within::after {
   width: 100%;
@@ -399,9 +411,8 @@ button:disabled:hover > .link-arrow {
 /* Fine film grain over dark hero surfaces: breaks up the flat gradient so it
    reads as a printed/photographic surface rather than a CSS fill. */
 .hero-grain {
-  opacity: 0.07;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  background-image: var(--grain-tile);
+  background-size: 64px 64px;
   pointer-events: none;
 }
 
@@ -446,9 +457,9 @@ button:disabled:hover > .link-arrow {
   content: "";
   position: absolute;
   inset: 0;
-  opacity: 0.12;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  opacity: 0.8;
+  background-image: var(--grain-tile);
+  background-size: 64px 64px;
 }
 
 /* Hairline link with an arrow, used for secondary actions on light and dark. */
@@ -463,7 +474,7 @@ button:disabled:hover > .link-arrow {
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  transition: color 0.25s ease, gap 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: color 0.25s ease, gap 0.3s var(--ease-precision);
 }
 .link-line:hover {
   gap: 1.1rem;
@@ -472,13 +483,14 @@ button:disabled:hover > .link-arrow {
 /* Hero entrance: one staggered rise on load (pure CSS, so nothing can get
    stuck hidden). Delays are set inline per element. */
 @keyframes hero-in {
+  /* Transform only: text that starts at opacity 0 is not counted as painted,
+     which would push the Largest Contentful Paint to the end of the animation. */
   from {
-    opacity: 0;
-    transform: translateY(28px);
+    transform: translateY(24px);
   }
 }
 .hero-in {
-  animation: hero-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: hero-in 0.9s var(--ease-precision) both;
 }
 
 /* Gentle parallax on framed photos: the image drifts slower than the page.
@@ -649,4 +661,133 @@ html.lenis body {
 }
 .lenis.lenis-stopped {
   overflow: hidden;
+}
+
+/* ControlPanel loops wait for `live` (see ControlPanel.tsx). */
+.cp-paused * {
+  animation-play-state: paused !important;
+}
+
+/* Skip layout and paint of everything below the first section until it nears
+   the viewport (big win on long pages). `auto` remembers the real height once
+   rendered, so anchors and scrollbars settle after the first pass. */
+main > :not(:first-child),
+footer {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
+}
+/* The scrollytelling track is ~3x taller than the 900px estimate and pins a
+   sticky stage; skipping it would make the page height jump while scrolling. */
+main > #anatomy {
+  content-visibility: visible;
+}
+
+/* ---- Anatomy (scrollytelling) ---------------------------------------------
+   `.anatomy-track` is a tall box; its stage is pinned (sticky) while the track
+   scrolls past. The track is the view timeline; every `.an-*` element plays a
+   slice of it: --s/--e are fractions (0..1) of the pinned window, which starts
+   at --w0 and spans --wspan of the track's cover range. Without scroll-driven
+   animation support (or with reduced motion) nothing animates and the figure
+   shows its finished, exploded state. */
+.anatomy-track {
+  --w0: 25%;
+  --wspan: 50%;
+  height: 320vh;
+}
+.anatomy-track,
+.anatomy-stage {
+  background-color: var(--color-navy-ink);
+}
+.anatomy-stage {
+  position: sticky;
+  top: 4.5rem;
+  height: calc(100svh - 4.5rem);
+}
+@media (max-width: 1023px) {
+  .anatomy-track {
+    --w0: 12%;
+    --wspan: 46%;
+    height: 240vh;
+  }
+  .anatomy-stage {
+    height: calc(100svh - 4.5rem);
+    align-content: start;
+    padding-top: 1rem;
+  }
+  .anatomy-list {
+    display: none;
+  }
+}
+
+@keyframes an-explode {
+  from { transform: translateY(var(--collapse, 0px)); }
+}
+@keyframes an-side {
+  from { opacity: 0; transform: translateX(var(--from-x, 0px)); }
+}
+@keyframes an-pop {
+  from { opacity: 0; }
+}
+@keyframes an-draw {
+  from { stroke-dashoffset: 1; }
+}
+@keyframes an-note {
+  /* Slides into place with its balloon; full contrast the whole time. */
+  from { transform: translateX(18px); }
+}
+
+@supports (animation-timeline: view()) {
+  .anatomy-track {
+    view-timeline: --anatomy block;
+  }
+  .an-part,
+  .an-side,
+  .an-pop,
+  .an-fade,
+  .an-note,
+  .an-draw {
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+    animation-duration: 1ms; /* required by some engines; the timeline drives it */
+    animation-timeline: --anatomy;
+    animation-range:
+      cover calc(var(--w0) + var(--s) * var(--wspan))
+      cover calc(var(--w0) + var(--e) * var(--wspan));
+  }
+  .an-part { animation-name: an-explode; animation-timing-function: ease-in-out; }
+  .an-side { animation-name: an-side; }
+  .an-pop,
+  .an-fade { animation-name: an-pop; }
+  .an-note { animation-name: an-note; }
+  .an-draw { animation-name: an-draw; stroke-dasharray: 1; }
+}
+.an-pop,
+.an-pop * { transform-box: fill-box; }
+
+@media (prefers-reduced-motion: reduce) {
+  .an-part,
+  .an-side,
+  .an-pop,
+  .an-fade,
+  .an-note,
+  .an-draw {
+    animation: none !important;
+  }
+  .anatomy-track {
+    height: auto;
+  }
+  .anatomy-stage {
+    position: static;
+    height: auto;
+    padding-block: 3rem;
+  }
+  .anatomy-list {
+    display: block;
+  }
+}
+
+/* Programmatic focus targets (skip-link target, wizard question) get no ring. */
+main:focus-visible,
+[tabindex="-1"]:focus-visible {
+  outline: none;
 }

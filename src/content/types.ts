@@ -1,3 +1,11 @@
+export type IconName = "wrench" | "drop" | "gear" | "chip" | "ruler" | "check" | "ship" | "arrow";
+
+export interface WizardOption {
+  value: string;
+  title: string;
+  description?: string;
+}
+
 export interface NavLink {
   label: string;
   href: string;
@@ -16,6 +24,8 @@ export interface ContentImage {
 
 export interface ExpertiseArea {
   index: string;
+  /** Which request form the "get in touch" link opens. */
+  kind: "service" | "parts";
   title: string;
   description: string;
   detail: string;
@@ -57,6 +67,8 @@ export interface ContactFormLabels {
 export interface ExtraField {
   /** Also the key shown in the notification email, so keep it human-readable. */
   name: string;
+  /** Stable id for deep-link prefill (?urgency=, ?system=), independent of the language. */
+  key?: "urgency" | "system";
   label: string;
   type: "text" | "date" | "select";
   options?: string[];
@@ -68,6 +80,8 @@ export interface ExtraField {
 
 export interface RequestFormContent {
   label: string;
+  /** Email subject, e.g. "New service request — LEUNGE-ECS website". */
+  subjectPrefix: string;
   title: string;
   intro: string;
   specsNote?: string;
@@ -80,7 +94,23 @@ export interface RequestFormContent {
   scope: string;
 }
 
+/** Internal paths of this language (used by every link in the components). */
+export interface Routes {
+  home: string;
+  about: string;
+  service: string;
+  parts: string;
+  contact: string;
+  request: string;
+  /** Home with a section anchor, e.g. "/#expertise". */
+  expertise: string;
+}
+
 export interface SiteContent {
+  locale: "en" | "nl";
+  routes: Routes;
+  /** Short labels of the language switch. */
+  languageSwitch: { label: string; en: string; nl: string };
   meta: {
     title: string;
     description: string;
@@ -120,16 +150,25 @@ export interface SiteContent {
     cta: string;
     image: ContentImage;
   };
+  anatomy: {
+    label: string;
+    title: string;
+    intro: string;
+    /** Describes the drawing for assistive technology. */
+    figureLabel: string;
+    parts: { title: string; body: string }[];
+    cta: string;
+  };
   process: {
     label: string;
     title: string;
     intro: string;
-    steps: { index: string; title: string; body: string }[];
+    steps: { index: string; icon: IconName; title: string; body: string }[];
   };
   situations: {
     label: string;
     title: string;
-    items: { title: string; body: string; cta: string; href: string }[];
+    items: { icon: IconName; title: string; body: string; cta: string; href: string }[];
   };
   principles: {
     label: string;
@@ -167,7 +206,27 @@ export interface SiteContent {
     label: string;
     options: { index: string; title: string; description: string; href: string; tag?: string }[];
     responseNote: string;
+    guideLabel: string;
     ctaGeneral: string;
+  };
+  wizard: {
+    label: string;
+    title: string;
+    intro: string;
+    /** Uses {step} and {total} placeholders. */
+    stepLabel: string;
+    back: string;
+    next: string;
+    typeQuestion: string;
+    typeOptions: WizardOption[];
+    urgencyQuestion: string;
+    urgencyOptions: WizardOption[];
+    systemQuestion: string;
+    systemOther: string;
+    summaryTitle: string;
+    summaryLabels: { type: string; urgency: string; system: string };
+    summaryNote: string;
+    continue: string;
   };
   serviceRequest: RequestFormContent;
   partsRequest: RequestFormContent;

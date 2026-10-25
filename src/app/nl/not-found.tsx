@@ -1,0 +1,19 @@
+import Link from "next/link";
+import { nl } from "@/content/nl";
+import { PageHero } from "@/components/ui/PageHero";
+
+export default function NlNotFound() {
+  const { notFound } = nl;
+  return (
+    <PageHero label={notFound.label} title={notFound.title} lead={notFound.body} h1>
+      <Link
+        prefetch={false}
+        href={nl.routes.home}
+        className="btn-premium-dark mt-12 inline-flex items-center gap-3 bg-accent-bright px-9 py-4 font-body text-sm font-semibold uppercase tracking-[0.08em] text-navy-ink transition-colors hover:bg-white"
+      >
+        {notFound.cta}
+        <span aria-hidden className="link-arrow">→</span>
+      </Link>
+    </PageHero>
+  );
+}

@@ -24,8 +24,14 @@ another `next dev` in this folder (Next locks its dist dir).
 - **basePath** is `/leunge-ecs-website` in CI only. Always use `next/link` `Link` for internal links (never
   raw `<a href="/...">`); cross-page anchors as `"/#section-id"`.
 - Keep `src/app/sitemap.ts` and `robots.ts` in sync by hand when routes change.
-- **Copy lives in `src/content/en.ts`** (typed by `src/content/types.ts`, exported as `content` from
-  `@/content`). Never hardcode UI text in components.
+- **Copy lives in `src/content/en.ts` and `nl.ts`** (both typed by `src/content/types.ts`). Components never import them
+  directly: server components take a `locale` prop and call `getContent(locale)` from `@/content`; client components get
+  the pieces they need as props (don't pass functions across the client boundary). Internal links come from
+  `content.routes.*`. Never hardcode UI text. Dutch lives under `/nl` (two root layouts: `src/app/(en)` and `src/app/nl`,
+  shared page bodies in `components/pages/`, `lib/locale.ts` maps pages between languages). `app/global-not-found.tsx`
+  (needs `experimental.globalNotFound` in next.config.ts) is the static 404. The Dutch text still needs client review.
+- **Feature flags** in `src/lib/features.ts` (`scrolly`, `wizard`, `dutch`, `analytics`): flip to `false` to remove that
+  feature without deleting code. Rollback instructions: `docs/rollback-round3.md`. Brand guide: `docs/brand-guide.md`.
 - `src/app/icon.tsx` / `opengraph-image.tsx` use inline styles — colors/text there are duplicated by hand.
 - **Tailwind v4, CSS-first**: tokens in the `@theme` block of `src/app/globals.css` (`navy`, `accent`,
   `accent-bright`, `mist`, `ink`, `line`, …). Fonts (next/font in `layout.tsx`): Archivo (display, width axis, see
@@ -48,7 +54,7 @@ another `next dev` in this folder (Next locks its dist dir).
   `public/images/<name>-<width>.webp`; full-size originals in `design-assets/originals/` (not deployed).
   `docs/ai-image-prompts.md` / `docs/hero-video-concept-*.md` hold the image/video briefs. The old SVGs
   `EngineSchematic`, `PartsDiagram`, `PrecisionMark`, `ServiceIcons` are now unused.
-- **Homepage sections** (`src/components/sections/`, order in `app/page.tsx`): Hero (`HeroParallax` moves the ControlPanel with the pointer), Intro, Expertise (client `ExpertiseList`: accordion + sticky panel), Highlight (parts), ServiceMarquee (CSS band of the six service names), Process, Situations ("When to get in touch" link rows), Principles, TechnicalDepth (numbered datasheet), FinalCta (a request "console" of three link rows, layout in `.console-row`, over `visuals/ChartBackdrop`, a formula-generated nautical chart; the third row deep-links `/service-request?urgency=emergency`, read in `RequestForm`). Inner pages open with `ui/PageHero`. Header is dark (`Navigation` marks the active page; the mobile menu overlay is a sibling of `<header>` because of backdrop-filter); `MobileCtaBar` is fixed on mobile except on form pages. The footer has a status bar (`FooterStatus`: live Amsterdam clock, back-to-top) and a cropped outline wordmark. `SmoothScroll` (lenis, mouse + no reduced motion only) eases wheel scrolling on the real document. Per-page OG images use `lib/og.tsx`; the favicon/apple icon use `lib/brand-mark.tsx`.
+- **Homepage sections** (`src/components/sections/`, order in `app/page.tsx`): Hero (`HeroParallax` moves the ControlPanel with the pointer), Intro, Expertise (client `ExpertiseList`: accordion + sticky panel), Highlight (parts), ServiceMarquee (CSS band of the six service names), Process, Situations ("When to get in touch" link rows), Principles, TechnicalDepth (numbered datasheet), Anatomy (scrolly "Anatomy of a part", `visuals/AnatomyFigure`, pure-CSS scroll-driven; outside `content-visibility`), FinalCta (a request "console" of three link rows, layout in `.console-row`, over `visuals/ChartBackdrop`, a formula-generated nautical chart; the third row deep-links `/service-request?urgency=emergency`, read in `RequestForm`). Inner pages open with `ui/PageHero`. Header is dark (`Navigation` marks the active page; the mobile menu overlay is a sibling of `<header>` because of backdrop-filter); `MobileCtaBar` is fixed on mobile except on form pages. The footer has a status bar (`FooterStatus`: live Amsterdam clock, back-to-top) and a cropped outline wordmark. `SmoothScroll` (lenis, mouse + no reduced motion only) eases wheel scrolling on the real document. Per-page OG images use `lib/og.tsx`; the favicon/apple icon use `lib/brand-mark.tsx`.
 - **Blueprints**: each `ExpertiseArea` has `blueprint: { src, alt }` pointing at a hand-drawn SVG in `public/blueprints/` (fixed colors for the dark panel, generic A/B/1/2 labels only, rendered with `<img>` + `BASE_PATH`). The generator script was a throwaway; edit the SVGs directly.
 - Path alias `@/*` → `src/*`.
 

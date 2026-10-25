@@ -1,9 +1,12 @@
 import Link from "next/link";
-import { content } from "@/content";
+import { getContent, type Locale } from "@/content";
+import { features } from "@/lib/features";
+import { LanguageSwitch } from "./LanguageSwitch";
 import { Logo } from "@/components/ui/Logo";
 import { BackToTop, LocalTime } from "./FooterStatus";
 
-export function Footer() {
+export function Footer({ locale = "en" }: { locale?: Locale }) {
+  const content = getContent(locale);
   const year = new Date().getFullYear();
   const { footer } = content;
 
@@ -29,16 +32,16 @@ export function Footer() {
       <div className="wrap relative pb-6 pt-16 lg:pt-24">
         <div className="grid gap-16 lg:grid-cols-12 lg:gap-10">
           <div className="lg:col-span-4">
-            <Logo light imgClassName="h-16" />
+            <Logo light href={content.nav.links[0].href} imgClassName="h-16" />
             <p className="mt-8 max-w-xs font-body text-sm leading-relaxed text-mist/60">{footer.tagline}</p>
           </div>
 
           <nav aria-label="Footer navigation" className="lg:col-span-3">
-            <h3 className="t-eyebrow text-accent-bright">{footer.navigationLabel}</h3>
+            <h2 className="t-eyebrow text-accent-bright">{footer.navigationLabel}</h2>
             <ul className="mt-8 space-y-3">
               {content.nav.links.map((link) => (
                 <li key={link.href}>
-                  <Link
+                  <Link prefetch={false}
                     href={link.href}
                     className="group font-display inline-flex items-center gap-3 text-3xl text-white transition-colors hover:text-accent-bright"
                   >
@@ -56,13 +59,13 @@ export function Footer() {
           </nav>
 
           <nav aria-label="Footer expertise" className="lg:col-span-3">
-            <h3 className="t-eyebrow text-accent-bright">{footer.expertiseLabel}</h3>
+            <h2 className="t-eyebrow text-accent-bright">{footer.expertiseLabel}</h2>
             <ul className="mt-8 space-y-3.5">
               {content.expertise.areas.map((area) => (
                 <li key={area.index} className="flex items-baseline gap-3">
                   <span className="t-mono text-[0.65rem] text-mist/60">{area.index}</span>
-                  <Link
-                    href="/#expertise"
+                  <Link prefetch={false}
+                    href={content.routes.expertise}
                     className="nav-link font-body text-sm text-mist/75 transition-colors hover:text-white"
                   >
                     {area.title}
@@ -73,22 +76,22 @@ export function Footer() {
           </nav>
 
           <div className="lg:col-span-2">
-            <h3 className="t-eyebrow text-accent-bright">{footer.contactLabel}</h3>
+            <h2 className="t-eyebrow text-accent-bright">{footer.contactLabel}</h2>
             <p className="font-display mt-8 text-lg text-white">LEUNGE-ECS B.V.</p>
             <p className="mt-1 font-body text-sm text-mist/65">{footer.location}</p>
             <ul className="mt-6 space-y-3">
               <li>
-                <Link href="/service-request" className="nav-link font-body text-sm text-mist/80 hover:text-white">
+                <Link prefetch={false} href={content.routes.service} className="nav-link font-body text-sm text-mist/80 hover:text-white">
                   {content.nav.ctaService}
                 </Link>
               </li>
               <li>
-                <Link href="/parts-request" className="nav-link font-body text-sm text-mist/80 hover:text-white">
+                <Link prefetch={false} href={content.routes.parts} className="nav-link font-body text-sm text-mist/80 hover:text-white">
                   {content.nav.ctaParts}
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="nav-link font-body text-sm text-mist/80 hover:text-white">
+                <Link prefetch={false} href={content.routes.contact} className="nav-link font-body text-sm text-mist/80 hover:text-white">
                   {footer.contactCta}
                 </Link>
               </li>
@@ -103,7 +106,11 @@ export function Footer() {
 
         <div className="t-mono relative flex flex-col gap-3 border-t border-white/10 pt-6 text-[0.7rem] uppercase tracking-[0.14em] text-mist/60 md:flex-row md:items-center md:justify-between">
           <span>{footer.rightsLine(year)}</span>
-          <span>{footer.location}</span>
+          {features.dutch ? (
+            <LanguageSwitch labels={content.languageSwitch} locale={locale} className="text-mist/60" />
+          ) : (
+            <span>{footer.location}</span>
+          )}
         </div>
       </div>
     </footer>

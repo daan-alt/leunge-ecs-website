@@ -1,17 +1,18 @@
 import Link from "next/link";
-import { content } from "@/content";
+import { getContent, type Locale } from "@/content";
 import { Reveal } from "@/components/ui/Reveal";
 import { TechnicalFrame } from "@/components/ui/TechnicalFrame";
 import { Photo } from "@/components/ui/Photo";
 
-export function Intro() {
+export function Intro({ locale = "en" }: { locale?: Locale }) {
+  const content = getContent(locale);
   const { intro } = content;
 
   return (
     <section className="section-y bg-paper">
       <div className="wrap">
         <Reveal>
-          <span className="t-eyebrow text-accent">{intro.label}</span>
+          <span className="t-eyebrow text-accent-ink">{intro.label}</span>
         </Reveal>
 
         <Reveal
@@ -50,7 +51,7 @@ export function Intro() {
             <p className="t-mono mt-8 border-l border-accent pl-4 text-xs leading-relaxed text-ink">
               {intro.statDetail}
             </p>
-            <Link href="/contact" className="link-line mt-10 text-navy hover:text-accent">
+            <Link prefetch={false} href={content.routes.contact} className="link-line mt-10 text-navy hover:text-accent-ink">
               {intro.cta}
               <span aria-hidden>→</span>
             </Link>

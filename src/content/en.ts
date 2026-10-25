@@ -32,6 +32,17 @@ const requestFormLabels = (fileHint: string) => ({
 const FILE_TYPES = "Images, PDF, Word or Excel — max. 5 files, 10 MB each.";
 
 export const en: SiteContent = {
+  locale: "en",
+  routes: {
+    home: "/",
+    about: "/about",
+    service: "/service-request",
+    parts: "/parts-request",
+    contact: "/contact",
+    request: "/request",
+    expertise: "/#expertise",
+  },
+  languageSwitch: { label: "Language", en: "EN", nl: "NL" },
   meta: {
     title: "LEUNGE-ECS B.V.: Technical Service, Parts & Engineering",
     description:
@@ -100,6 +111,23 @@ export const en: SiteContent = {
     cta: "Request parts",
     image: { src: "/images/spare-parts-workbench", alt: "Genuine marine engine spare parts on a steel workbench: a piston with connecting rod, a gear, copper washers, seals and a gasket, next to an open shipping box.", width: 1200, height: 896, variants: [640, 1200] },
   },
+  anatomy: {
+    label: "Anatomy of a part",
+    title: "Every part has to fit.",
+    intro:
+      "A piston assembly is a good example: the right specification for every component, and all of them working together.",
+    figureLabel:
+      "Blueprint-style drawing of a piston assembly that pulls apart into its components: piston crown, rings, pin, connecting rod, a gasket and washers, each marked with a numbered balloon.",
+    parts: [
+      { title: "Piston crown", body: "Takes the combustion load and carries the ring grooves." },
+      { title: "Piston rings", body: "Seal the combustion chamber and control the oil film on the liner." },
+      { title: "Piston pin", body: "Connects the piston to the connecting rod." },
+      { title: "Connecting rod", body: "Transfers the load to the crankshaft." },
+      { title: "Gasket", body: "Seals the joint between two machined surfaces." },
+      { title: "Washers and seals", body: "Small parts with the same demands on specification." },
+    ],
+    cta: "Request parts",
+  },
   process: {
     label: "How it works",
     title: "From first message to work on board.",
@@ -108,21 +136,25 @@ export const en: SiteContent = {
     steps: [
       {
         index: "01",
+        icon: "ship",
         title: "Request",
         body: "Describe the vessel, the system and the situation through the request form. Photos and nameplate details speed up the diagnosis.",
       },
       {
         index: "02",
+        icon: "ruler",
         title: "Assessment",
         body: "A personal response follows. The technical situation is clarified, and it is determined whether an engineer should join on board or parts need to be sourced.",
       },
       {
         index: "03",
+        icon: "check",
         title: "Scope & offer",
         body: "Scope, approach and delivery are agreed per request, with attention to transparency, cost-effectiveness and flexibility.",
       },
       {
         index: "04",
+        icon: "wrench",
         title: "Execution",
         body: "Work on board or on location, or delivery of the parts, with documentation such as test reports where applicable.",
       },
@@ -130,27 +162,31 @@ export const en: SiteContent = {
   },
   situations: {
     label: "When to get in touch",
-    title: "Reasons to pick up the phone.",
+    title: "Reasons to reach out.",
     items: [
       {
+        icon: "wrench",
         title: "A fault you can't solve on board",
         body: "Technical service, troubleshooting and support, on board or on location.",
         cta: "Request service",
         href: "/service-request",
       },
       {
+        icon: "drop",
         title: "An Alpha lubrication system that needs attention",
         body: "Inspection, maintenance, overhaul, adjustment or optimization on main engines.",
         cta: "Request service",
         href: "/service-request",
       },
       {
+        icon: "gear",
         title: "A genuine part to source and ship",
         body: "From a single OEM part to a complete package for a vessel or project.",
         cta: "Request parts",
         href: "/parts-request",
       },
       {
+        icon: "chip",
         title: "A control system to modify, commission or test",
         body: "Automation, PLC/HMI solutions, measurements and test reports.",
         cta: "Request service",
@@ -189,6 +225,7 @@ export const en: SiteContent = {
     areas: [
       {
         index: "01",
+        kind: "service",
         title: "Technical service & support",
         description:
           "Technical service, troubleshooting and maintenance on board seagoing vessels. A service engineer can join on board when continuous technical support is needed.",
@@ -197,6 +234,7 @@ export const en: SiteContent = {
       },
       {
         index: "02",
+        kind: "service",
         title: "Alpha Lubrication Systems",
         description:
           "Inspection, maintenance and overhaul of Alpha lubrication systems on main engines, including troubleshooting, adjustment, commissioning and optimization.",
@@ -205,6 +243,7 @@ export const en: SiteContent = {
       },
       {
         index: "03",
+        kind: "parts",
         title: "Genuine Spare Parts",
         description:
           "Delivery of genuine OEM spare parts: sourcing, purchasing and complete parts packages for vessels and projects.",
@@ -213,6 +252,7 @@ export const en: SiteContent = {
       },
       {
         index: "04",
+        kind: "service",
         title: "Automation & control engineering",
         description:
           "Automation systems, control panels and PLC/HMI solutions, including troubleshooting and modifications.",
@@ -221,6 +261,7 @@ export const en: SiteContent = {
       },
       {
         index: "05",
+        kind: "service",
         title: "Engineering & design",
         description:
           "Mechanical and electrical engineering, system design and modifications, with technical documentation and drawings.",
@@ -229,6 +270,7 @@ export const en: SiteContent = {
       },
       {
         index: "06",
+        kind: "service",
         title: "Inspection, testing & commissioning",
         description:
           "Electrical inspections, testing of equipment and systems, commissioning, and measurements with accompanying test reports.",
@@ -308,7 +350,33 @@ export const en: SiteContent = {
       },
     ],
     responseNote: "A personal response follows, usually within a few working days.",
+    guideLabel: "Not sure where to start? Let us guide you",
     ctaGeneral: "Or get in touch for anything else",
+  },
+  wizard: {
+    label: "Guided request",
+    title: "Not sure where to start?",
+    intro: "Answer a few quick questions and you go to the right form, already filled in as far as possible. Nothing is sent until you submit the form.",
+    stepLabel: "Step {step} of {total}",
+    back: "Back",
+    next: "Continue",
+    typeQuestion: "What do you need?",
+    typeOptions: [
+      { value: "service", title: "Technical service", description: "Troubleshooting, maintenance, commissioning or support, on board or on location." },
+      { value: "parts", title: "Genuine spare parts", description: "Sourcing, purchasing and delivery of genuine OEM parts." },
+    ],
+    urgencyQuestion: "How urgent is it?",
+    urgencyOptions: [
+      { value: "normal", title: "Normal", description: "Planned work or a question without immediate impact." },
+      { value: "urgent", title: "Urgent", description: "Needs attention soon." },
+      { value: "emergency", title: "Emergency", description: "The vessel is out of service." },
+    ],
+    systemQuestion: "Which system is it about?",
+    systemOther: "Other or not sure",
+    summaryTitle: "Ready to continue",
+    summaryLabels: { type: "Need", urgency: "Urgency", system: "System" },
+    summaryNote: "The form opens with these answers filled in. You can still change them there.",
+    continue: "Continue to the form",
   },
   serviceRequest: {
     label: "SERVICE REQUEST",
@@ -318,14 +386,16 @@ export const en: SiteContent = {
     specsNote:
       "Please include where possible: make & model, serial number, and photos of the issue. This speeds up diagnosis and response time.",
     specsLabel: "Specs",
+    subjectPrefix: "New service request — LEUNGE-ECS website",
     extraFields: [
       { name: "Vessel name", label: "Vessel name", type: "text", required: true },
       { name: "IMO number", label: "IMO number", type: "text", inputMode: "numeric" },
       { name: "Port / location", label: "Port / location", type: "text" },
       { name: "ETA", label: "ETA (arrival date)", type: "date" },
-      { name: "System / engine type", label: "System / engine make & type", type: "text", wide: true },
+      { name: "System / engine type", key: "system", label: "System / engine make & type", type: "text", wide: true },
       {
         name: "Urgency",
+        key: "urgency",
         label: "Urgency",
         type: "select",
         options: ["Normal", "Urgent", "Emergency — vessel out of service"],
@@ -347,8 +417,9 @@ export const en: SiteContent = {
     specsNote:
       "Please include where possible: make & model, part/serial number, and photos of the part or nameplate. This speeds up sourcing and quoting.",
     specsLabel: "Specs",
+    subjectPrefix: "New parts request — LEUNGE-ECS website",
     extraFields: [
-      { name: "System make / type", label: "System make / type", type: "text", required: true, wide: true },
+      { name: "System make / type", key: "system", label: "System make / type", type: "text", required: true, wide: true },
       { name: "Delivery address / port", label: "Delivery address / port", type: "text" },
       { name: "Requested delivery date", label: "Requested delivery date", type: "date" },
     ],
@@ -364,6 +435,7 @@ export const en: SiteContent = {
     intro:
       "Not a service or parts request? Describe the situation briefly. A personal response follows, usually within a few working days.",
     specsLabel: "Specs",
+    subjectPrefix: "New contact message — LEUNGE-ECS website",
     form: requestFormLabels(`Attach any relevant files. ${FILE_TYPES}`),
     directLabel: "Direct contact",
     location: "Netherlands",

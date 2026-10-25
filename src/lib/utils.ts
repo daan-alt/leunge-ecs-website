@@ -6,3 +6,6 @@ export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.leunge-
 
 /** GitHub Pages subpath ("" locally) — for asset URLs that `Link`/next can't prefix, e.g. <img src>. */
 export const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+/** Bump when page content changes; used for sitemap lastModified (deliberately not new Date(), which would change on every build). */
+export const LAST_UPDATED = "2026-10-25";

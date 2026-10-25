@@ -15,6 +15,8 @@ const nextConfig: NextConfig = {
   // Lets a second local dev server run from this folder (Next.js locks the
   // dist dir, so two `next dev` processes can't share `.next`).
   distDir: process.env.NEXT_DIST_DIR || ".next",
+  // Two root layouts (en/nl) need a global 404 that brings its own <html>.
+  experimental: { globalNotFound: true },
   turbopack: {
     root: path.join(__dirname),
   },
