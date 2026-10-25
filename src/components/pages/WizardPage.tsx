@@ -1,12 +1,12 @@
-import { notFound } from "next/navigation";
 import { getContent, type Locale } from "@/content";
 import { features } from "@/lib/features";
 import { JsonLd, breadcrumb } from "@/components/seo/JsonLd";
+import { NotFoundBlock } from "@/components/pages/NotFoundBlock";
 import { PageHero } from "@/components/ui/PageHero";
 import { RequestWizard } from "@/components/forms/RequestWizard";
 
 export function WizardPage({ locale }: { locale: Locale }) {
-  if (!features.wizard) notFound();
+  if (!features.wizard) return <NotFoundBlock />;
   const content = getContent(locale);
   const { wizard } = content;
 
