@@ -24,6 +24,8 @@ export interface ContentImage {
 
 export interface ExpertiseArea {
   index: string;
+  /** Which request form the "get in touch" link opens. */
+  kind: "service" | "parts";
   title: string;
   description: string;
   detail: string;
@@ -65,6 +67,8 @@ export interface ContactFormLabels {
 export interface ExtraField {
   /** Also the key shown in the notification email, so keep it human-readable. */
   name: string;
+  /** Stable id for deep-link prefill (?urgency=, ?system=), independent of the language. */
+  key?: "urgency" | "system";
   label: string;
   type: "text" | "date" | "select";
   options?: string[];
@@ -76,6 +80,8 @@ export interface ExtraField {
 
 export interface RequestFormContent {
   label: string;
+  /** Email subject, e.g. "New service request — LEUNGE-ECS website". */
+  subjectPrefix: string;
   title: string;
   intro: string;
   specsNote?: string;
@@ -88,7 +94,23 @@ export interface RequestFormContent {
   scope: string;
 }
 
+/** Internal paths of this language (used by every link in the components). */
+export interface Routes {
+  home: string;
+  about: string;
+  service: string;
+  parts: string;
+  contact: string;
+  request: string;
+  /** Home with a section anchor, e.g. "/#expertise". */
+  expertise: string;
+}
+
 export interface SiteContent {
+  locale: "en" | "nl";
+  routes: Routes;
+  /** Short labels of the language switch. */
+  languageSwitch: { label: string; en: string; nl: string };
   meta: {
     title: string;
     description: string;
@@ -191,7 +213,8 @@ export interface SiteContent {
     label: string;
     title: string;
     intro: string;
-    stepLabel: (step: number, total: number) => string;
+    /** Uses {step} and {total} placeholders. */
+    stepLabel: string;
     back: string;
     next: string;
     typeQuestion: string;

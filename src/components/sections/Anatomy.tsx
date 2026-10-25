@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react";
 import Link from "next/link";
-import { content } from "@/content";
+import { getContent, type Locale } from "@/content";
 import { Reveal } from "@/components/ui/Reveal";
 import { AnatomyFigure } from "@/components/visuals/AnatomyFigure";
 
@@ -11,7 +11,8 @@ import { AnatomyFigure } from "@/components/visuals/AnatomyFigure";
 // `s` values in AnatomyFigure.
 const BALLOON_START = [0.62, 0.68, 0.74, 0.8, 0.86, 0.92];
 
-export function Anatomy() {
+export function Anatomy({ locale = "en" }: { locale?: Locale }) {
+  const content = getContent(locale);
   const { anatomy } = content;
 
   return (
@@ -36,16 +37,16 @@ export function Anatomy() {
               <AnatomyFigure label={anatomy.figureLabel} />
             </div>
 
-            <PartsList className="anatomy-list lg:col-span-5" animated />
+            <PartsList parts={anatomy.parts} className="anatomy-list lg:col-span-5" animated />
           </div>
         </div>
       </div>
 
       <div className="wrap relative pb-24 lg:pb-36">
-        <PartsList className="mb-12 lg:hidden" />
+        <PartsList parts={anatomy.parts} className="mb-12 lg:hidden" />
         <Link
           prefetch={false}
-          href="/parts-request"
+          href={content.routes.parts}
           className="btn-premium-dark inline-flex items-center gap-3 bg-accent-bright px-8 py-4 font-body text-sm font-semibold uppercase tracking-[0.08em] text-navy-ink transition-colors hover:bg-white"
         >
           {anatomy.cta}
@@ -56,11 +57,10 @@ export function Anatomy() {
   );
 }
 
-function PartsList({ className, animated }: { className?: string; animated?: boolean }) {
-  const { anatomy } = content;
+function PartsList({ parts, className, animated }: { parts: { title: string; body: string }[]; className?: string; animated?: boolean }) {
   return (
     <ol className={className}>
-      {anatomy.parts.map((part, i) => (
+      {parts.map((part, i) => (
         <li
           key={part.title}
           className={`${animated ? "an-note " : ""}flex gap-5 border-t border-white/15 py-4 lg:py-5`}

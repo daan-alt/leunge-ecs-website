@@ -1,11 +1,12 @@
 import Link from "next/link";
-import { content } from "@/content";
+import { getContent, type Locale } from "@/content";
 import { Reveal } from "@/components/ui/Reveal";
 import { Icon } from "@/components/ui/Icon";
 
 // Plain-language reasons to get in touch, one ruled row each, linking straight
 // to the matching request form. No claims about past work.
-export function Situations() {
+export function Situations({ locale = "en" }: { locale?: Locale }) {
+  const content = getContent(locale);
   const { situations } = content;
 
   return (

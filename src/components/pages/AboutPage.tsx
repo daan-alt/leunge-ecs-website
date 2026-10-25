@@ -1,22 +1,16 @@
-import type { Metadata } from "next";
-import { content } from "@/content";
-import { JsonLd, breadcrumb } from "@/components/seo/JsonLd";
+import { getContent, type Locale } from "@/content";
 import { Reveal } from "@/components/ui/Reveal";
 import { PageHero } from "@/components/ui/PageHero";
+import { JsonLd, breadcrumb } from "@/components/seo/JsonLd";
 import { FinalCta } from "@/components/sections/FinalCta";
 
-export const metadata: Metadata = {
-  title: content.about.title,
-  description: content.about.lead,
-  alternates: { canonical: "/about" },
-};
-
-export default function AboutPage() {
+export function AboutPage({ locale }: { locale: Locale }) {
+  const content = getContent(locale);
   const { about } = content;
 
   return (
     <>
-      <JsonLd data={breadcrumb("Home", about.title, "/about")} />
+      <JsonLd data={breadcrumb("Home", about.title, content.routes.about)} />
       <PageHero label={about.label} title={about.title} lead={about.lead} h1 />
 
       <section className="section-y bg-paper">
@@ -47,7 +41,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <FinalCta />
+      <FinalCta locale={locale} />
     </>
   );
 }

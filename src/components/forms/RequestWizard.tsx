@@ -2,8 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import type { WizardOption } from "@/content/types";
-import { content } from "@/content";
+import type { SiteContent, WizardOption } from "@/content/types";
 import { cn } from "@/lib/utils";
 
 type Answers = { type?: string; urgency?: string; system?: string };
@@ -11,8 +10,7 @@ type Answers = { type?: string; urgency?: string; system?: string };
 // Guided request: type -> (urgency, service only) -> system -> summary, then a
 // plain link to the matching form. Only the type, urgency and system travel in
 // the URL (never names or contact details); the form reads them on load.
-export function RequestWizard() {
-  const { wizard, expertise } = content;
+export function RequestWizard({ wizard, areas, routes }: { wizard: SiteContent["wizard"]; areas: SiteContent["expertise"]["areas"]; routes: SiteContent["routes"] }) {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Answers>({});
   const headingRef = useRef<HTMLHeadingElement>(null);
@@ -25,8 +23,8 @@ export function RequestWizard() {
   const total = order.length;
 
   const systemOptions: WizardOption[] = [
-    ...expertise.areas
-      .filter((a) => !a.title.includes("Spare Parts"))
+    ...areas
+      .filter((a) => a.kind !== "parts")
       .map((a) => ({ value: a.title, title: a.title })),
     { value: wizard.systemOther, title: wizard.systemOther },
   ];
@@ -46,7 +44,7 @@ export function RequestWizard() {
   const query = new URLSearchParams();
   if (isService && answers.urgency) query.set("urgency", answers.urgency);
   if (answers.system && answers.system !== wizard.systemOther) query.set("system", answers.system);
-  const target = `${isService ? "/service-request" : "/parts-request"}${query.size ? `?${query}` : ""}`;
+  const target = `${isService ? routes.service : routes.parts}${query.size ? `?${query}` : ""}`;
 
   const typeTitle = wizard.typeOptions.find((o) => o.value === answers.type)?.title;
   const urgencyTitle = wizard.urgencyOptions.find((o) => o.value === answers.urgency)?.title;
@@ -67,7 +65,7 @@ export function RequestWizard() {
     <div className="border border-line bg-white p-6 sm:p-10">
       <div className="flex items-center justify-between gap-6">
         <p className="t-mono text-xs uppercase tracking-[0.18em] text-accent-ink" aria-live="polite">
-          {wizard.stepLabel(position + 1, total)}
+          {wizard.stepLabel.replace("{step}", String(position + 1)).replace("{total}", String(total))}
         </p>
         <div aria-hidden className="flex flex-1 gap-1.5 sm:max-w-xs">
           {order.map((s, i) => (

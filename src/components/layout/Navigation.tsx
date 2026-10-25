@@ -1,19 +1,19 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { content } from "@/content";
+import type { Routes, SiteContent } from "@/content/types";
 import { Logo } from "@/components/ui/Logo";
 import { cn } from "@/lib/utils";
 
-export function Navigation() {
+export function Navigation({ nav, routes, switcher }: { nav: SiteContent["nav"]; routes: Routes; switcher?: ReactNode }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const pathname = usePathname() ?? "/";
-  // Only whole pages are marked; the in-page anchors (/#expertise) have no page of their own.
+  const pathname = (usePathname() ?? "/").replace(/\/$/, "") || "/";
+  // Only whole pages are marked; in-page anchors (…#expertise) have no page of their own.
   const isActive = (href: string) =>
-    href === "/#top" ? pathname === "/" : !href.startsWith("/#") && pathname.startsWith(href);
+    href.endsWith("#top") ? pathname === routes.home : !href.includes("#") && pathname === href;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -45,10 +45,10 @@ export function Navigation() {
           scrolled ? "h-16" : "h-16 lg:h-20"
         )}
       >
-        <Logo light priority imgClassName={scrolled ? "h-11 lg:h-12" : "h-12 lg:h-14"} />
+        <Logo light priority href={nav.links[0].href} imgClassName={scrolled ? "h-11 lg:h-12" : "h-12 lg:h-14"} />
 
         <ul className="hidden items-center gap-10 lg:flex">
-          {content.nav.links.map((link) => (
+          {nav.links.map((link) => (
             <li key={link.href}>
               <Link prefetch={false}
                 href={link.href}
@@ -64,18 +64,19 @@ export function Navigation() {
           ))}
         </ul>
 
-        <div className="hidden items-center gap-3 lg:flex">
+        <div className="hidden items-center gap-5 lg:flex">
+          {switcher}
           <Link prefetch={false}
-            href="/service-request"
+            href={routes.service}
             className="btn-premium-dark inline-flex items-center gap-2 border border-white/25 px-5 py-2.5 font-body text-[0.8rem] font-semibold uppercase tracking-[0.08em] text-white transition-colors hover:border-white hover:bg-white/5"
           >
-            {content.nav.ctaService}
+            {nav.ctaService}
           </Link>
           <Link prefetch={false}
-            href="/parts-request"
+            href={routes.parts}
             className="btn-premium-dark inline-flex items-center gap-2 bg-accent-bright px-5 py-2.5 font-body text-[0.8rem] font-semibold uppercase tracking-[0.08em] text-navy-ink transition-colors hover:bg-white"
           >
-            {content.nav.ctaParts}
+            {nav.ctaParts}
             <span aria-hidden className="link-arrow">→</span>
           </Link>
         </div>
@@ -117,7 +118,7 @@ export function Navigation() {
       >
         <div className="flex min-h-full flex-col px-6 pb-10 pt-8">
           <ul className="flex flex-col">
-            {content.nav.links.map((link, i) => (
+            {nav.links.map((link, i) => (
               <li key={link.href} className="border-b border-white/10">
                 <Link prefetch={false}
                   href={link.href}
@@ -131,19 +132,20 @@ export function Navigation() {
             ))}
           </ul>
           <div className="mt-auto flex flex-col gap-3 pt-10">
+            {switcher && <div className="mb-3">{switcher}</div>}
             <Link prefetch={false}
-              href="/service-request"
+              href={routes.service}
               onClick={() => setOpen(false)}
               className="inline-flex w-full items-center justify-center border border-white/30 px-5 py-4 font-body text-sm font-semibold uppercase tracking-[0.08em] text-white"
             >
-              {content.nav.ctaService}
+              {nav.ctaService}
             </Link>
             <Link prefetch={false}
-              href="/parts-request"
+              href={routes.parts}
               onClick={() => setOpen(false)}
               className="inline-flex w-full items-center justify-center bg-accent-bright px-5 py-4 font-body text-sm font-semibold uppercase tracking-[0.08em] text-navy-ink"
             >
-              {content.nav.ctaParts}
+              {nav.ctaParts}
             </Link>
           </div>
         </div>
