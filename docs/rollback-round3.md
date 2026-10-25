@@ -64,6 +64,8 @@ git push origin main
 
 **Nooit force-pushen.** Een revert-commit is veilig, laat de geschiedenis intact en triggert de deploy automatisch.
 
+Gerepeteerd: op een wegwerpbranch zijn de drie vervolgfixes en daarna alle vijf merges in deze volgorde (`b47c7e5`, `7e489a4`, `656978f`, dan `e574678`, `dcc8f4b`, `c610567`, `7fe3dc7`, `21b89cf`) zonder conflict teruggedraaid. Het resultaat bouwt (16 pagina's) en verschilt van `pre-round3` alleen door het ongebruikte bestand `src/lib/features.ts`.
+
 ## 4. Wat je moet weten bij terugdraaien
 
 - `package.json` en `package-lock.json` veranderen **niet** in ronde 3 (geen nieuwe dependencies; `lenis` stamt uit ronde 2).
