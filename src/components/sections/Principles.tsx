@@ -1,8 +1,9 @@
-import { content } from "@/content";
+import { getContent, type Locale } from "@/content";
 import { Reveal } from "@/components/ui/Reveal";
 import { Photo } from "@/components/ui/Photo";
 
-export function Principles() {
+export function Principles({ locale = "en" }: { locale?: Locale }) {
+  const content = getContent(locale);
   const { principles } = content;
 
   return (

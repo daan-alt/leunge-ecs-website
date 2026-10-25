@@ -32,6 +32,17 @@ const requestFormLabels = (fileHint: string) => ({
 const FILE_TYPES = "Images, PDF, Word or Excel — max. 5 files, 10 MB each.";
 
 export const en: SiteContent = {
+  locale: "en",
+  routes: {
+    home: "/",
+    about: "/about",
+    service: "/service-request",
+    parts: "/parts-request",
+    contact: "/contact",
+    request: "/request",
+    expertise: "/#expertise",
+  },
+  languageSwitch: { label: "Language", en: "EN", nl: "NL" },
   meta: {
     title: "LEUNGE-ECS B.V.: Technical Service, Parts & Engineering",
     description:
@@ -214,6 +225,7 @@ export const en: SiteContent = {
     areas: [
       {
         index: "01",
+        kind: "service",
         title: "Technical service & support",
         description:
           "Technical service, troubleshooting and maintenance on board seagoing vessels. A service engineer can join on board when continuous technical support is needed.",
@@ -222,6 +234,7 @@ export const en: SiteContent = {
       },
       {
         index: "02",
+        kind: "service",
         title: "Alpha Lubrication Systems",
         description:
           "Inspection, maintenance and overhaul of Alpha lubrication systems on main engines, including troubleshooting, adjustment, commissioning and optimization.",
@@ -230,6 +243,7 @@ export const en: SiteContent = {
       },
       {
         index: "03",
+        kind: "parts",
         title: "Genuine Spare Parts",
         description:
           "Delivery of genuine OEM spare parts: sourcing, purchasing and complete parts packages for vessels and projects.",
@@ -238,6 +252,7 @@ export const en: SiteContent = {
       },
       {
         index: "04",
+        kind: "service",
         title: "Automation & control engineering",
         description:
           "Automation systems, control panels and PLC/HMI solutions, including troubleshooting and modifications.",
@@ -246,6 +261,7 @@ export const en: SiteContent = {
       },
       {
         index: "05",
+        kind: "service",
         title: "Engineering & design",
         description:
           "Mechanical and electrical engineering, system design and modifications, with technical documentation and drawings.",
@@ -254,6 +270,7 @@ export const en: SiteContent = {
       },
       {
         index: "06",
+        kind: "service",
         title: "Inspection, testing & commissioning",
         description:
           "Electrical inspections, testing of equipment and systems, commissioning, and measurements with accompanying test reports.",
@@ -340,7 +357,7 @@ export const en: SiteContent = {
     label: "Guided request",
     title: "Not sure where to start?",
     intro: "Answer a few quick questions and you go to the right form, already filled in as far as possible. Nothing is sent until you submit the form.",
-    stepLabel: (step: number, total: number) => `Step ${step} of ${total}`,
+    stepLabel: "Step {step} of {total}",
     back: "Back",
     next: "Continue",
     typeQuestion: "What do you need?",
@@ -369,14 +386,16 @@ export const en: SiteContent = {
     specsNote:
       "Please include where possible: make & model, serial number, and photos of the issue. This speeds up diagnosis and response time.",
     specsLabel: "Specs",
+    subjectPrefix: "New service request — LEUNGE-ECS website",
     extraFields: [
       { name: "Vessel name", label: "Vessel name", type: "text", required: true },
       { name: "IMO number", label: "IMO number", type: "text", inputMode: "numeric" },
       { name: "Port / location", label: "Port / location", type: "text" },
       { name: "ETA", label: "ETA (arrival date)", type: "date" },
-      { name: "System / engine type", label: "System / engine make & type", type: "text", wide: true },
+      { name: "System / engine type", key: "system", label: "System / engine make & type", type: "text", wide: true },
       {
         name: "Urgency",
+        key: "urgency",
         label: "Urgency",
         type: "select",
         options: ["Normal", "Urgent", "Emergency — vessel out of service"],
@@ -398,8 +417,9 @@ export const en: SiteContent = {
     specsNote:
       "Please include where possible: make & model, part/serial number, and photos of the part or nameplate. This speeds up sourcing and quoting.",
     specsLabel: "Specs",
+    subjectPrefix: "New parts request — LEUNGE-ECS website",
     extraFields: [
-      { name: "System make / type", label: "System make / type", type: "text", required: true, wide: true },
+      { name: "System make / type", key: "system", label: "System make / type", type: "text", required: true, wide: true },
       { name: "Delivery address / port", label: "Delivery address / port", type: "text" },
       { name: "Requested delivery date", label: "Requested delivery date", type: "date" },
     ],
@@ -415,6 +435,7 @@ export const en: SiteContent = {
     intro:
       "Not a service or parts request? Describe the situation briefly. A personal response follows, usually within a few working days.",
     specsLabel: "Specs",
+    subjectPrefix: "New contact message — LEUNGE-ECS website",
     form: requestFormLabels(`Attach any relevant files. ${FILE_TYPES}`),
     directLabel: "Direct contact",
     location: "Netherlands",

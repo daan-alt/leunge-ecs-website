@@ -1,9 +1,10 @@
 import Link from "next/link";
-import { content } from "@/content";
+import { getContent, type Locale } from "@/content";
 import { ControlPanel } from "@/components/visuals/ControlPanel";
 import { HeroParallax } from "@/components/ui/HeroParallax";
 
-export function Hero() {
+export function Hero({ locale = "en" }: { locale?: Locale }) {
+  const content = getContent(locale);
   const { hero } = content;
 
   return (
@@ -35,14 +36,14 @@ export function Hero() {
 
         <div className="hero-in mt-8 hidden gap-4 lg:flex lg:items-center" style={{ animationDelay: "500ms" }}>
           <Link prefetch={false}
-            href="/service-request"
+            href={content.routes.service}
             className="btn-premium-dark inline-flex items-center justify-center gap-3 bg-accent-bright px-8 py-4 font-body text-sm font-semibold uppercase tracking-[0.08em] text-navy-ink transition-colors hover:bg-white"
           >
             {hero.ctaService}
             <span aria-hidden className="link-arrow">→</span>
           </Link>
           <Link prefetch={false}
-            href="/parts-request"
+            href={content.routes.parts}
             className="btn-premium-dark inline-flex items-center justify-center gap-3 border border-white/30 px-8 py-4 font-body text-sm font-semibold uppercase tracking-[0.08em] text-white transition-colors hover:border-white hover:bg-white/5"
           >
             {hero.ctaParts}

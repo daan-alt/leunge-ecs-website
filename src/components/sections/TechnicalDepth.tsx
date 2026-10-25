@@ -1,9 +1,10 @@
-import { content } from "@/content";
+import { getContent, type Locale } from "@/content";
 import { Reveal } from "@/components/ui/Reveal";
 
 // A compact datasheet: four ruled blocks, every item numbered and set on a
 // dotted leader, instead of large headings. Numbering runs across the groups.
-export function TechnicalDepth() {
+export function TechnicalDepth({ locale = "en" }: { locale?: Locale }) {
+  const content = getContent(locale);
   const { techSpec } = content;
   // Running item number across groups, computed up front (no mutation during render).
   const offsets = techSpec.groups.map((_, i) =>

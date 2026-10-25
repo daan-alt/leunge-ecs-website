@@ -1,9 +1,10 @@
-import { content } from "@/content";
+import { getContent, type Locale } from "@/content";
 
 // A slow, endless band of the six service names between two sections. Pure
 // CSS (see `.marquee-track`), paused on hover, still under reduced motion.
 // Decorative: the same names are readable in the services list above.
-export function ServiceMarquee() {
+export function ServiceMarquee({ locale = "en" }: { locale?: Locale }) {
+  const content = getContent(locale);
   const titles = content.expertise.areas.map((a) => a.title);
   const row = (
     <ul className="flex shrink-0 items-center">

@@ -1,10 +1,11 @@
 import Link from "next/link";
-import { content } from "@/content";
+import { getContent, type Locale } from "@/content";
 import { Reveal } from "@/components/ui/Reveal";
 import { TechnicalFrame } from "@/components/ui/TechnicalFrame";
 import { Photo } from "@/components/ui/Photo";
 
-export function Highlight() {
+export function Highlight({ locale = "en" }: { locale?: Locale }) {
+  const content = getContent(locale);
   const { highlight } = content;
 
   return (
@@ -16,7 +17,7 @@ export function Highlight() {
           <h2 className="font-display t-h2 mt-8 text-white">{highlight.title}</h2>
           <p className="t-lead mt-8 max-w-lg text-mist/75">{highlight.body}</p>
           <Link prefetch={false}
-            href="/parts-request"
+            href={content.routes.parts}
             className="btn-premium-dark mt-10 inline-flex items-center gap-3 bg-accent-bright px-8 py-4 font-body text-sm font-semibold uppercase tracking-[0.08em] text-navy-ink transition-colors hover:bg-white"
           >
             {highlight.cta}

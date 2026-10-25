@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import type { ExpertiseArea } from "@/content/types";
+import type { ExpertiseArea, Routes } from "@/content/types";
 import { cn, BASE_PATH } from "@/lib/utils";
 
 // The drawings are standalone SVG files with their own dark background, so they
@@ -25,7 +25,7 @@ function Blueprint({ area, className }: { area: ExpertiseArea; className?: strin
 
 // Editorial service index: one row per area, the active row opens to show its
 // text; on desktop a sticky photo to the right follows the active row.
-export function ExpertiseList({ areas, cta }: { areas: ExpertiseArea[]; cta: string }) {
+export function ExpertiseList({ areas, cta, routes }: { areas: ExpertiseArea[]; cta: string; routes: Routes }) {
   const [active, setActive] = useState(0);
 
   return (
@@ -33,7 +33,7 @@ export function ExpertiseList({ areas, cta }: { areas: ExpertiseArea[]; cta: str
       <ul className="lg:col-span-7">
         {areas.map((area, i) => {
           const isActive = i === active;
-          const requestHref = area.title.includes("Spare Parts") ? "/parts-request" : "/service-request";
+          const requestHref = area.kind === "parts" ? routes.parts : routes.service;
           return (
             <li key={area.index} className="border-t border-line last:border-b" onMouseEnter={() => setActive(i)}>
               <button

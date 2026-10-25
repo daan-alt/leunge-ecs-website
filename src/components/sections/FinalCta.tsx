@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { content } from "@/content";
+import { getContent, type Locale } from "@/content";
 import { Reveal } from "@/components/ui/Reveal";
 import { features } from "@/lib/features";
 import { ChartBackdrop } from "@/components/visuals/ChartBackdrop";
@@ -8,7 +8,8 @@ import { ChartBackdrop } from "@/components/visuals/ChartBackdrop";
 // way in, each a full-width link that fills orange on hover — over a faint
 // nautical chart. Row layout lives in `.console-row` (globals.css): stacked
 // on phones, three columns from lg.
-export function FinalCta() {
+export function FinalCta({ locale = "en" }: { locale?: Locale }) {
+  const content = getContent(locale);
   const { finalCta } = content;
 
   return (
@@ -68,12 +69,12 @@ export function FinalCta() {
           </ul>
           <p className="t-mono mt-6 max-w-md text-xs leading-relaxed text-mist/60">{finalCta.responseNote}</p>
           {features.wizard && (
-            <Link prefetch={false} href="/request" className="link-line mt-8 mr-8 text-accent-bright hover:text-white">
+            <Link prefetch={false} href={content.routes.request} className="link-line mt-8 mr-8 text-accent-bright hover:text-white">
               {finalCta.guideLabel}
               <span aria-hidden>→</span>
             </Link>
           )}
-          <Link prefetch={false} href="/contact" className="link-line mt-8 text-mist/80 hover:text-white">
+          <Link prefetch={false} href={content.routes.contact} className="link-line mt-8 text-mist/80 hover:text-white">
             {finalCta.ctaGeneral}
             <span aria-hidden>→</span>
           </Link>

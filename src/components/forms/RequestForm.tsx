@@ -9,12 +9,6 @@ import { ACCEPT, uploadFiles, uploadsEnabled, validateFiles, type FileError } fr
 type Status = "idle" | "uploading" | "submitting" | "success" | "error";
 type Kind = "service" | "parts" | "general";
 
-const SUBJECT_PREFIX: Record<Kind, string> = {
-  service: "New service request — LEUNGE-ECS website",
-  parts: "New parts request — LEUNGE-ECS website",
-  general: "New contact message — LEUNGE-ECS website",
-};
-
 const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
 
 const fieldClass =
@@ -35,7 +29,7 @@ function ExtraFieldInput({ field, optional }: { field: ExtraField; optional: str
   return (
     <div className={`relative field-underline ${field.wide ? "sm:col-span-2" : ""}`}>
       {field.type === "select" ? (
-        <select id={id} name={field.name} required={field.required} defaultValue={field.options?.[0]} className={fieldClass}>
+        <select id={id} name={field.name} data-key={field.key} required={field.required} defaultValue={field.options?.[0]} className={fieldClass}>
           {field.options?.map((o) => (
             <option key={o}>{o}</option>
           ))}
@@ -44,6 +38,7 @@ function ExtraFieldInput({ field, optional }: { field: ExtraField; optional: str
         <input
           id={id}
           name={field.name}
+          data-key={field.key}
           type={field.type}
           required={field.required}
           inputMode={field.inputMode}
@@ -64,16 +59,14 @@ export function RequestForm({ content, kind }: { content: RequestFormContent; ki
   const [fileError, setFileError] = useState<FileError | "fileUploadError" | null>(null);
 
   // Deep links (homepage console, guided request): ?urgency=emergency and ?system=Alpha%20Lubrication%20Systems
+  // The fields are found by data-key, so this works in every language.
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const urgency = params.get("urgency");
-    const select = document.getElementById("f-urgency");
-    if (urgency && select instanceof HTMLSelectElement) {
-      const match = Array.from(select.options).find((o) => o.value.toLowerCase().startsWith(urgency.toLowerCase()));
-      if (match) select.value = match.value;
-    }
+    const urgency = ["normal", "urgent", "emergency"].indexOf((params.get("urgency") ?? "").toLowerCase());
+    const select = document.querySelector<HTMLSelectElement>('select[data-key="urgency"]');
+    if (urgency >= 0 && select && select.options[urgency]) select.selectedIndex = urgency;
     const system = params.get("system");
-    const field = document.querySelector<HTMLInputElement>('input[id^="f-system"]');
+    const field = document.querySelector<HTMLInputElement>('input[data-key="system"]');
     if (system && field && !field.value) field.value = system.slice(0, 80);
   }, []);
 
@@ -107,7 +100,7 @@ export function RequestForm({ content, kind }: { content: RequestFormContent; ki
     setFileError(null);
     setStatus("submitting");
     formData.set("access_key", accessKey);
-    formData.set("subject", SUBJECT_PREFIX[kind]);
+    formData.set("subject", content.subjectPrefix);
     formData.set("from_name", "LEUNGE-ECS website");
 
     try {
