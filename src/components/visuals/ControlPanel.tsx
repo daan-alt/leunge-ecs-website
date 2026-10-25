@@ -3,7 +3,7 @@
 // Client component on purpose: the SVG is generated from a few formulas, so
 // shipping this code is far smaller than serializing ~50 KB of markup into the
 // RSC payload. Output is deterministic, so SSR and hydration match.
-import type { CSSProperties } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 import { cn } from "@/lib/utils";
 
 // Line weights as strokeOpacity against `currentColor` (set by the wrapper in
@@ -143,6 +143,13 @@ function Gauge({ cx, cy, r, sway, d }: GaugeSpec) {
  * `prefers-reduced-motion` freezes it entirely.
  */
 export function ControlPanel({ layout = "wide", className }: { layout?: LayoutName; className?: string }) {
+  // The loops start a moment after load, so the first paint and the load-time
+  // metrics are not competing with dozens of running animations.
+  const [live, setLive] = useState(false);
+  useEffect(() => {
+    const id = window.setTimeout(() => setLive(true), 1800);
+    return () => window.clearTimeout(id);
+  }, []);
   const L = LAYOUTS[layout];
   const PANELS: Record<"trend" | "lube" | "gauges" | "temps", Panel> = L.panels;
   const { trend: TREND, manifoldY: MANIFOLD_Y, cylTop: CYL_TOP, cylinders, firingOrder, pump, tank, gauges, bars } = L;
@@ -158,7 +165,7 @@ export function ControlPanel({ layout = "wide", className }: { layout?: LayoutNa
       viewBox="0 0 1920 1000"
       fill="none"
       preserveAspectRatio={`${L.align} slice`}
-      className={cn("control-panel h-full w-full", className)}
+      className={cn("control-panel h-full w-full", !live && "cp-paused", className)}
       aria-hidden="true"
     >
       <defs>

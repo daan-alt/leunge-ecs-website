@@ -17,7 +17,7 @@ export function Logo({
 }) {
   const eager = priority ?? !light;
   return (
-    <Link href="/#top" className={cn("inline-flex shrink-0", className)} aria-label="LEUNGE-ECS B.V., home">
+    <Link prefetch={false} href="/#top" className={cn("inline-flex shrink-0", className)} aria-label="LEUNGE-ECS B.V., home">
       {/* eslint-disable-next-line @next/next/no-img-element -- static export, no image optimizer */}
       <img
         src={`${BASE_PATH}/${light ? "logo-light.svg" : "logo.svg"}`}

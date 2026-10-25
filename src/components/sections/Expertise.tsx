@@ -11,7 +11,7 @@ export function Expertise() {
         <div className="grid gap-8 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-7">
             <Reveal>
-              <span className="t-eyebrow text-accent">{expertise.label}</span>
+              <span className="t-eyebrow text-accent-ink">{expertise.label}</span>
             </Reveal>
             <Reveal as="h2" className="font-display t-h2 mt-8 max-w-[11em] text-ink-dark">
               {expertise.title}

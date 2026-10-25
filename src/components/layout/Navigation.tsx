@@ -50,7 +50,7 @@ export function Navigation() {
         <ul className="hidden items-center gap-10 lg:flex">
           {content.nav.links.map((link) => (
             <li key={link.href}>
-              <Link
+              <Link prefetch={false}
                 href={link.href}
                 aria-current={isActive(link.href) ? "page" : undefined}
                 className={cn(
@@ -65,13 +65,13 @@ export function Navigation() {
         </ul>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <Link
+          <Link prefetch={false}
             href="/service-request"
             className="btn-premium-dark inline-flex items-center gap-2 border border-white/25 px-5 py-2.5 font-body text-[0.8rem] font-semibold uppercase tracking-[0.08em] text-white transition-colors hover:border-white hover:bg-white/5"
           >
             {content.nav.ctaService}
           </Link>
-          <Link
+          <Link prefetch={false}
             href="/parts-request"
             className="btn-premium-dark inline-flex items-center gap-2 bg-accent-bright px-5 py-2.5 font-body text-[0.8rem] font-semibold uppercase tracking-[0.08em] text-navy-ink transition-colors hover:bg-white"
           >
@@ -119,7 +119,7 @@ export function Navigation() {
           <ul className="flex flex-col">
             {content.nav.links.map((link, i) => (
               <li key={link.href} className="border-b border-white/10">
-                <Link
+                <Link prefetch={false}
                   href={link.href}
                   onClick={() => setOpen(false)}
                   className="font-display flex items-baseline justify-between py-5 text-3xl text-white transition-colors hover:text-accent-bright"
@@ -131,14 +131,14 @@ export function Navigation() {
             ))}
           </ul>
           <div className="mt-auto flex flex-col gap-3 pt-10">
-            <Link
+            <Link prefetch={false}
               href="/service-request"
               onClick={() => setOpen(false)}
               className="inline-flex w-full items-center justify-center border border-white/30 px-5 py-4 font-body text-sm font-semibold uppercase tracking-[0.08em] text-white"
             >
               {content.nav.ctaService}
             </Link>
-            <Link
+            <Link prefetch={false}
               href="/parts-request"
               onClick={() => setOpen(false)}
               className="inline-flex w-full items-center justify-center bg-accent-bright px-5 py-4 font-body text-sm font-semibold uppercase tracking-[0.08em] text-navy-ink"

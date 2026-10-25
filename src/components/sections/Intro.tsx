@@ -11,7 +11,7 @@ export function Intro() {
     <section className="section-y bg-paper">
       <div className="wrap">
         <Reveal>
-          <span className="t-eyebrow text-accent">{intro.label}</span>
+          <span className="t-eyebrow text-accent-ink">{intro.label}</span>
         </Reveal>
 
         <Reveal
@@ -50,7 +50,7 @@ export function Intro() {
             <p className="t-mono mt-8 border-l border-accent pl-4 text-xs leading-relaxed text-ink">
               {intro.statDetail}
             </p>
-            <Link href="/contact" className="link-line mt-10 text-navy hover:text-accent">
+            <Link prefetch={false} href="/contact" className="link-line mt-10 text-navy hover:text-accent-ink">
               {intro.cta}
               <span aria-hidden>→</span>
             </Link>

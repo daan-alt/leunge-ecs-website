@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Archivo, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { content } from "@/content";
@@ -7,6 +7,7 @@ import { Navigation } from "@/components/layout/Navigation";
 import { Footer } from "@/components/layout/Footer";
 import { MobileCtaBar } from "@/components/layout/MobileCtaBar";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
+import { Analytics } from "@/components/seo/Analytics";
 
 // Display: Archivo's width axis lets headlines run slightly expanded (see .font-display).
 const archivo = Archivo({
@@ -27,6 +28,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
   display: "swap",
 });
+
+export const viewport: Viewport = {
+  themeColor: "#08111f",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -60,24 +65,34 @@ export const metadata: Metadata = {
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  name: "LEUNGE-ECS B.V.",
-  description: content.meta.description,
-  url: SITE_URL,
-  areaServed: "Worldwide",
-  address: {
-    "@type": "PostalAddress",
-    addressCountry: "NL",
-  },
-  knowsAbout: content.expertise.areas.map((a) => a.title),
-  hasOfferCatalog: {
-    "@type": "OfferCatalog",
-    name: content.expertise.title,
-    itemListElement: content.expertise.areas.map((a) => ({
-      "@type": "Offer",
-      itemOffered: { "@type": "Service", name: a.title, description: a.description },
-    })),
-  },
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: "LEUNGE-ECS B.V.",
+      inLanguage: "en",
+      publisher: { "@id": `${SITE_URL}/#organization` },
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": `${SITE_URL}/#organization`,
+      name: "LEUNGE-ECS B.V.",
+      description: content.meta.description,
+      url: SITE_URL,
+      areaServed: "Worldwide",
+      address: { "@type": "PostalAddress", addressCountry: "NL" },
+      knowsAbout: content.expertise.areas.map((a) => a.title),
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: content.expertise.title,
+        itemListElement: content.expertise.areas.map((a) => ({
+          "@type": "Offer",
+          itemOffered: { "@type": "Service", name: a.title, description: a.description },
+        })),
+      },
+    },
+  ],
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -98,6 +113,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Footer />
         <MobileCtaBar />
         <SmoothScroll />
+        <Analytics />
       </body>
     </html>
   );

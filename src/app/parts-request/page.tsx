@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { content } from "@/content";
+import { JsonLd, breadcrumb } from "@/components/seo/JsonLd";
 import { RequestForm } from "@/components/forms/RequestForm";
 
 export const metadata: Metadata = {
@@ -9,5 +10,10 @@ export const metadata: Metadata = {
 };
 
 export default function PartsRequestPage() {
-  return <RequestForm content={content.partsRequest} kind="parts" />;
+  return (
+    <>
+      <JsonLd data={breadcrumb("Home", content.partsRequest.title, "/parts-request")} />
+      <RequestForm content={content.partsRequest} kind="parts" />
+    </>
+  );
 }
