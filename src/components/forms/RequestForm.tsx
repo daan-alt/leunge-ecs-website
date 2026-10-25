@@ -63,13 +63,18 @@ export function RequestForm({ content, kind }: { content: RequestFormContent; ki
   const [fileNames, setFileNames] = useState<string[]>([]);
   const [fileError, setFileError] = useState<FileError | "fileUploadError" | null>(null);
 
-  // Deep link from the homepage ("Vessel out of service?"): /service-request?urgency=emergency
+  // Deep links (homepage console, guided request): ?urgency=emergency and ?system=Alpha%20Lubrication%20Systems
   useEffect(() => {
-    const urgency = new URLSearchParams(window.location.search).get("urgency");
+    const params = new URLSearchParams(window.location.search);
+    const urgency = params.get("urgency");
     const select = document.getElementById("f-urgency");
-    if (!urgency || !(select instanceof HTMLSelectElement)) return;
-    const match = Array.from(select.options).find((o) => o.value.toLowerCase().startsWith(urgency.toLowerCase()));
-    if (match) select.value = match.value;
+    if (urgency && select instanceof HTMLSelectElement) {
+      const match = Array.from(select.options).find((o) => o.value.toLowerCase().startsWith(urgency.toLowerCase()));
+      if (match) select.value = match.value;
+    }
+    const system = params.get("system");
+    const field = document.querySelector<HTMLInputElement>('input[id^="f-system"]');
+    if (system && field && !field.value) field.value = system.slice(0, 80);
   }, []);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {

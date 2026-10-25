@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { content } from "@/content";
 
 // Pages that already are a request form don't need the bar.
-const HIDDEN_ON = ["/service-request", "/parts-request", "/contact"];
+const HIDDEN_ON = ["/service-request", "/parts-request", "/contact", "/request"];
 
 export function MobileCtaBar() {
   const pathname = usePathname() ?? "";

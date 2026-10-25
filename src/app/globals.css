@@ -775,3 +775,9 @@ footer {
     display: block;
   }
 }
+
+/* Programmatic focus targets (skip-link target, wizard question) get no ring. */
+main:focus-visible,
+[tabindex="-1"]:focus-visible {
+  outline: none;
+}
