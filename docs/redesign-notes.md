@@ -63,3 +63,7 @@ Uitgevoerd volgens `docs/redesign-plan-3.md`. Geen verzonnen feiten, geen nieuwe
 2. Analytics: account bij Plausible (of vergelijkbaar) en repository-variabele `PLAUSIBLE_DOMAIN`.
 3. Mobiel performance (zie boven) en de ongebruikte `public/images/expertise-*.webp` (nog niet verwijderd).
 4. De decoratieve technische labels in het bedieningspaneel van de hero zijn Engels (bewust, het is een schema).
+
+## Aanpassing: scrollytelling sneller (branch `anatomy-quick`)
+
+De "Anatomy of a part"-sectie was vastgezet (sticky) in een track van 320vh: ruim twee schermen extra scrollen voordat de zuiger uit elkaar was. Nu is er **geen vastzetten en geen extra scrollhoogte**: de tekening bouwt zich op terwijl hij van onder in beeld naar het midden van het scherm komt (ca. een half scherm scrollen, gemeten: start bij figuurtop ~85% van de viewport, klaar rond ~20-30%). De timing staat in `AnatomyFigure` (`t(s, e)`, `BALLOON_START` in `Anatomy.tsx`) en het venster in `.anatomy-track` (`--w0`, `--wspan`). Zonder ondersteuning of met reduced motion is de tekening meteen compleet; de lijst staat op mobiel onder de tekening.

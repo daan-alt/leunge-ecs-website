@@ -683,37 +683,23 @@ main > #anatomy {
 }
 
 /* ---- Anatomy (scrollytelling) ---------------------------------------------
-   `.anatomy-track` is a tall box; its stage is pinned (sticky) while the track
-   scrolls past. The track is the view timeline; every `.an-*` element plays a
-   slice of it: --s/--e are fractions (0..1) of the pinned window, which starts
-   at --w0 and spans --wspan of the track's cover range. Without scroll-driven
-   animation support (or with reduced motion) nothing animates and the figure
-   shows its finished, exploded state. */
+   No pinning and no extra scrolling: the track is just the block that holds
+   the figure. It is the view timeline, and the figure assembles itself while
+   that block travels from just below the fold to the middle of the viewport
+   (--w0 = where the animation starts, --wspan = how much of the cover range it
+   takes; --s/--e on every `.an-*` element are fractions (0..1) of that
+   window). By the time the figure is centred it is complete. Without
+   scroll-driven animation support (or with reduced motion) nothing animates
+   and the figure shows its finished, exploded state. */
 .anatomy-track {
-  --w0: 25%;
-  --wspan: 50%;
-  height: 320vh;
-}
-.anatomy-track,
-.anatomy-stage {
+  --w0: 6%;
+  --wspan: 38%;
   background-color: var(--color-navy-ink);
 }
 .anatomy-stage {
-  position: sticky;
-  top: 4.5rem;
-  height: calc(100svh - 4.5rem);
+  padding-block: clamp(2.5rem, 5vw, 4.5rem);
 }
 @media (max-width: 1023px) {
-  .anatomy-track {
-    --w0: 12%;
-    --wspan: 46%;
-    height: 240vh;
-  }
-  .anatomy-stage {
-    height: calc(100svh - 4.5rem);
-    align-content: start;
-    padding-top: 1rem;
-  }
   .anatomy-list {
     display: none;
   }
@@ -772,17 +758,6 @@ main > #anatomy {
   .an-note,
   .an-draw {
     animation: none !important;
-  }
-  .anatomy-track {
-    height: auto;
-  }
-  .anatomy-stage {
-    position: static;
-    height: auto;
-    padding-block: 3rem;
-  }
-  .anatomy-list {
-    display: block;
   }
 }
 

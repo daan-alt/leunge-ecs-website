@@ -51,8 +51,8 @@ export function AnatomyFigure({ label }: { label: string }) {
 
       <g fill="none" stroke={LINE} strokeWidth="1.6" strokeLinejoin="round" strokeLinecap="round">
         {/* centre line + alignment guides: drawn first */}
-        <path className="an-draw" pathLength={1} style={t(0, 0.3)} d={`M${cx} 80L${cx} 700`} stroke={DIM} strokeWidth="1" strokeDasharray="14 4 3 4" />
-        <g className="an-fade" style={t(0.5, 0.62)} stroke={DIM} strokeDasharray="3 4" strokeWidth="1">
+        <path className="an-draw" pathLength={1} style={t(0, 0.15)} d={`M${cx} 80L${cx} 700`} stroke={DIM} strokeWidth="1" strokeDasharray="14 4 3 4" />
+        <g className="an-fade" style={t(0.35, 0.5)} stroke={DIM} strokeDasharray="3 4" strokeWidth="1">
           <path d="M330 236L330 390M470 236L470 390" />
         </g>
 
@@ -65,21 +65,21 @@ export function AnatomyFigure({ label }: { label: string }) {
 
         {/* rings */}
         {[282, 312, 342].map((y, i) => (
-          <g key={y} className="an-part" style={t(0.3, 0.6, { "--collapse": `${[-136, -154, -172][i]}px` })}>
+          <g key={y} className="an-part" style={t(0.15, 0.65, { "--collapse": `${[-136, -154, -172][i]}px` })}>
             <ellipse cx={cx} cy={y} rx="82" ry="15" />
             <ellipse cx={cx} cy={y} rx="70" ry="11" strokeOpacity=".5" />
           </g>
         ))}
 
         {/* piston pin */}
-        <g className="an-part" style={t(0.3, 0.6, { "--collapse": "-195px" })}>
+        <g className="an-part" style={t(0.15, 0.65, { "--collapse": "-195px" })}>
           <rect x="344" y="388" width="112" height="26" />
           <ellipse cx="344" cy="401" rx="8" ry="13" />
           <ellipse cx="456" cy="401" rx="8" ry="13" />
         </g>
 
         {/* connecting rod */}
-        <g className="an-part" style={t(0.3, 0.6, { "--collapse": "-274px" })}>
+        <g className="an-part" style={t(0.15, 0.65, { "--collapse": "-274px" })}>
           <circle cx={cx} cy="480" r="30" />
           <circle cx={cx} cy="480" r="15" />
           <path d="M386 508L376 604M414 508L424 604" />
@@ -89,7 +89,7 @@ export function AnatomyFigure({ label }: { label: string }) {
         </g>
 
         {/* loose parts slide in from the sides */}
-        <g className="an-side" style={t(0.45, 0.7, { "--from-x": "-80px" })}>
+        <g className="an-side" style={t(0.35, 0.75, { "--from-x": "-80px" })}>
           <rect x="110" y="300" width="130" height="130" rx="14" />
           <circle cx="175" cy="365" r="38" />
           {[
@@ -101,7 +101,7 @@ export function AnatomyFigure({ label }: { label: string }) {
             <circle key={`${x}-${y}`} cx={x} cy={y} r="6" />
           ))}
         </g>
-        <g className="an-side" style={t(0.45, 0.7, { "--from-x": "80px" })}>
+        <g className="an-side" style={t(0.35, 0.75, { "--from-x": "80px" })}>
           {[
             [590, 290],
             [630, 330],
@@ -114,12 +114,12 @@ export function AnatomyFigure({ label }: { label: string }) {
           ))}
         </g>
 
-        <Balloon n={1} x={470} y={140} tx={560} ty={140} s={0.62} />
-        <Balloon n={2} x={482} y={297} tx={560} ty={227} s={0.68} />
-        <Balloon n={3} x={456} y={401} tx={690} ty={440} s={0.74} />
-        <Balloon n={4} x={430} y={590} tx={560} ty={560} s={0.8} />
-        <Balloon n={5} x={175} y={300} tx={175} ty={230} s={0.86} />
-        <Balloon n={6} x={612} y={290} tx={690} ty={220} s={0.92} />
+        <Balloon n={1} x={470} y={140} tx={560} ty={140} s={0.66} />
+        <Balloon n={2} x={482} y={297} tx={560} ty={227} s={0.72} />
+        <Balloon n={3} x={456} y={401} tx={690} ty={440} s={0.78} />
+        <Balloon n={4} x={430} y={590} tx={560} ty={560} s={0.84} />
+        <Balloon n={5} x={175} y={300} tx={175} ty={230} s={0.9} />
+        <Balloon n={6} x={612} y={290} tx={690} ty={220} s={0.94} />
       </g>
 
       <g stroke={DIM} strokeOpacity=".6" fill="none">

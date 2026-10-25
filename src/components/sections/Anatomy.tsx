@@ -4,12 +4,12 @@ import { getContent, type Locale } from "@/content";
 import { Reveal } from "@/components/ui/Reveal";
 import { AnatomyFigure } from "@/components/visuals/AnatomyFigure";
 
-// Scrollytelling: a tall track with a pinned stage. While you scroll through
-// the track (pure CSS, `animation-timeline` on `.anatomy-track`, see
-// globals.css) the piston assembly pulls apart and the parts list lights up in
-// step with the numbered balloons. The balloon timing below must match the
-// `s` values in AnatomyFigure.
-const BALLOON_START = [0.62, 0.68, 0.74, 0.8, 0.86, 0.92];
+// Scrollytelling without pinning: the block holding the figure is a view
+// timeline (pure CSS, see `.anatomy-track` in globals.css). While it scrolls
+// from just below the fold to the middle of the screen the piston pulls apart,
+// the balloons appear and the parts list slides in. The balloon timing below
+// must match the `s` values in AnatomyFigure.
+const BALLOON_START = [0.66, 0.72, 0.78, 0.84, 0.9, 0.94];
 
 export function Anatomy({ locale = "en" }: { locale?: Locale }) {
   const content = getContent(locale);
