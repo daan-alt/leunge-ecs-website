@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { content } from "@/content";
 import { Reveal } from "@/components/ui/Reveal";
+import { features } from "@/lib/features";
 import { ChartBackdrop } from "@/components/visuals/ChartBackdrop";
 
 // Closing block: instead of two buttons, a request "console" — one row per
@@ -66,6 +67,12 @@ export function FinalCta() {
             ))}
           </ul>
           <p className="t-mono mt-6 max-w-md text-xs leading-relaxed text-mist/60">{finalCta.responseNote}</p>
+          {features.wizard && (
+            <Link prefetch={false} href="/request" className="link-line mt-8 mr-8 text-accent-bright hover:text-white">
+              {finalCta.guideLabel}
+              <span aria-hidden>→</span>
+            </Link>
+          )}
           <Link prefetch={false} href="/contact" className="link-line mt-8 text-mist/80 hover:text-white">
             {finalCta.ctaGeneral}
             <span aria-hidden>→</span>

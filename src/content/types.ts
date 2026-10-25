@@ -1,5 +1,11 @@
 export type IconName = "wrench" | "drop" | "gear" | "chip" | "ruler" | "check" | "ship" | "arrow";
 
+export interface WizardOption {
+  value: string;
+  title: string;
+  description?: string;
+}
+
 export interface NavLink {
   label: string;
   href: string;
@@ -178,7 +184,26 @@ export interface SiteContent {
     label: string;
     options: { index: string; title: string; description: string; href: string; tag?: string }[];
     responseNote: string;
+    guideLabel: string;
     ctaGeneral: string;
+  };
+  wizard: {
+    label: string;
+    title: string;
+    intro: string;
+    stepLabel: (step: number, total: number) => string;
+    back: string;
+    next: string;
+    typeQuestion: string;
+    typeOptions: WizardOption[];
+    urgencyQuestion: string;
+    urgencyOptions: WizardOption[];
+    systemQuestion: string;
+    systemOther: string;
+    summaryTitle: string;
+    summaryLabels: { type: string; urgency: string; system: string };
+    summaryNote: string;
+    continue: string;
   };
   serviceRequest: RequestFormContent;
   partsRequest: RequestFormContent;
