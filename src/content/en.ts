@@ -108,21 +108,25 @@ export const en: SiteContent = {
     steps: [
       {
         index: "01",
+        icon: "ship",
         title: "Request",
         body: "Describe the vessel, the system and the situation through the request form. Photos and nameplate details speed up the diagnosis.",
       },
       {
         index: "02",
+        icon: "ruler",
         title: "Assessment",
         body: "A personal response follows. The technical situation is clarified, and it is determined whether an engineer should join on board or parts need to be sourced.",
       },
       {
         index: "03",
+        icon: "check",
         title: "Scope & offer",
         body: "Scope, approach and delivery are agreed per request, with attention to transparency, cost-effectiveness and flexibility.",
       },
       {
         index: "04",
+        icon: "wrench",
         title: "Execution",
         body: "Work on board or on location, or delivery of the parts, with documentation such as test reports where applicable.",
       },
@@ -130,27 +134,31 @@ export const en: SiteContent = {
   },
   situations: {
     label: "When to get in touch",
-    title: "Reasons to pick up the phone.",
+    title: "Reasons to reach out.",
     items: [
       {
+        icon: "wrench",
         title: "A fault you can't solve on board",
         body: "Technical service, troubleshooting and support, on board or on location.",
         cta: "Request service",
         href: "/service-request",
       },
       {
+        icon: "drop",
         title: "An Alpha lubrication system that needs attention",
         body: "Inspection, maintenance, overhaul, adjustment or optimization on main engines.",
         cta: "Request service",
         href: "/service-request",
       },
       {
+        icon: "gear",
         title: "A genuine part to source and ship",
         body: "From a single OEM part to a complete package for a vessel or project.",
         cta: "Request parts",
         href: "/parts-request",
       },
       {
+        icon: "chip",
         title: "A control system to modify, commission or test",
         body: "Automation, PLC/HMI solutions, measurements and test reports.",
         cta: "Request service",

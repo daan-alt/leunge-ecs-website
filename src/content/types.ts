@@ -1,3 +1,5 @@
+export type IconName = "wrench" | "drop" | "gear" | "chip" | "ruler" | "check" | "ship" | "arrow";
+
 export interface NavLink {
   label: string;
   href: string;
@@ -124,12 +126,12 @@ export interface SiteContent {
     label: string;
     title: string;
     intro: string;
-    steps: { index: string; title: string; body: string }[];
+    steps: { index: string; icon: IconName; title: string; body: string }[];
   };
   situations: {
     label: string;
     title: string;
-    items: { title: string; body: string; cta: string; href: string }[];
+    items: { icon: IconName; title: string; body: string; cta: string; href: string }[];
   };
   principles: {
     label: string;

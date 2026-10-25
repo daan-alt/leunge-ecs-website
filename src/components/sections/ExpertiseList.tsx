@@ -74,7 +74,7 @@ export function ExpertiseList({ areas, cta }: { areas: ExpertiseArea[]; cta: str
               <div
                 id={`expertise-panel-${area.index}`}
                 className={cn(
-                  "grid transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]",
+                  "grid transition-[grid-template-rows] duration-500 ease-precision",
                   isActive ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
                 )}
               >
