@@ -43,3 +43,23 @@ Uitgevoerd volgens `docs/redesign-plan-2.md`. Opnieuw geen verzonnen feiten, gee
 - **Lighthouse** is niet gedraaid (geen betrouwbare headless-run in deze omgeving); contrast en toetsenbord (skip-link, focus) zijn handmatig gecontroleerd.
 - De blauwdrukken zijn bewust schematisch; echte foto's of tekeningen van de klant blijven beter.
 - Het mobiele "tekstband" en de "When to get in touch"-lijst zijn nieuw en niet door de klant beoordeeld.
+
+# Ronde 3 (branch `round3`)
+
+Uitgevoerd volgens `docs/redesign-plan-3.md`. Geen verzonnen feiten, geen nieuwe foto's of AI-beelden. Terugdraaien: zie `docs/rollback-round3.md` (tag `pre-round3`, vlaggen in `src/lib/features.ts`, merge-commits per onderdeel).
+
+## Gemaakte keuzes
+
+- **Techniek (`r3-tech`)** — Lighthouse (headless, gebouwde export): **desktop 99-100 / 97-100 / 100 / 100**, **mobiel (gesimuleerd trage 4G, 4x CPU) performance 83-90, accessibility 100, best practices 100, SEO 100**. Gedaan: definitielijst-markup in de hero, contrast van kleine tekst (nieuwe token `accent-ink`, `ink/85`), kopvolgorde in de footer, `Link prefetch={false}` (Next 16 vraagt in een statische export prefetch-bestanden onder een pad dat niet bestaat: elke pagina gaf 404-consolefouten), korrel als klein PNG-tegeltje in plaats van een SVG-filter (die maakte de LCP zeer laat), `content-visibility: auto` onder de eerste sectie, animaties van het bedieningspaneel starten 1,8 s na laden, `lenis` wordt pas geladen als nodig, entree-animatie van de hero alleen met `transform`. Nieuw: JSON-LD graph (WebSite + ProfessionalService + BreadcrumbList), `manifest.webmanifest`, `theme-color`, stabiele sitemap-datum (`LAST_UPDATED` in `utils.ts`), cookievrije Plausible (alleen aan met `NEXT_PUBLIC_PLAUSIBLE_DOMAIN`; de klant moet een account aanmaken en de repository-variabele `PLAUSIBLE_DOMAIN` zetten). **Performance op mobiel blijft onder 95**: de LCP is (gesimuleerd) 3-3,5 s door hydration + de rijke hero; echte apparaten zitten daar doorgaans ruim onder. Verder verbeteren kan met minder animaties in de hero of een kleiner `ControlPanel`.
+- **Merksysteem (`r3-brand`)** — `docs/brand-guide.md`, motion-tokens (`--ease-precision`, `--duration-*`), 8 lijn-iconen (`ui/Icon.tsx`) in Process en Situations. De titel van Situations was "Reasons to pick up the phone" (er staat geen telefoonnummer op de site); nu "Reasons to reach out".
+- **Scrollytelling (`r3-scrolly`)** — sectie "Anatomy of a part" na Highlight: de zuigerassemblage trekt uit elkaar tijdens het scrollen (pure CSS, `animation-timeline`), balloons verschijnen een voor een en de lijst met onderdelen schuift mee; zonder ondersteuning of met reduced motion zie je de eindtoestand. Mobiel: kortere track, de lijst staat onder de tekening. De toelichtingen zijn algemene technische beschrijvingen van de onderdelen (zuigerkroon, veren, pen, drijfstang, pakking, ringen), geen beweringen over het bedrijf. Deze sectie staat buiten `content-visibility` (de hoogte klopte anders niet tijdens scrollen).
+- **Wizard (`r3-wizard`)** — `/request` (en `/nl/aanvraag`): type, urgentie (alleen service), systeem, samenvatting, dan een gewone link naar het juiste formulier met `?urgency=` en `?system=` (geen persoonsgegevens in de URL). `RequestForm` vult die velden voor, in elke taal (via `data-key`). Ingang: een regel onder de aanvraagknoppen. De directe formulierlinks blijven werken.
+- **Nederlands (`r3-nl`)** — Engels blijft op de bestaande URL's; Nederlands onder `/nl`, `/nl/over-ons`, `/nl/service-aanvragen`, `/nl/onderdelen-aanvragen`, `/nl/contact`, `/nl/aanvraag`. Twee root-layouts via route groups (`(en)` en `nl`) zodat `<html lang>` klopt in de HTML-bron; daarvoor is `experimental.globalNotFound` + `app/global-not-found.tsx` nodig voor de 404. `getContent(locale)`, `content/nl.ts`, `routes` in de content, taalwissel (header, mobiel menu, footer), hreflang + canonical per pagina, sitemap met beide talen. Het e-mailonderwerp van Nederlandse aanvragen bevat `[NL]`. OG-afbeeldingen voor `/nl` zijn de Engelse standaard.
+- **Vlaggen** (`src/lib/features.ts`) en uit-stand-test: zie `docs/rollback-round3.md`.
+
+## Nog nodig / aandachtspunten
+
+1. **De Nederlandse vertaling moet door de klant worden nagekeken** (vaktermen, toon, "u"-vorm). Zet het eventueel met `dutch: false` uit tot dat gebeurd is.
+2. Analytics: account bij Plausible (of vergelijkbaar) en repository-variabele `PLAUSIBLE_DOMAIN`.
+3. Mobiel performance (zie boven) en de ongebruikte `public/images/expertise-*.webp` (nog niet verwijderd).
+4. De decoratieve technische labels in het bedieningspaneel van de hero zijn Engels (bewust, het is een schema).
