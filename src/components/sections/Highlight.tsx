@@ -9,7 +9,7 @@ export function Highlight({ locale = "en" }: { locale?: Locale }) {
   const { highlight } = content;
 
   return (
-    <section id="parts" className="section-y relative overflow-hidden bg-navy-ink text-white">
+    <section id="parts" className="relative overflow-hidden bg-navy-ink py-20 text-white lg:py-28">
       <div aria-hidden className="hero-grain absolute inset-0" />
       <div className="wrap relative grid gap-14 lg:grid-cols-12 lg:items-center lg:gap-16">
         <Reveal className="lg:col-span-5">

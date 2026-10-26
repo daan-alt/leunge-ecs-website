@@ -18,7 +18,7 @@ export function Anatomy({ locale = "en" }: { locale?: Locale }) {
   return (
     <section id="anatomy" className="relative bg-navy-ink text-white">
       <div aria-hidden className="hero-grain absolute inset-0" />
-      <div className="wrap relative pt-24 lg:pt-36">
+      <div className="wrap relative pt-2 lg:pt-6">
         <Reveal>
           <span className="t-eyebrow text-accent-bright">{anatomy.label}</span>
         </Reveal>
@@ -42,7 +42,7 @@ export function Anatomy({ locale = "en" }: { locale?: Locale }) {
         </div>
       </div>
 
-      <div className="wrap relative pb-24 lg:pb-36">
+      <div className="wrap relative pb-16 lg:pb-20">
         <PartsList parts={anatomy.parts} className="mb-12 lg:hidden" />
         <Link
           prefetch={false}
