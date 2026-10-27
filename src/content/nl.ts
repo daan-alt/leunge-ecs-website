@@ -352,12 +352,6 @@ export const nl: SiteContent = {
         href: "/nl/service-aanvragen?urgency=emergency",
         tag: "Spoed",
       },
-      {
-        index: "04",
-        title: "Iets anders?",
-        description: "Een algemene vraag of bericht.",
-        href: "/nl/contact",
-      },
     ],
     responseNote: "U krijgt een persoonlijke reactie, meestal binnen enkele werkdagen.",
     guideLabel: "Weet u niet waar te beginnen? Wij helpen u op weg",

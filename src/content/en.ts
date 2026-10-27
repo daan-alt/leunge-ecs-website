@@ -350,12 +350,6 @@ export const en: SiteContent = {
         href: "/service-request?urgency=emergency",
         tag: "Urgent",
       },
-      {
-        index: "04",
-        title: "Something else?",
-        description: "A general question or message.",
-        href: "/contact",
-      },
     ],
     responseNote: "A personal response follows, usually within a few working days.",
     guideLabel: "Not sure where to start? Let us guide you",
