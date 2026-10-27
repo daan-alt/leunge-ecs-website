@@ -7,13 +7,52 @@ import type { Routes, SiteContent } from "@/content/types";
 import { Logo } from "@/components/ui/Logo";
 import { cn } from "@/lib/utils";
 
+type Section = "top" | "expertise" | "contact";
+// id of the closing request block (FinalCta)
+const CTA_ID = "get-in-touch";
+
 export function Navigation({ nav, routes, switcher }: { nav: SiteContent["nav"]; routes: Routes; switcher?: ReactNode }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = (usePathname() ?? "/").replace(/\/$/, "") || "/";
-  // Only whole pages are marked; in-page anchors (…#expertise) have no page of their own.
+  const onHome = pathname === routes.home;
+
+  // Scroll-spy for the homepage: which part of the page is under the "reading line".
+  // Home = everything above the services, Expertise = the services section,
+  // Contact = the closing request block. Between those nothing is highlighted.
+  const [section, setSection] = useState<Section | null>("top");
+  useEffect(() => {
+    if (!onHome) return;
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const line = window.innerHeight * 0.4;
+      const box = (id: string) => document.getElementById(id)?.getBoundingClientRect();
+      const expertise = box("expertise");
+      const cta = box(CTA_ID);
+      if (cta && cta.top <= line && cta.bottom > line) setSection("contact");
+      else if (expertise && expertise.top <= line && expertise.bottom > line) setSection("expertise");
+      else if (!expertise || expertise.top > line) setSection("top");
+      else setSection(null);
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      cancelAnimationFrame(frame);
+    };
+  }, [onHome]);
+
+  // On the homepage the anchor links follow the scroll position; on other pages the link of the current page is active.
+  const sectionOf = (href: string): Section | null =>
+    href.endsWith("#top") ? "top" : href.endsWith("#expertise") ? "expertise" : href === routes.contact ? "contact" : null;
   const isActive = (href: string) =>
-    href.endsWith("#top") ? pathname === routes.home : !href.includes("#") && pathname === href;
+    onHome ? sectionOf(href) !== null && sectionOf(href) === section : !href.includes("#") && pathname === href;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -52,7 +91,7 @@ export function Navigation({ nav, routes, switcher }: { nav: SiteContent["nav"];
             <li key={link.href}>
               <Link prefetch={false}
                 href={link.href}
-                aria-current={isActive(link.href) ? "page" : undefined}
+                aria-current={isActive(link.href) ? (onHome ? "location" : "page") : undefined}
                 className={cn(
                   "nav-link t-mono text-[0.78rem] uppercase tracking-[0.14em] transition-colors hover:text-white",
                   isActive(link.href) ? "is-active text-white" : "text-mist/80"
@@ -123,7 +162,10 @@ export function Navigation({ nav, routes, switcher }: { nav: SiteContent["nav"];
                 <Link prefetch={false}
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="font-display flex items-baseline justify-between py-5 text-3xl text-white transition-colors hover:text-accent-bright"
+                  className={cn(
+                    "font-display flex items-baseline justify-between py-5 text-3xl transition-colors hover:text-accent-bright",
+                    isActive(link.href) ? "text-accent-bright" : "text-white"
+                  )}
                 >
                   {link.label}
                   <span className="t-mono text-xs text-mist/60">0{i + 1}</span>

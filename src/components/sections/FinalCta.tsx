@@ -13,7 +13,7 @@ export function FinalCta({ locale = "en" }: { locale?: Locale }) {
   const { finalCta } = content;
 
   return (
-    <section className="section-y relative overflow-hidden bg-navy-deep">
+    <section id="get-in-touch" className="section-y relative overflow-hidden bg-navy-deep">
       <div aria-hidden className="absolute inset-0 text-white">
         <ChartBackdrop />
       </div>
