@@ -10,7 +10,7 @@ export function Situations({ locale = "en" }: { locale?: Locale }) {
   const { situations } = content;
 
   return (
-    <section className="bg-white py-20 lg:py-28">
+    <section className="cv-auto bg-white py-20 lg:py-28">
       <div className="wrap">
         <Reveal>
           <span className="t-eyebrow text-accent-ink">{situations.label}</span>

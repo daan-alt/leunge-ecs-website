@@ -32,7 +32,7 @@ export function Footer({ locale = "en" }: { locale?: Locale }) {
       <div className="wrap relative pb-6 pt-16 lg:pt-24">
         <div className="grid gap-16 lg:grid-cols-12 lg:gap-10">
           <div className="lg:col-span-4">
-            <Logo light href={content.nav.links[0].href} imgClassName="h-16" />
+            <Logo light href={content.nav.homeHref} imgClassName="h-16" />
             <p className="mt-8 max-w-xs font-body text-sm leading-relaxed text-mist/60">{footer.tagline}</p>
           </div>
 

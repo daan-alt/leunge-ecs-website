@@ -66,14 +66,16 @@ export const nl: SiteContent = {
   },
   nav: {
     links: [
-      { label: "Home", href: "/nl#top" },
       { label: "Expertise", href: "/nl#expertise" },
-      { label: "Over ons", href: "/nl/over-ons" },
-      { label: "Contact", href: "/nl/contact" },
+      { label: "Onderdelen", href: "/nl#parts" },
+      { label: "Werkwijze", href: "/nl#process" },
+      { label: "Over ons", href: "/nl#about" },
+      { label: "Contact", href: "/nl#contact" },
     ],
     ctaService: "Service aanvragen",
     ctaParts: "Onderdelen aanvragen",
     skipLabel: "Naar de inhoud",
+    homeHref: "/nl#top",
   },
   hero: {
     badge: "Onafhankelijke technische expertise",
@@ -350,10 +352,15 @@ export const nl: SiteContent = {
         href: "/nl/service-aanvragen?urgency=emergency",
         tag: "Spoed",
       },
+      {
+        index: "04",
+        title: "Iets anders?",
+        description: "Een algemene vraag of bericht.",
+        href: "/nl/contact",
+      },
     ],
     responseNote: "U krijgt een persoonlijke reactie, meestal binnen enkele werkdagen.",
     guideLabel: "Weet u niet waar te beginnen? Wij helpen u op weg",
-    ctaGeneral: "Of neem contact op voor iets anders",
   },
   wizard: {
     label: "Begeleide aanvraag",

@@ -671,16 +671,13 @@ html.lenis body {
 /* Skip layout and paint of everything below the first section until it nears
    the viewport (big win on long pages). `auto` remembers the real height once
    rendered, so anchors and scrollbars settle after the first pass. */
-main > :not(:first-child),
+.cv-auto,
 footer {
   content-visibility: auto;
   contain-intrinsic-size: auto 900px;
 }
-/* The scrollytelling track is ~3x taller than the 900px estimate and pins a
-   sticky stage; skipping it would make the page height jump while scrolling. */
-main > #anatomy {
-  content-visibility: visible;
-}
+/* (The tall scrollytelling section and the hero are deliberately not `.cv-auto`:
+   their real height is far from the estimate, which made the page jump.) */
 
 /* ---- Anatomy (scrollytelling) ---------------------------------------------
    No pinning and no extra scrolling: the track is just the block that holds

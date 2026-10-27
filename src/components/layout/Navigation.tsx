@@ -7,33 +7,28 @@ import type { Routes, SiteContent } from "@/content/types";
 import { Logo } from "@/components/ui/Logo";
 import { cn } from "@/lib/utils";
 
-type Section = "top" | "expertise" | "contact";
-// id of the closing request block (FinalCta)
-const CTA_ID = "get-in-touch";
-
 export function Navigation({ nav, routes, switcher }: { nav: SiteContent["nav"]; routes: Routes; switcher?: ReactNode }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = (usePathname() ?? "/").replace(/\/$/, "") || "/";
   const onHome = pathname === routes.home;
 
-  // Scroll-spy for the homepage: which part of the page is under the "reading line".
-  // Home = everything above the services, Expertise = the services section,
-  // Contact = the closing request block. Between those nothing is highlighted.
-  const [section, setSection] = useState<Section | null>("top");
+  // Scroll-spy for the homepage: the menu item whose section (nav.links ... "#id")
+  // is under the "reading line" is active. Above the first section nothing is.
+  const targets = nav.links.map((l) => l.href.split("#")[1]).filter(Boolean);
+  const [activeId, setActiveId] = useState<string | null>(null);
   useEffect(() => {
     if (!onHome) return;
     let frame = 0;
     const update = () => {
       frame = 0;
       const line = window.innerHeight * 0.4;
-      const box = (id: string) => document.getElementById(id)?.getBoundingClientRect();
-      const expertise = box("expertise");
-      const cta = box(CTA_ID);
-      if (cta && cta.top <= line && cta.bottom > line) setSection("contact");
-      else if (expertise && expertise.top <= line && expertise.bottom > line) setSection("expertise");
-      else if (!expertise || expertise.top > line) setSection("top");
-      else setSection(null);
+      let found: string | null = null;
+      for (const id of targets) {
+        const box = document.getElementById(id)?.getBoundingClientRect();
+        if (box && box.top <= line && box.bottom > line) found = id;
+      }
+      setActiveId(found);
     };
     const onScroll = () => {
       if (!frame) frame = requestAnimationFrame(update);
@@ -46,13 +41,11 @@ export function Navigation({ nav, routes, switcher }: { nav: SiteContent["nav"];
       window.removeEventListener("resize", onScroll);
       cancelAnimationFrame(frame);
     };
+    // targets is derived from nav.links, which never changes for a page
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [onHome]);
 
-  // On the homepage the anchor links follow the scroll position; on other pages the link of the current page is active.
-  const sectionOf = (href: string): Section | null =>
-    href.endsWith("#top") ? "top" : href.endsWith("#expertise") ? "expertise" : href === routes.contact ? "contact" : null;
-  const isActive = (href: string) =>
-    onHome ? sectionOf(href) !== null && sectionOf(href) === section : !href.includes("#") && pathname === href;
+  const isActive = (href: string) => onHome && href.split("#")[1] === activeId;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -84,14 +77,14 @@ export function Navigation({ nav, routes, switcher }: { nav: SiteContent["nav"];
           scrolled ? "h-16" : "h-16 lg:h-20"
         )}
       >
-        <Logo light priority href={nav.links[0].href} imgClassName={scrolled ? "h-11 lg:h-12" : "h-12 lg:h-14"} />
+        <Logo light priority href={nav.homeHref} imgClassName={scrolled ? "h-11 lg:h-12" : "h-12 lg:h-14"} />
 
         <ul className="hidden items-center gap-10 lg:flex">
           {nav.links.map((link) => (
             <li key={link.href}>
               <Link prefetch={false}
                 href={link.href}
-                aria-current={isActive(link.href) ? (onHome ? "location" : "page") : undefined}
+                aria-current={isActive(link.href) ? "location" : undefined}
                 className={cn(
                   "nav-link t-mono text-[0.78rem] uppercase tracking-[0.14em] transition-colors hover:text-white",
                   isActive(link.href) ? "is-active text-white" : "text-mist/80"

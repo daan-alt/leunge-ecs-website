@@ -7,7 +7,7 @@ export function Process({ locale = "en" }: { locale?: Locale }) {
   const { process } = content;
 
   return (
-    <section className="section-y bg-paper">
+    <section className="cv-auto section-y bg-paper">
       <div className="wrap">
         <div className="grid gap-8 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-7">

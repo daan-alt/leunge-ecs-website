@@ -12,7 +12,7 @@ const url = (path: string) => (path === "/" ? SITE_URL : `${SITE_URL}${path}`);
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date(LAST_UPDATED);
-  const keys = (Object.keys(PAGES) as PageKey[]).filter((k) => k !== "request" || features.wizard);
+  const keys = (Object.keys(PAGES) as PageKey[]).filter((k) => k !== "about" && (k !== "request" || features.wizard));
   const active = features.dutch ? locales : (["en"] as const);
 
   return keys.flatMap((key) =>

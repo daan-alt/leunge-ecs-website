@@ -9,7 +9,7 @@ export function Intro({ locale = "en" }: { locale?: Locale }) {
   const { intro } = content;
 
   return (
-    <section className="section-y bg-paper">
+    <section className="cv-auto section-y bg-paper">
       <div className="wrap">
         <Reveal>
           <span className="t-eyebrow text-accent-ink">{intro.label}</span>

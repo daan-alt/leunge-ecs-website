@@ -64,14 +64,16 @@ export const en: SiteContent = {
   },
   nav: {
     links: [
-      { label: "Home", href: "/#top" },
       { label: "Expertise", href: "/#expertise" },
-      { label: "About", href: "/about" },
-      { label: "Contact", href: "/contact" },
+      { label: "Parts", href: "/#parts" },
+      { label: "How it works", href: "/#process" },
+      { label: "About", href: "/#about" },
+      { label: "Contact", href: "/#contact" },
     ],
     ctaService: "Request Service",
     ctaParts: "Request Parts",
     skipLabel: "Skip to content",
+    homeHref: "/#top",
   },
   hero: {
     badge: "Independent technical expertise",
@@ -348,10 +350,15 @@ export const en: SiteContent = {
         href: "/service-request?urgency=emergency",
         tag: "Urgent",
       },
+      {
+        index: "04",
+        title: "Something else?",
+        description: "A general question or message.",
+        href: "/contact",
+      },
     ],
     responseNote: "A personal response follows, usually within a few working days.",
     guideLabel: "Not sure where to start? Let us guide you",
-    ctaGeneral: "Or get in touch for anything else",
   },
   wizard: {
     label: "Guided request",

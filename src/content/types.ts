@@ -122,6 +122,8 @@ export interface SiteContent {
     ctaService: string;
     ctaParts: string;
     skipLabel: string;
+    /** The logo's link: top of the homepage. */
+    homeHref: string;
   };
   hero: {
     badge: string;
@@ -207,7 +209,6 @@ export interface SiteContent {
     options: { index: string; title: string; description: string; href: string; tag?: string }[];
     responseNote: string;
     guideLabel: string;
-    ctaGeneral: string;
   };
   wizard: {
     label: string;

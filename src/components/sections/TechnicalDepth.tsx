@@ -12,7 +12,7 @@ export function TechnicalDepth({ locale = "en" }: { locale?: Locale }) {
   );
 
   return (
-    <section className="bg-white py-20 lg:py-28">
+    <section className="cv-auto bg-white py-20 lg:py-28">
       <div className="wrap">
         <div className="grid gap-6 lg:grid-cols-12 lg:items-end lg:gap-16">
           <div className="lg:col-span-7">

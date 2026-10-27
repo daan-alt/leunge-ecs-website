@@ -7,7 +7,7 @@ export function Principles({ locale = "en" }: { locale?: Locale }) {
   const { principles } = content;
 
   return (
-    <section className="section-y relative overflow-hidden bg-navy-ink text-white">
+    <section className="cv-auto section-y relative overflow-hidden bg-navy-ink text-white">
       <div aria-hidden className="absolute inset-0">
         <div className="technical-frame absolute inset-0">
           <Photo image={principles.image} sizes="100vw" className="opacity-60" />

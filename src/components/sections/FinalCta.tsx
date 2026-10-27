@@ -13,7 +13,7 @@ export function FinalCta({ locale = "en" }: { locale?: Locale }) {
   const { finalCta } = content;
 
   return (
-    <section id="get-in-touch" className="section-y relative overflow-hidden bg-navy-deep">
+    <section id="contact" className="cv-auto section-y relative scroll-mt-16 overflow-hidden bg-navy-deep">
       <div aria-hidden className="absolute inset-0 text-white">
         <ChartBackdrop />
       </div>
@@ -74,10 +74,6 @@ export function FinalCta({ locale = "en" }: { locale?: Locale }) {
               <span aria-hidden>→</span>
             </Link>
           )}
-          <Link prefetch={false} href={content.routes.contact} className="link-line mt-8 text-mist/80 hover:text-white">
-            {finalCta.ctaGeneral}
-            <span aria-hidden>→</span>
-          </Link>
         </Reveal>
       </div>
     </section>

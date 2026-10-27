@@ -7,7 +7,7 @@ export function Expertise({ locale = "en" }: { locale?: Locale }) {
   const { expertise } = content;
 
   return (
-    <section id="expertise" className="section-y scroll-mt-16 bg-white">
+    <section id="expertise" className="cv-auto section-y scroll-mt-16 bg-white">
       <div className="wrap">
         <div className="grid gap-8 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-7">
