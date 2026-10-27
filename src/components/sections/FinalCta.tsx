@@ -13,7 +13,7 @@ export function FinalCta({ locale = "en" }: { locale?: Locale }) {
   const { finalCta } = content;
 
   return (
-    <section id="contact" className="cv-auto section-y relative scroll-mt-16 overflow-hidden bg-navy-deep">
+    <section id="contact" className="cv-auto relative scroll-mt-16 overflow-hidden bg-navy-deep py-20 lg:py-28">
       <div aria-hidden className="absolute inset-0 text-white">
         <ChartBackdrop />
       </div>
@@ -21,7 +21,7 @@ export function FinalCta({ locale = "en" }: { locale?: Locale }) {
       <div aria-hidden className="absolute inset-0 bg-gradient-to-r from-navy-deep/95 via-navy-deep/45 to-transparent" />
       <div aria-hidden className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-navy-deep to-transparent" />
 
-      <div className="wrap col-guides relative grid gap-14 lg:grid-cols-12 lg:items-end lg:gap-12">
+      <div className="wrap col-guides relative grid gap-14 lg:grid-cols-12 lg:items-start lg:gap-12">
         <div className="lg:col-span-6">
           <Reveal>
             <span className="t-eyebrow text-accent-bright">{finalCta.label}</span>
